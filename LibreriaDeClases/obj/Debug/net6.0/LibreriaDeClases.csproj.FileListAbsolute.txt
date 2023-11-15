@@ -1,0 +1,36 @@
+G:\Mi unidad\Gradia.Valentin\Gradia.Valentinn\LibreriaDeClases\bin\Debug\net6.0\LibreriaDeClases.deps.json
+G:\Mi unidad\Gradia.Valentin\Gradia.Valentinn\LibreriaDeClases\bin\Debug\net6.0\LibreriaDeClases.dll
+G:\Mi unidad\Gradia.Valentin\Gradia.Valentinn\LibreriaDeClases\bin\Debug\net6.0\LibreriaDeClases.pdb
+G:\Mi unidad\Gradia.Valentin\Gradia.Valentinn\LibreriaDeClases\obj\Debug\net6.0\LibreriaDeClases.GeneratedMSBuildEditorConfig.editorconfig
+G:\Mi unidad\Gradia.Valentin\Gradia.Valentinn\LibreriaDeClases\obj\Debug\net6.0\LibreriaDeClases.AssemblyInfoInputs.cache
+G:\Mi unidad\Gradia.Valentin\Gradia.Valentinn\LibreriaDeClases\obj\Debug\net6.0\LibreriaDeClases.AssemblyInfo.cs
+G:\Mi unidad\Gradia.Valentin\Gradia.Valentinn\LibreriaDeClases\obj\Debug\net6.0\LibreriaDeClases.csproj.CoreCompileInputs.cache
+G:\Mi unidad\Gradia.Valentin\Gradia.Valentinn\LibreriaDeClases\obj\Debug\net6.0\LibreriaDeClases.dll
+G:\Mi unidad\Gradia.Valentin\Gradia.Valentinn\LibreriaDeClases\obj\Debug\net6.0\refint\LibreriaDeClases.dll
+G:\Mi unidad\Gradia.Valentin\Gradia.Valentinn\LibreriaDeClases\obj\Debug\net6.0\LibreriaDeClases.pdb
+G:\Mi unidad\Gradia.Valentin\Gradia.Valentinn\LibreriaDeClases\obj\Debug\net6.0\ref\LibreriaDeClases.dll
+G:\Mi unidad\SegundoParcial-Labo\Gradia.Valentinn\LibreriaDeClases\bin\Debug\net6.0\LibreriaDeClases.deps.json
+G:\Mi unidad\SegundoParcial-Labo\Gradia.Valentinn\LibreriaDeClases\bin\Debug\net6.0\LibreriaDeClases.dll
+G:\Mi unidad\SegundoParcial-Labo\Gradia.Valentinn\LibreriaDeClases\bin\Debug\net6.0\LibreriaDeClases.pdb
+G:\Mi unidad\SegundoParcial-Labo\Gradia.Valentinn\LibreriaDeClases\obj\Debug\net6.0\LibreriaDeClases.GeneratedMSBuildEditorConfig.editorconfig
+G:\Mi unidad\SegundoParcial-Labo\Gradia.Valentinn\LibreriaDeClases\obj\Debug\net6.0\LibreriaDeClases.AssemblyInfoInputs.cache
+G:\Mi unidad\SegundoParcial-Labo\Gradia.Valentinn\LibreriaDeClases\obj\Debug\net6.0\LibreriaDeClases.AssemblyInfo.cs
+G:\Mi unidad\SegundoParcial-Labo\Gradia.Valentinn\LibreriaDeClases\obj\Debug\net6.0\LibreriaDeClases.csproj.CoreCompileInputs.cache
+G:\Mi unidad\SegundoParcial-Labo\Gradia.Valentinn\LibreriaDeClases\obj\Debug\net6.0\LibreriaDeClases.dll
+G:\Mi unidad\SegundoParcial-Labo\Gradia.Valentinn\LibreriaDeClases\obj\Debug\net6.0\refint\LibreriaDeClases.dll
+G:\Mi unidad\SegundoParcial-Labo\Gradia.Valentinn\LibreriaDeClases\obj\Debug\net6.0\LibreriaDeClases.pdb
+G:\Mi unidad\SegundoParcial-Labo\Gradia.Valentinn\LibreriaDeClases\obj\Debug\net6.0\ref\LibreriaDeClases.dll
+C:\Valen\SegundoParcial-Labo\Gradia.Valentinn\LibreriaDeClases\bin\Debug\net6.0\LibreriaDeClases.deps.json
+C:\Valen\SegundoParcial-Labo\Gradia.Valentinn\LibreriaDeClases\bin\Debug\net6.0\LibreriaDeClases.dll
+C:\Valen\SegundoParcial-Labo\Gradia.Valentinn\LibreriaDeClases\bin\Debug\net6.0\LibreriaDeClases.pdb
+C:\Valen\SegundoParcial-Labo\Gradia.Valentinn\LibreriaDeClases\obj\Debug\net6.0\LibreriaDeClases.csproj.AssemblyReference.cache
+C:\Valen\SegundoParcial-Labo\Gradia.Valentinn\LibreriaDeClases\obj\Debug\net6.0\LibreriaDeClases.Properties.Resources.resources
+C:\Valen\SegundoParcial-Labo\Gradia.Valentinn\LibreriaDeClases\obj\Debug\net6.0\LibreriaDeClases.csproj.GenerateResource.cache
+C:\Valen\SegundoParcial-Labo\Gradia.Valentinn\LibreriaDeClases\obj\Debug\net6.0\LibreriaDeClases.GeneratedMSBuildEditorConfig.editorconfig
+C:\Valen\SegundoParcial-Labo\Gradia.Valentinn\LibreriaDeClases\obj\Debug\net6.0\LibreriaDeClases.AssemblyInfoInputs.cache
+C:\Valen\SegundoParcial-Labo\Gradia.Valentinn\LibreriaDeClases\obj\Debug\net6.0\LibreriaDeClases.AssemblyInfo.cs
+C:\Valen\SegundoParcial-Labo\Gradia.Valentinn\LibreriaDeClases\obj\Debug\net6.0\LibreriaDeClases.csproj.CoreCompileInputs.cache
+C:\Valen\SegundoParcial-Labo\Gradia.Valentinn\LibreriaDeClases\obj\Debug\net6.0\LibreriaDeClases.dll
+C:\Valen\SegundoParcial-Labo\Gradia.Valentinn\LibreriaDeClases\obj\Debug\net6.0\refint\LibreriaDeClases.dll
+C:\Valen\SegundoParcial-Labo\Gradia.Valentinn\LibreriaDeClases\obj\Debug\net6.0\LibreriaDeClases.pdb
+C:\Valen\SegundoParcial-Labo\Gradia.Valentinn\LibreriaDeClases\obj\Debug\net6.0\ref\LibreriaDeClases.dll

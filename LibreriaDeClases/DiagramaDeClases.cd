@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="LibreriaDeClases.Jugador">
+    <Position X="6.5" Y="0.75" Width="1.5" />
+    <Members>
+      <Method Name="Method" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAYAAACEgAAggAAAAAAAIgAAACYAAAAAAig=</HashCode>
+      <FileName>Jugador.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LibreriaDeClases.Voleibolista">
+    <Position X="10" Y="6" Width="1.5" />
+    <Members>
+      <Method Name="Method" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAEgAAgAAAAAAAAAAAAACYAAACEAiA=</HashCode>
+      <FileName>Voleibolista.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LibreriaDeClases.Futbolista">
+    <Position X="6.5" Y="6" Width="1.5" />
+    <Members>
+      <Method Name="Method" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAQAAIEgAAiAAAAAAAAAAAAACQAAAAFAjA=</HashCode>
+      <FileName>Futbolista.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LibreriaDeClases.Basquetbolista">
+    <Position X="3" Y="6" Width="1.5" />
+    <Members>
+      <Method Name="Method" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAFgAAgAAAAAAAAEAAAADQAAAAEAiA=</HashCode>
+      <FileName>Basquetbolista.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
