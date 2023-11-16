@@ -42,6 +42,8 @@ namespace Aplicacion
                     string nombreEquipo = this.txtNombreEquipo.Text;
 
                     FormCrud formCrud = new FormCrud(cantJugadores, nombreEquipo,this.perfilUsuario);
+
+                    //this.Visible = false;
                     formCrud.ShowDialog();
                     this.equipoCreado = formCrud.MiEquipo;
 
