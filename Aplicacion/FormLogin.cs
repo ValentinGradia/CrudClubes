@@ -91,7 +91,7 @@ namespace Aplicacion
             try
             {
                 this.ValidarContraseñaCorreo();
-                foreach (Usuario usuario in usuarios)
+                usuarios.ForEach((usuario) =>
                 {
                     if (usuario.clave == contraseña & usuario.correo == correo)
                     {
@@ -100,8 +100,7 @@ namespace Aplicacion
                         this.nombreUsuario = usuario.nombre;
                         this.perfil = usuario.perfil;
                     }
-                }
-
+                });
                 return flag;
 
             }
