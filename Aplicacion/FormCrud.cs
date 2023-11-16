@@ -123,6 +123,7 @@ namespace Aplicacion
             if (form.DialogResult == DialogResult.OK)
             {
                 this.equipo.MiEquipo[selected] = form.MiDeportista;
+
                 this.Actualizar();
             }
         }
