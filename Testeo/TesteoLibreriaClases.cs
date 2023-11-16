@@ -6,7 +6,7 @@ using System;
 namespace Testeo
 {
     [TestClass]
-    public class Test
+    public class TesteoLibreriaClases
     {
         [TestMethod]
         public void ValidarFutbolistas_CuandoSeanIguales()
@@ -60,7 +60,7 @@ namespace Testeo
         }
 
         [TestMethod]
-        public void AgregarJugador_CuandoYaEsteEnLaLista_DeberiaRetornarTrue()
+        public void VerificarJugador_CuandoYaEsteEnLaLista_DeberiaRetornarTrue()
         {
             //Arrange
             List<Jugador> listaJugadores = new List<Jugador>
