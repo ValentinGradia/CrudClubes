@@ -29,9 +29,10 @@ namespace Aplicacion
 
         private void MiComando(string text)
         {
-            this.comando.Connection = conexion;
-            this.comando.CommandType = System.Data.CommandType.Text;
-            this.comando.CommandText = text;
+            this.comando.Connection = this.conexion;
+            this.comando.CommandType = System.Data.CommandType.Text;//Propiedad que permite establecer la forma en la que vas a comunicar con la base de datos(enumerado)
+            //Con el text es para escribir un comando como de SQL
+            this.comando.CommandText = text;//objeto sqlconnection
         }
 
         public List<T> ObtenerListaDatos<T>(List<T> listaJugadores)
@@ -41,14 +42,10 @@ namespace Aplicacion
             try
             {   
 
-                this.comando.CommandType = System.Data.CommandType.Text;//Propiedad que permite establecer la forma en la que vas a comunicar con la base de datos(enumerado)
-                //Con el text es para escribir un comando como de SQL
-                this.comando.CommandText = $"select * from {tabla}"; //comando
-                this.comando.Connection = this.conexion;//objeto sqlconnection
+                this.MiComando($"select * from {tabla}");
 
                 this.conexion.Open();
 
-                //this.comando.ExecuteNonQuery() -> tipo insert,update, delete
                 this.lector = this.comando.ExecuteReader(); //tipo select
 
                 while(this.lector.Read())//devuelve true cuando hay algo para leer
@@ -60,6 +57,7 @@ namespace Aplicacion
                     jugador.Nacion = (ENacionalidad)Convert.ToInt32(this.lector["Nacion"]);
                     jugador.Posicion = (string)this.lector["Posicion"];
 
+                    //llamo a mi funcion para ver (dependiendo del tipo de jugador) que valores tengo que caster
                     this.ManejoEspecificoJugadores(jugador, this.lector);
 
                     listaJugadores.Add(jugador);
@@ -131,44 +129,27 @@ namespace Aplicacion
             {
                 this.comando = new SqlCommand();
 
-                //Recorro las propiedades del jugador
-                foreach(var propiedad in jugador.GetType().GetProperties())
-                {
-                    if(propiedad.Name == "ManoDominante" | propiedad.Name == "Pierna" | propiedad.Name == "Nacion")
-                    {
-                        int valor = Convert.ToInt32(propiedad.GetValue(jugador));
-                        this.AgregarValoresComando(this.comando, $@"{propiedad.Name}", $"{valor}");
-                    }
-                    else
-                    {
-                        this.AgregarValoresComando(this.comando, $@"{propiedad.Name}", $"{propiedad.GetValue(jugador)}");
-                    }
-                }
-
-                this.comando.CommandType = System.Data.CommandType.Text;
+                this.RecorrerPropiedades(jugador, this.comando);
 
                 //Dependiendo del tipo de jugador lo voy a insertar en una tabla diferente
                 switch(tabla)
                 {
                     case "Futbolistas":
-                        this.comando.CommandText = $"insert into {tabla} (Nombre, Apellido, Edad, Nacion, Pierna, Goles, Posicion) values(@Nombre, @Apellido, @Edad, @Nacion, @Pierna, @Goles, @Posicion)"; //comando
+                        this.MiComando($"insert into {tabla} (Nombre, Apellido, Edad, Nacion, Pierna, Goles, Posicion) values(@Nombre, @Apellido, @Edad, @Nacion, @Pierna, @Goles, @Posicion)");
                         break;
                     case "Basquetbolistas":
-                        this.comando.CommandText = $"insert into {tabla} (Nombre, Apellido, Edad, Nacion, Altura, Calzado, Posicion) values(@Nombre, @Apellido, @Edad, @Nacion, @Altura, @Calzado, @Posicion)"; //comando
+                        this.MiComando($"insert into {tabla} (Nombre, Apellido, Edad, Nacion, Altura, Calzado, Posicion) values(@Nombre, @Apellido, @Edad, @Nacion, @Altura, @Calzado, @Posicion)"); //comando
                         break;
                     default:
-                        this.comando.CommandText = $"insert into {tabla} (Nombre, Apellido, Edad, Nacion, ManoDominante, Posicion) values(@Nombre, @Apellido, @Edad, @Nacion, @ManoDominante, @Posicion)"; //comando
+                        this.MiComando($"insert into {tabla} (Nombre, Apellido, Edad, Nacion, ManoDominante, Posicion) values(@Nombre, @Apellido, @Edad, @Nacion, @ManoDominante, @Posicion)"); //comando
                         break;
 
                 }
-
-                this.comando.Connection = this.conexion;//objeto sqlconnection
-
                 this.conexion.Open();
 
-                int filasAfectadas = this.comando.ExecuteNonQuery();
+                int filasAfectadas = this.comando.ExecuteNonQuery(); // -> tipo insert,update, delete
 
-                if(filasAfectadas > 0)
+                if (filasAfectadas > 0)
                 {
                     retorno = true;
                 }
@@ -191,19 +172,50 @@ namespace Aplicacion
             comando.Parameters.AddWithValue(columna, valor);
         }
 
+        //Recorro las propiedades del jugador para ir agregando sus respectivos valores dependiendo el tipo de jugador
+        private void RecorrerPropiedades(Jugador jugador, SqlCommand comando)
+        {
+
+            foreach (var propiedad in jugador.GetType().GetProperties())
+            {
+                if (propiedad.Name == "ManoDominante" | propiedad.Name == "Pierna" | propiedad.Name == "Nacion")
+                {
+                    int valor = Convert.ToInt32(propiedad.GetValue(jugador));
+                    this.AgregarValoresComando(comando, $@"{propiedad.Name}", $"{valor}");
+                }
+                else
+                {
+                    this.AgregarValoresComando(comando, $@"{propiedad.Name}", $"{propiedad.GetValue(jugador)}");
+                }
+            }
+
+        }
+
         public bool ModificarJugador<T>(T jugador)
             where T: Jugador
         {
             bool retorno = false;
 
+            string tabla = this.ObtenerNombreTabla<T>();
+
             try
             {
                 this.comando = new SqlCommand();
-                this.comando.Parameters.AddWithValue(@"columna", "valor de dicha columna");
-                this.comando.CommandType = System.Data.CommandType.Text;//Propiedad que permite establecer la forma en la que vas a comunicar con la base de datos(enumerado)
-                //Con el text es para escribir un comando como de SQL
-                this.comando.CommandText = "update into (nombre_tabla) set columna = @columna where (poner algo sino cambia todo)"; //comando
-                this.comando.Connection = this.conexion;//objeto sqlconnection
+                this.RecorrerPropiedades(jugador, this.comando);
+
+                switch (tabla)
+                {
+                    case "Futbolistas":
+                        this.MiComando($"update {tabla} set Nombre = @Nombre, Apellido = @Apellido, Edad = @Edad, Nacion = @Nacion, Pierna = @Pierna, Goles = @Goles, Posicion = @Posicion where Apellido = @Apellido"); 
+                        break;
+                    case "Basquetbolistas":
+                        this.MiComando($"update {tabla} set Nombre = @Nombre, Apellido = @Apellido, Edad = @Edad, Nacion = @Nacion, Altura = @Altura, Calzado = @Calzado, Posicion = @Posicion where Apellido = @Apellido"); 
+                        break;
+                    default:
+                        this.MiComando($"update {tabla} set Nombre = @Nombre, Apellido = @Apellido, Edad = @Edad, Nacion = @Nacion, ManoDominante = @ManoDominante, Posicion = @Posicion where Apellido = @Apellido");
+                        break;
+
+                }
 
                 this.conexion.Open();
 
