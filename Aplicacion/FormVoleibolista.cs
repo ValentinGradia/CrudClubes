@@ -122,7 +122,7 @@ namespace Aplicacion
                 }
                 else
                 {
-                    base.miDeportista = new Voleibolista(base.nombre, base.apellido, base.edad, nacion, mano);
+                    base.miDeportista = new Voleibolista(mano, base.nombre, base.apellido, base.edad, nacion, "Sin posicion");
                     this.DialogResult = DialogResult.OK;
                 }
             }

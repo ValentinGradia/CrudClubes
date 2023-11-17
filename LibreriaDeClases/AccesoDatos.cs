@@ -34,16 +34,16 @@ namespace Aplicacion
             this.comando.CommandText = text;
         }
 
-
-
         public List<T> ObtenerListaDatos<T>(List<T> listaJugadores)
             where T: Jugador, new()
         {
+            string tabla = this.ObtenerNombreTabla<T>();
             try
             {   
+
                 this.comando.CommandType = System.Data.CommandType.Text;//Propiedad que permite establecer la forma en la que vas a comunicar con la base de datos(enumerado)
                 //Con el text es para escribir un comando como de SQL
-                this.comando.CommandText = "select into"; //comando
+                this.comando.CommandText = $"select * from {tabla}"; //comando
                 this.comando.Connection = this.conexion;//objeto sqlconnection
 
                 this.conexion.Open();
@@ -79,6 +79,22 @@ namespace Aplicacion
             return listaJugadores;
         }
 
+        private string ObtenerNombreTabla<T>()
+        {
+            if (typeof(T) == typeof(Futbolista))
+            {
+                return "Futbolistas";
+            }
+            else if (typeof(T) == typeof(Basquetbolista))
+            {
+                return "Basquetbolistas";
+            }
+            else
+            {
+                return "Voleibolistas";
+            }
+        }
+
         private void ManejoEspecificoJugadores(Jugador jugador, SqlDataReader lector)
         {
             if (jugador is Futbolista)
@@ -86,32 +102,66 @@ namespace Aplicacion
                 Futbolista futbolista = jugador as Futbolista;
                 futbolista.Pierna = (EPierna)Convert.ToInt32(lector["Pierna"]);
                 futbolista.Goles = (int)lector["Goles"];
+                futbolista.habilidad = futbolista.Habilidad();
             }
             else if (jugador is Basquetbolista)
             {
                 Basquetbolista basquetbolista = jugador as Basquetbolista;
                 basquetbolista.Altura = (int)lector["Altura"];
-                basquetbolista.Calzado = lector.GetFloat(6);
+                basquetbolista.Calzado = (int)lector["Calzado"];
+                basquetbolista.habilidad = basquetbolista.Habilidad();
             }
             else
             {
                 Voleibolista voleibolista = jugador as Voleibolista;
                 voleibolista.ManoDominante = (EMano)Convert.ToInt32(lector["ManoDominante"]);
+                voleibolista.habilidad = voleibolista.Habilidad();
             }
 
         }
 
-        public bool AgregarJugador(Jugador j)
+        public bool AgregarJugador<T>(T jugador)
+            where T: Jugador
         {
             bool retorno = false;
+
+            string tabla = this.ObtenerNombreTabla<T>();
 
             try
             {
                 this.comando = new SqlCommand();
-                this.comando.Parameters.AddWithValue(@"columna", "valor de dicha columna");
-                this.comando.CommandType = System.Data.CommandType.Text;//Propiedad que permite establecer la forma en la que vas a comunicar con la base de datos(enumerado)
-                //Con el text es para escribir un comando como de SQL
-                this.comando.CommandText = "insert into (nombre_tabla) set columna = @columna where (poner algo sino cambia todo)"; //comando
+
+                //Recorro las propiedades del jugador
+                foreach(var propiedad in jugador.GetType().GetProperties())
+                {
+                    if(propiedad.Name == "ManoDominante" | propiedad.Name == "Pierna" | propiedad.Name == "Nacion")
+                    {
+                        int valor = Convert.ToInt32(propiedad.GetValue(jugador));
+                        this.AgregarValoresComando(this.comando, $@"{propiedad.Name}", $"{valor}");
+                    }
+                    else
+                    {
+                        this.AgregarValoresComando(this.comando, $@"{propiedad.Name}", $"{propiedad.GetValue(jugador)}");
+                    }
+                }
+
+                this.comando.CommandType = System.Data.CommandType.Text;
+
+                //Dependiendo del tipo de jugador lo voy a insertar en una tabla diferente
+                switch(tabla)
+                {
+                    case "Futbolistas":
+                        this.comando.CommandText = $"insert into {tabla} (Nombre, Apellido, Edad, Nacion, Pierna, Goles, Posicion) values(@Nombre, @Apellido, @Edad, @Nacion, @Pierna, @Goles, @Posicion)"; //comando
+                        break;
+                    case "Basquetbolistas":
+                        this.comando.CommandText = $"insert into {tabla} (Nombre, Apellido, Edad, Nacion, Altura, Calzado, Posicion) values(@Nombre, @Apellido, @Edad, @Nacion, @Altura, @Calzado, @Posicion)"; //comando
+                        break;
+                    default:
+                        this.comando.CommandText = $"insert into {tabla} (Nombre, Apellido, Edad, Nacion, ManoDominante, Posicion) values(@Nombre, @Apellido, @Edad, @Nacion, @ManoDominante, @Posicion)"; //comando
+                        break;
+
+                }
+
                 this.comando.Connection = this.conexion;//objeto sqlconnection
 
                 this.conexion.Open();
@@ -134,6 +184,11 @@ namespace Aplicacion
 
             return retorno;
 
+        }
+
+        private void AgregarValoresComando(SqlCommand comando,string columna, string valor)
+        {
+            comando.Parameters.AddWithValue(columna, valor);
         }
 
         public bool ModificarJugador<T>(T jugador)

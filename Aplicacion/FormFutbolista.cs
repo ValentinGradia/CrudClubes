@@ -152,8 +152,8 @@ namespace Aplicacion
                     }
                     else
                     {
-                        base.miDeportista = new Futbolista(base.nombre, base.apellido, base.edad, nacionalidad,
-                            goles, pierna);
+                        base.miDeportista = new Futbolista(base.nombre, base.apellido, base.edad, nacionalidad, "Sin posicion",
+                                        goles, pierna);
 
                         this.DialogResult = DialogResult.OK;
                         return;

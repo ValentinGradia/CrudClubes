@@ -113,7 +113,7 @@ namespace Aplicacion
                 {
                     int altura = int.Parse(this.txtAltura.Text);
 
-                    float calzado = float.Parse(this.txtCalzado.Text);
+                    int calzado = int.Parse(this.txtCalzado.Text);
 
                     if (FormDatosJugadores.ValidarNull(this.txtPosicion.Text))
                     {
@@ -125,9 +125,10 @@ namespace Aplicacion
                     }
                     else
                     {
-                        base.miDeportista = new Basquetbolista(altura, calzado, base.nombre, base.apellido, base.edad, nacionalidad);
+                        base.miDeportista = new Basquetbolista(altura, calzado, "Sin posicion", base.nombre, base.apellido, base.edad, nacionalidad);
                         this.DialogResult = DialogResult.OK;
                     }
+                    
                 }
                 else
                 {
