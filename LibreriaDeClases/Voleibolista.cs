@@ -26,6 +26,7 @@ namespace LibreriaDeClases
         public override string Posicion
         {
             get { return this.posicion; }
+            set { this.posicion = value; }
         }
 
         public Voleibolista():base()

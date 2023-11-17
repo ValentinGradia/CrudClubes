@@ -42,7 +42,7 @@ namespace LibreriaDeClases
 
 
 
-        public abstract string Posicion { get; }
+        public abstract string Posicion { get; set; }
 
 
         public Jugador()

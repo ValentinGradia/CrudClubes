@@ -113,7 +113,7 @@ namespace Aplicacion
                 {
                     int altura = int.Parse(this.txtAltura.Text);
 
-                    int calzado = int.Parse(this.txtCalzado.Text);
+                    float calzado = float.Parse(this.txtCalzado.Text);
 
                     if (FormDatosJugadores.ValidarNull(this.txtPosicion.Text))
                     {

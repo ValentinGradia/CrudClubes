@@ -19,6 +19,7 @@ namespace LibreriaDeClases
         public EPierna Pierna
         {
             get { return this.pierna; }
+            set { this.pierna = value; }
         }
 
         public int Goles    
@@ -58,6 +59,10 @@ namespace LibreriaDeClases
             get
             {
                 return this.posicion;
+            }
+            set
+            {
+                this.posicion = value;
             }
 
         }

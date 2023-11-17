@@ -13,7 +13,7 @@ namespace LibreriaDeClases
     public class Basquetbolista : Jugador
     {
         private int altura;
-        private int calzado;
+        private float calzado;
         private string posicion;
 
         public int Altura
@@ -22,7 +22,7 @@ namespace LibreriaDeClases
             set { this.altura = value; }
         }
 
-        public int Calzado
+        public float Calzado
         {
             get { return this.calzado; }
             set { this.calzado = value; }
@@ -34,6 +34,7 @@ namespace LibreriaDeClases
             {
                 return this.posicion;
             }
+            set { this.posicion = value; }
         }
 
         public Basquetbolista():base()
@@ -42,7 +43,7 @@ namespace LibreriaDeClases
         }
 
 
-        public Basquetbolista(int altura, int calzado,string nombre,string apellido,
+        public Basquetbolista(int altura, float calzado,string nombre,string apellido,
             int edad,ENacionalidad nacion):base(nombre, apellido, edad,nacion)
         {
             this.altura = altura;
@@ -50,7 +51,7 @@ namespace LibreriaDeClases
             this.posicion = "";
         }
 
-        public Basquetbolista(int altura, int calzado, string posicion ,string nombre, string apellido,
+        public Basquetbolista(int altura, float calzado, string posicion ,string nombre, string apellido,
             int edad, ENacionalidad nacion) : this(altura,calzado,nombre, apellido, edad,nacion)
         {
             this.posicion = posicion;
