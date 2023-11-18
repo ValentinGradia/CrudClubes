@@ -9,17 +9,19 @@ namespace Aplicacion
     /// Mi formulario FormCrud se encarga de hacer que mi aplicacion cumpla los requisitos de un CRUD, basicamente crear jugadores, leerlos y agregarlos a la listbox, modificar los datos de estos y eliminarlos.
     /// Tambien puedes ordenar estos jugadores por distintos criteros, por ejemplo ordenar por edad. Ademas puedes guardar jugadores para luego poder agregarlos en otros equipos(deserealizandolos)
     /// </summary>
-    public partial class FormCrud : Form, ICrud<FormDatosJugadores>, IValidarJugadorRepetido
+    public partial class FormCrud : Form, ICrud<FormDatosJugadores>, IValidarJugadorRepetido, IEventos
     {
         private Equipo equipo;
         private string nombreEquipo;
         protected int cantJugadoresMax;
         private FormJugadores form;
         private string perfilUsuario;
+        public event Action<bool, string> ComprobarProceso;
 
         private FormCrud()
         {
             InitializeComponent();
+            this.ComprobarProceso = this.VerificarProceso;
         }
 
         //Cuando crea un equipo nuevo estos son los parametros que requieren para crearlo
@@ -357,19 +359,19 @@ namespace Aplicacion
                     {
                         Futbolista f = (Futbolista)j;
                         flag = acceso.AgregarJugador<Futbolista>(f);
-                        this.VerificarAgregadoBBDD(flag, "guardo");
+                        this.ComprobarProceso.Invoke(flag, "guardo");
                     }
                     else if (j is Basquetbolista)
                     {
                         Basquetbolista b = (Basquetbolista)j;
                         flag = acceso.AgregarJugador<Basquetbolista>(b);
-                        this.VerificarAgregadoBBDD(flag, "guardo");
+                        this.ComprobarProceso.Invoke(flag, "guardo");
                     }
                     else
                     {
                         Voleibolista v = (Voleibolista)j;
                         flag = acceso.AgregarJugador<Voleibolista>(v);
-                        this.VerificarAgregadoBBDD(flag, "guardo");
+                        this.ComprobarProceso.Invoke(flag, "guardo");
                     }
                 }
                 catch (ObjetoDuplicadoException ex)
@@ -380,7 +382,7 @@ namespace Aplicacion
 
         }
 
-        private void VerificarAgregadoBBDD(bool flag, string msg)
+        public void VerificarProceso(bool flag, string msg)
         {
             if (flag) { MessageBox.Show($"Se {msg} el jugador en la base de datos", "SUCCESFULLY", MessageBoxButtons.OK); }
             else MessageBox.Show("Algo salio mal...", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -415,19 +417,19 @@ namespace Aplicacion
                     {
                         Futbolista f = (Futbolista)j;
                         flag = acceso.ModificarJugador<Futbolista>(f);
-                        this.VerificarAgregadoBBDD(flag, "modifico");
+                        this.ComprobarProceso.Invoke(flag, "modifico");
                     }
                     else if (j is Basquetbolista)
                     {
                         Basquetbolista b = (Basquetbolista)j;
                         flag = acceso.ModificarJugador<Basquetbolista>(b);
-                        this.VerificarAgregadoBBDD(flag, "modifico");
+                        this.ComprobarProceso.Invoke(flag, "modifico");
                     }
                     else
                     {
                         Voleibolista v = (Voleibolista)j;
                         flag = acceso.ModificarJugador<Voleibolista>(v);
-                        this.VerificarAgregadoBBDD(flag, "modifico");
+                        this.ComprobarProceso.Invoke(flag, "modifico");
                     }
                 }
                 catch (JugadoNoExistenteException ex)
@@ -457,19 +459,19 @@ namespace Aplicacion
                     {
                         Futbolista f = (Futbolista)j;
                         flag = acceso.EliminarJugador<Futbolista>(f);
-                        this.VerificarAgregadoBBDD(flag, "elimino");
+                        this.ComprobarProceso.Invoke(flag, "elimino");
                     }
                     else if (j is Basquetbolista)
                     {
                         Basquetbolista b = (Basquetbolista)j;
                         flag = acceso.EliminarJugador<Basquetbolista>(b);
-                        this.VerificarAgregadoBBDD(flag, "elimino");
+                        this.ComprobarProceso.Invoke(flag, "elimino");
                     }
                     else
                     {
                         Voleibolista v = (Voleibolista)j;
                         flag = acceso.EliminarJugador<Voleibolista>(v);
-                        this.VerificarAgregadoBBDD(flag, "elimino");
+                        this.ComprobarProceso.Invoke(flag, "elimino");
                     }
                 }
                 catch (JugadoNoExistenteException ex)
@@ -488,10 +490,25 @@ namespace Aplicacion
             {
                 List<Futbolista> listaFutbolistas = acceso.ObtenerListaDatos<Futbolista>();
                 listaFutbolistas.ForEach((jugador) => this.ValidarJugadorRepetido(jugador, this.equipo));
+            }
+            else if(this.rdbBasquetbolistas.Checked)
+            {
+                List<Basquetbolista> listaBasquetbolistas = acceso.ObtenerListaDatos<Basquetbolista>();
+                listaBasquetbolistas.ForEach((jugador) => this.ValidarJugadorRepetido(jugador, this.equipo));
+            }
+            else
+            {
+                List<Voleibolista> listaVoleibolistas= acceso.ObtenerListaDatos<Voleibolista>();
+                listaVoleibolistas.ForEach((jugador) => this.ValidarJugadorRepetido(jugador, this.equipo));
 
             }
         }
 
+        /// <summary>
+        /// Al deserealizar los jugadores que tenga en la BBDD tengo que fijarme si alguno de esos jugadores ya estan en el equipo o no
+        /// </summary>
+        /// <param name="jugador"></param>
+        /// <param name="equipo"></param>
         public void ValidarJugadorRepetido(Jugador jugador, Equipo equipo)
         {
             bool flag = true;
@@ -516,7 +533,6 @@ namespace Aplicacion
                         //Recordemos que mi equipo tiene listas diferentes para cada tipo de jugador (esto por la serializacion de json y sus errores) entonces
                         //no solo tengo que agregar el jugador a la lista general sino a la lista del tipo del jugador
                         this.VerificarTipoJugador(jugador, equipo);
-                        this.Actualizar();
                     }
                 }
             }
@@ -524,9 +540,9 @@ namespace Aplicacion
             {
                 equipo.MiEquipo.Add(jugador);
                 this.VerificarTipoJugador(jugador, equipo);
-                this.Actualizar();
-
             }
+
+            this.Actualizar();
 
         }
 
