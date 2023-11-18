@@ -45,6 +45,18 @@
             btnDeserealizarBasquetbolistas = new Button();
             btnDeserealizarFutbolistas = new Button();
             btnGuardarVoleibolistas = new Button();
+            groupBox1 = new GroupBox();
+            groupBox2 = new GroupBox();
+            btnModificarBBDD = new Button();
+            btnAgregarBBDD = new Button();
+            groupBox3 = new GroupBox();
+            btnObtenerBBDD = new Button();
+            rdbVoleibolistas = new RadioButton();
+            rdbFutbolistas = new RadioButton();
+            rdbBasquetbolistas = new RadioButton();
+            groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
+            groupBox3.SuspendLayout();
             SuspendLayout();
             // 
             // lstEquipo
@@ -69,7 +81,7 @@
             // 
             // btnModificar
             // 
-            btnModificar.Location = new Point(109, 430);
+            btnModificar.Location = new Point(12, 526);
             btnModificar.Name = "btnModificar";
             btnModificar.Size = new Size(95, 68);
             btnModificar.TabIndex = 2;
@@ -80,7 +92,7 @@
             // 
             // btnEliminar
             // 
-            btnEliminar.Location = new Point(210, 430);
+            btnEliminar.Location = new Point(12, 625);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(98, 68);
             btnEliminar.TabIndex = 3;
@@ -91,9 +103,9 @@
             // 
             // btnAgregarEquipo
             // 
-            btnAgregarEquipo.Location = new Point(816, 430);
+            btnAgregarEquipo.Location = new Point(854, 503);
             btnAgregarEquipo.Name = "btnAgregarEquipo";
-            btnAgregarEquipo.Size = new Size(88, 68);
+            btnAgregarEquipo.Size = new Size(109, 68);
             btnAgregarEquipo.TabIndex = 4;
             btnAgregarEquipo.Text = "Agregar equipo";
             btnAgregarEquipo.UseVisualStyleBackColor = true;
@@ -159,7 +171,7 @@
             // 
             // btnGuardarFutbolistas
             // 
-            btnGuardarFutbolistas.Location = new Point(384, 430);
+            btnGuardarFutbolistas.Location = new Point(233, 22);
             btnGuardarFutbolistas.Name = "btnGuardarFutbolistas";
             btnGuardarFutbolistas.Size = new Size(98, 68);
             btnGuardarFutbolistas.TabIndex = 11;
@@ -169,7 +181,7 @@
             // 
             // btnGuardarBasquetbolistas
             // 
-            btnGuardarBasquetbolistas.Location = new Point(488, 430);
+            btnGuardarBasquetbolistas.Location = new Point(22, 22);
             btnGuardarBasquetbolistas.Name = "btnGuardarBasquetbolistas";
             btnGuardarBasquetbolistas.Size = new Size(99, 68);
             btnGuardarBasquetbolistas.TabIndex = 12;
@@ -179,7 +191,7 @@
             // 
             // btnDeserealizarVoleibolistas
             // 
-            btnDeserealizarVoleibolistas.Location = new Point(593, 523);
+            btnDeserealizarVoleibolistas.Location = new Point(22, 127);
             btnDeserealizarVoleibolistas.Name = "btnDeserealizarVoleibolistas";
             btnDeserealizarVoleibolistas.Size = new Size(96, 63);
             btnDeserealizarVoleibolistas.TabIndex = 13;
@@ -189,7 +201,7 @@
             // 
             // btnDeserealizarBasquetbolistas
             // 
-            btnDeserealizarBasquetbolistas.Location = new Point(488, 523);
+            btnDeserealizarBasquetbolistas.Location = new Point(124, 127);
             btnDeserealizarBasquetbolistas.Name = "btnDeserealizarBasquetbolistas";
             btnDeserealizarBasquetbolistas.Size = new Size(99, 63);
             btnDeserealizarBasquetbolistas.TabIndex = 14;
@@ -199,7 +211,7 @@
             // 
             // btnDeserealizarFutbolistas
             // 
-            btnDeserealizarFutbolistas.Location = new Point(384, 523);
+            btnDeserealizarFutbolistas.Location = new Point(233, 127);
             btnDeserealizarFutbolistas.Name = "btnDeserealizarFutbolistas";
             btnDeserealizarFutbolistas.Size = new Size(98, 63);
             btnDeserealizarFutbolistas.TabIndex = 15;
@@ -209,7 +221,7 @@
             // 
             // btnGuardarVoleibolistas
             // 
-            btnGuardarVoleibolistas.Location = new Point(593, 430);
+            btnGuardarVoleibolistas.Location = new Point(127, 22);
             btnGuardarVoleibolistas.Name = "btnGuardarVoleibolistas";
             btnGuardarVoleibolistas.Size = new Size(96, 68);
             btnGuardarVoleibolistas.TabIndex = 16;
@@ -217,17 +229,115 @@
             btnGuardarVoleibolistas.UseVisualStyleBackColor = true;
             btnGuardarVoleibolistas.Click += btnGuardarVoleibolistas_Click;
             // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(btnGuardarBasquetbolistas);
+            groupBox1.Controls.Add(btnDeserealizarVoleibolistas);
+            groupBox1.Controls.Add(btnDeserealizarBasquetbolistas);
+            groupBox1.Controls.Add(btnDeserealizarFutbolistas);
+            groupBox1.Controls.Add(btnGuardarVoleibolistas);
+            groupBox1.Controls.Add(btnGuardarFutbolistas);
+            groupBox1.Location = new Point(154, 413);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(345, 255);
+            groupBox1.TabIndex = 17;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Serializacion JSON";
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(btnModificarBBDD);
+            groupBox2.Controls.Add(btnAgregarBBDD);
+            groupBox2.Controls.Add(groupBox3);
+            groupBox2.Location = new Point(517, 413);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(249, 294);
+            groupBox2.TabIndex = 17;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Base de Datos";
+            // 
+            // btnModificarBBDD
+            // 
+            btnModificarBBDD.Location = new Point(65, 113);
+            btnModificarBBDD.Name = "btnModificarBBDD";
+            btnModificarBBDD.Size = new Size(95, 68);
+            btnModificarBBDD.TabIndex = 1;
+            btnModificarBBDD.Text = "Modificar Jugador";
+            btnModificarBBDD.UseVisualStyleBackColor = true;
+            btnModificarBBDD.MouseHover += btnModificarBBDD_MouseHover;
+            // 
+            // btnAgregarBBDD
+            // 
+            btnAgregarBBDD.Location = new Point(65, 22);
+            btnAgregarBBDD.Name = "btnAgregarBBDD";
+            btnAgregarBBDD.Size = new Size(95, 68);
+            btnAgregarBBDD.TabIndex = 0;
+            btnAgregarBBDD.Text = "Guardar jugador";
+            btnAgregarBBDD.UseVisualStyleBackColor = true;
+            btnAgregarBBDD.Click += btnAgregarBBDD_Click;
+            // 
+            // groupBox3
+            // 
+            groupBox3.Controls.Add(btnObtenerBBDD);
+            groupBox3.Controls.Add(rdbVoleibolistas);
+            groupBox3.Controls.Add(rdbFutbolistas);
+            groupBox3.Controls.Add(rdbBasquetbolistas);
+            groupBox3.Location = new Point(6, 208);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(237, 80);
+            groupBox3.TabIndex = 5;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Traer lista ";
+            // 
+            // btnObtenerBBDD
+            // 
+            btnObtenerBBDD.Location = new Point(17, 27);
+            btnObtenerBBDD.Name = "btnObtenerBBDD";
+            btnObtenerBBDD.Size = new Size(75, 45);
+            btnObtenerBBDD.TabIndex = 18;
+            btnObtenerBBDD.Text = "Obtener";
+            btnObtenerBBDD.UseVisualStyleBackColor = true;
+            // 
+            // rdbVoleibolistas
+            // 
+            rdbVoleibolistas.AutoSize = true;
+            rdbVoleibolistas.Location = new Point(141, 55);
+            rdbVoleibolistas.Name = "rdbVoleibolistas";
+            rdbVoleibolistas.Size = new Size(90, 19);
+            rdbVoleibolistas.TabIndex = 3;
+            rdbVoleibolistas.TabStop = true;
+            rdbVoleibolistas.Text = "Voleibolistas";
+            rdbVoleibolistas.UseVisualStyleBackColor = true;
+            // 
+            // rdbFutbolistas
+            // 
+            rdbFutbolistas.AutoSize = true;
+            rdbFutbolistas.Location = new Point(149, 22);
+            rdbFutbolistas.Name = "rdbFutbolistas";
+            rdbFutbolistas.Size = new Size(82, 19);
+            rdbFutbolistas.TabIndex = 4;
+            rdbFutbolistas.TabStop = true;
+            rdbFutbolistas.Text = "Futbolistas";
+            rdbFutbolistas.UseVisualStyleBackColor = true;
+            // 
+            // rdbBasquetbolistas
+            // 
+            rdbBasquetbolistas.AutoSize = true;
+            rdbBasquetbolistas.Location = new Point(124, 39);
+            rdbBasquetbolistas.Name = "rdbBasquetbolistas";
+            rdbBasquetbolistas.Size = new Size(107, 19);
+            rdbBasquetbolistas.TabIndex = 2;
+            rdbBasquetbolistas.TabStop = true;
+            rdbBasquetbolistas.Text = "Basquetbolistas";
+            rdbBasquetbolistas.UseVisualStyleBackColor = true;
+            // 
             // FormCrud
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1058, 598);
-            Controls.Add(btnGuardarVoleibolistas);
-            Controls.Add(btnDeserealizarFutbolistas);
-            Controls.Add(btnDeserealizarBasquetbolistas);
-            Controls.Add(btnDeserealizarVoleibolistas);
-            Controls.Add(btnGuardarBasquetbolistas);
-            Controls.Add(btnGuardarFutbolistas);
+            ClientSize = new Size(1058, 719);
+            Controls.Add(groupBox2);
+            Controls.Add(groupBox1);
             Controls.Add(btnOrdenarApellidosDescendente);
             Controls.Add(btnOrdenarEdadDescendente);
             Controls.Add(label2);
@@ -242,7 +352,10 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "FormCrud";
             Text = "FormCrud";
-            //FormClosing += FormCrud_FormClosing;
+            groupBox1.ResumeLayout(false);
+            groupBox2.ResumeLayout(false);
+            groupBox3.ResumeLayout(false);
+            groupBox3.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -266,5 +379,14 @@
         private Button btnDeserealizarBasquetbolistas;
         private Button btnDeserealizarFutbolistas;
         private Button btnGuardarVoleibolistas;
+        private GroupBox groupBox1;
+        private GroupBox groupBox2;
+        private Button btnModificarBBDD;
+        private Button btnAgregarBBDD;
+        private GroupBox groupBox3;
+        private Button btnObtenerBBDD;
+        private RadioButton rdbVoleibolistas;
+        private RadioButton rdbFutbolistas;
+        private RadioButton rdbBasquetbolistas;
     }
 }

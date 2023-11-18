@@ -238,5 +238,53 @@ namespace Aplicacion
             return retorno;
 
         }
+
+        public bool EliminarJugador<T>(T jugador)
+            where T : Jugador
+        {
+            bool retorno = false;
+
+            string tabla = this.ObtenerNombreTabla<T>();
+
+            try
+            {
+                this.comando = new SqlCommand();
+                this.RecorrerPropiedades(jugador, this.comando);
+
+                switch (tabla)
+                {
+                    case "Futbolistas":
+                        this.MiComando($"delete from {tabla} where Nombre = @Nombre, Apellido = @Apellido, Edad = @Edad, Nacion = @Nacion, Pierna = @Pierna, Goles = @Goles, Posicion = @Posicion");
+                        break;
+                    case "Basquetbolistas":
+                        this.MiComando($"delete from {tabla} where Nombre = @Nombre and Apellido = @Apellido and Edad = @Edad and Nacion = @Nacion and Altura = @Altura and Calzado = @Calzado and Posicion = @Posicion");
+                        break;
+                    default:
+                        this.MiComando($"delete from {tabla} where Nombre = @Nombre, Apellido = @Apellido, Edad = @Edad, Nacion = @Nacion, ManoDominante = @ManoDominante, Posicion = @Posicion ");
+                        break;
+
+                }
+
+                this.conexion.Open();
+
+                int filasAfectadas = this.comando.ExecuteNonQuery();
+
+                if (filasAfectadas > 0)
+                {
+                    retorno = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open) this.conexion.Close();
+            }
+
+            return retorno;
+
+        }
     }
 }

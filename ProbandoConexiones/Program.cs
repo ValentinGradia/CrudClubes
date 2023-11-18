@@ -5,11 +5,11 @@ internal class Program
     private static void Main(string[] args)
     {
 
-        Futbolista f = new Futbolista("Marco", "Polo", 32, ENacionalidad.Argentino, "Defensor", 40, EPierna.Zurdo);
+        Basquetbolista b = new Basquetbolista(190, 45, "Sin posicion", "Marco", "Polo", 32, ENacionalidad.Argentino);
 
         AccesoDatos a = new AccesoDatos();
 
-        if(a.ModificarJugador<Futbolista>(f))
+        if(a.EliminarJugador<Basquetbolista>(b))
         {
             Console.WriteLine("Todo OK");
         }

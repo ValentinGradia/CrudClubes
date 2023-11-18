@@ -337,7 +337,54 @@ namespace Aplicacion
 
             return pregunta;
         }
+
+        private void btnAgregarBBDD_Click(object sender, EventArgs e)
+        {
+            int selected = this.lstEquipo.SelectedIndex;
+            bool flag;
+
+            if (selected == -1)
+            {
+                MessageBox.Show("Seleccione uno", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                AccesoDatos acceso = new AccesoDatos();
+                Jugador j = this.equipo.MiEquipo[selected];
+
+                if (j is Futbolista)
+                {
+                    Futbolista f = (Futbolista)j;
+                    flag = acceso.AgregarJugador<Futbolista>(f);
+                    this.VerificarAgregadoBBDD(flag);
+                }
+                else if (j is Basquetbolista)
+                {
+                    Basquetbolista b = (Basquetbolista)j;
+                    flag = acceso.AgregarJugador<Basquetbolista>(b);
+                    this.VerificarAgregadoBBDD(flag);
+                }
+                else
+                {
+                    Voleibolista v = (Voleibolista)j;
+                    flag = acceso.AgregarJugador<Voleibolista>(v);
+                    this.VerificarAgregadoBBDD(flag);
+                }
+            }
+
+        }
+
+        private void VerificarAgregadoBBDD(bool flag)
+        {
+            if (flag) { MessageBox.Show("Se guardo el jugador en la base de datos", "SUCCESFULLY", MessageBoxButtons.OK); }
+            else MessageBox.Show("Algo salio mal...", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void btnModificarBBDD_MouseHover(object sender, EventArgs e)
+        {
+            this.CrearToolTip(this.btnModificarBBDD, "Dicho jugador a modificar debe estar previamente guardado en la BBDD");
+        }
     }
 
-    
+
 }
