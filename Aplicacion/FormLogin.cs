@@ -24,6 +24,7 @@ namespace Aplicacion
         private string nombreUsuario;
         private Usuario miUsuario;
         private string perfil;
+        private event Action<bool> comprobarUsuario;
 
         public Usuario MiUsuario
         {
@@ -63,9 +64,9 @@ namespace Aplicacion
 
                     try
                     {
-                        this.Mostrar(Validar(usuarios));
+                        this.comprobarUsuario.Invoke(Validar(usuarios));
                     }
-                    catch(NullContraseñaCorreoException ex)
+                    catch (NullContraseñaCorreoException ex)
                     {
                         MessageBox.Show(ex.Message);
                     }
@@ -104,7 +105,7 @@ namespace Aplicacion
                 return flag;
 
             }
-            catch(NullContraseñaCorreoException e)
+            catch (NullContraseñaCorreoException e)
             {
                 throw e;
                 //return false;
@@ -131,10 +132,15 @@ namespace Aplicacion
 
         private void ValidarContraseñaCorreo()
         {
-            if(this.txtMail.Text == "" | this.txtContraseña.Text == "")
+            if (this.txtMail.Text == "" | this.txtContraseña.Text == "")
             {
                 throw new NullContraseñaCorreoException("Error, Complete con sus datos");
             }
+        }
+
+        private void FormLogin_Load(object sender, EventArgs e)
+        {
+            this.comprobarUsuario = this.Mostrar;
         }
     }
 

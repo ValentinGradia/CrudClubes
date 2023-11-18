@@ -9,19 +9,18 @@ namespace Aplicacion
     /// Mi formulario FormCrud se encarga de hacer que mi aplicacion cumpla los requisitos de un CRUD, basicamente crear jugadores, leerlos y agregarlos a la listbox, modificar los datos de estos y eliminarlos.
     /// Tambien puedes ordenar estos jugadores por distintos criteros, por ejemplo ordenar por edad. Ademas puedes guardar jugadores para luego poder agregarlos en otros equipos(deserealizandolos)
     /// </summary>
-    public partial class FormCrud : Form, ICrud<FormDatosJugadores>, IValidarJugadorRepetido, IEventos
+    public partial class FormCrud : Form, ICrud<FormDatosJugadores>, IValidarJugadorRepetido
     {
         private Equipo equipo;
         private string nombreEquipo;
         protected int cantJugadoresMax;
         private FormJugadores form;
         private string perfilUsuario;
-        public event Action<bool, string> ComprobarProceso;
+        private event Action<bool, string> ComprobarProceso;
 
         private FormCrud()
         {
             InitializeComponent();
-            this.ComprobarProceso = this.VerificarProceso;
         }
 
         //Cuando crea un equipo nuevo estos son los parametros que requieren para crearlo
@@ -382,7 +381,7 @@ namespace Aplicacion
 
         }
 
-        public void VerificarProceso(bool flag, string msg)
+        private void VerificarProceso(bool flag, string msg)
         {
             if (flag) { MessageBox.Show($"Se {msg} el jugador en la base de datos", "SUCCESFULLY", MessageBoxButtons.OK); }
             else MessageBox.Show("Algo salio mal...", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -491,14 +490,14 @@ namespace Aplicacion
                 List<Futbolista> listaFutbolistas = acceso.ObtenerListaDatos<Futbolista>();
                 listaFutbolistas.ForEach((jugador) => this.ValidarJugadorRepetido(jugador, this.equipo));
             }
-            else if(this.rdbBasquetbolistas.Checked)
+            else if (this.rdbBasquetbolistas.Checked)
             {
                 List<Basquetbolista> listaBasquetbolistas = acceso.ObtenerListaDatos<Basquetbolista>();
                 listaBasquetbolistas.ForEach((jugador) => this.ValidarJugadorRepetido(jugador, this.equipo));
             }
             else
             {
-                List<Voleibolista> listaVoleibolistas= acceso.ObtenerListaDatos<Voleibolista>();
+                List<Voleibolista> listaVoleibolistas = acceso.ObtenerListaDatos<Voleibolista>();
                 listaVoleibolistas.ForEach((jugador) => this.ValidarJugadorRepetido(jugador, this.equipo));
 
             }
@@ -562,8 +561,13 @@ namespace Aplicacion
             }
         }
 
+        private void FormCrud_Load(object sender, EventArgs e)
+        {
+            this.ComprobarProceso = this.VerificarProceso;
+        }
+
         public void AgregarJugadores<T>(T jugador, List<T> lista)
-        { 
+        {
 
             lista.Add(jugador);
 

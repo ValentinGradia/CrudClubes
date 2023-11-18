@@ -73,7 +73,7 @@
             // 
             btnAgregar.Location = new Point(12, 430);
             btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(91, 68);
+            btnAgregar.Size = new Size(98, 68);
             btnAgregar.TabIndex = 1;
             btnAgregar.Text = "Agregar Jugador";
             btnAgregar.UseVisualStyleBackColor = true;
@@ -84,7 +84,7 @@
             // 
             btnModificar.Location = new Point(12, 526);
             btnModificar.Name = "btnModificar";
-            btnModificar.Size = new Size(95, 68);
+            btnModificar.Size = new Size(98, 68);
             btnModificar.TabIndex = 2;
             btnModificar.Text = "Modificar Jugador";
             btnModificar.UseVisualStyleBackColor = true;
@@ -367,6 +367,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "FormCrud";
             Text = "FormCrud";
+            Load += FormCrud_Load;
             groupBox1.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
             groupBox3.ResumeLayout(false);
