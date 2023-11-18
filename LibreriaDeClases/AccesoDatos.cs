@@ -29,6 +29,13 @@ namespace Aplicacion
             this.comando.CommandText = text;//objeto sqlconnection
         }
 
+
+        /// <summary>
+        /// Metodo el cual traigo la lista de jugadores (dependiendo el tipo T)
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="listaJugadores"></param>
+        /// <returns></returns>
         public List<T> ObtenerListaDatos<T>(List<T> listaJugadores)
             where T : Jugador, new()
         {
@@ -87,6 +94,11 @@ namespace Aplicacion
             }
         }
 
+        /// <summary>
+        /// Dependiendo el tipo de jugador voy a tener que castear diferentes tipos
+        /// </summary>
+        /// <param name="jugador"></param>
+        /// <param name="lector"></param>
         private void ManejoEspecificoJugadores(Jugador jugador, SqlDataReader lector)
         {
             if (jugador is Futbolista)
@@ -109,9 +121,7 @@ namespace Aplicacion
                 voleibolista.ManoDominante = (EMano)Convert.ToInt32(lector["ManoDominante"]);
                 voleibolista.habilidad = voleibolista.Habilidad();
             }
-
         }
-
         public bool AgregarJugador<T>(T jugador)
             where T : Jugador
         {
@@ -125,7 +135,7 @@ namespace Aplicacion
 
                 this.RecorrerPropiedades(jugador, this.comando);
 
-
+                //Valido que el jugador no este repetido o no este guardado en la tabla
                 if (this.JugadorExiste(tabla, comando))
                 {
                     throw new ObjetoDuplicadoException("No se agrego el guardo el jugador debido a que ya esta guardado en la Base de Datos");
@@ -147,23 +157,15 @@ namespace Aplicacion
                         default:
                             this.MiComando($"insert into {tabla} (Nombre, Apellido, Edad, Nacion, ManoDominante, Posicion) values(@Nombre, @Apellido, @Edad, @Nacion, @ManoDominante, @Posicion)"); //comando
                             break;
-
                     }
-
-
                     this.conexion.Open();
-
                     int filasAfectadas = this.comando.ExecuteNonQuery();
 
                     if (filasAfectadas > 0)
                     {
                         retorno = true;
-                    }
-                    
+                    }  
                 }
-                
-
-
             }
             catch (ObjetoDuplicadoException ex)
             {
@@ -184,6 +186,7 @@ namespace Aplicacion
         }
 
         //Recorro las propiedades del jugador para ir agregando sus respectivos valores dependiendo el tipo de jugador
+        //Esto con el fin de no ir agregando uno por uno sino tener una iteracion que lo haga
         private void RecorrerPropiedades(Jugador jugador, SqlCommand comando)
         {
 
@@ -202,6 +205,13 @@ namespace Aplicacion
 
         }
 
+        /// <summary>
+        /// A traves del tipo de jugador que me pase lo voy a modificar en mi tabla de base de datos, la tabla va a depender del tipo
+        /// de jugador que sea ya que son 3 tablas diferentes
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="jugador"></param>
+        /// <returns></returns>
         public bool ModificarJugador<T>(T jugador)
             where T : Jugador
         {
@@ -212,34 +222,45 @@ namespace Aplicacion
             try
             {
                 this.comando = new SqlCommand();
+
                 this.RecorrerPropiedades(jugador, this.comando);
 
-                switch (tabla)
+                if(this.JugadorExiste(tabla,comando))
                 {
-                    case "Futbolistas":
-                        this.MiComando($"update {tabla} set Nombre = @Nombre, Apellido = @Apellido, Edad = @Edad, Nacion = @Nacion, Pierna = @Pierna, Goles = @Goles, Posicion = @Posicion where Apellido = @Apellido");
-                        break;
-                    case "Basquetbolistas":
-                        this.MiComando($"update {tabla} set Nombre = @Nombre, Apellido = @Apellido, Edad = @Edad, Nacion = @Nacion, Altura = @Altura, Calzado = @Calzado, Posicion = @Posicion where Apellido = @Apellido");
-                        break;
-                    default:
-                        this.MiComando($"update {tabla} set Nombre = @Nombre, Apellido = @Apellido, Edad = @Edad, Nacion = @Nacion, ManoDominante = @ManoDominante, Posicion = @Posicion where Apellido = @Apellido");
-                        break;
+                    this.comando = new SqlCommand();
 
+                    this.RecorrerPropiedades(jugador, this.comando);
+
+                    switch (tabla)
+                    {
+                        case "Futbolistas":
+                            this.MiComando($"update {tabla} set Nombre = @Nombre, Apellido = @Apellido, Edad = @Edad, Nacion = @Nacion, Pierna = @Pierna, Goles = @Goles, Posicion = @Posicion where Apellido = @Apellido");
+                            break;
+                        case "Basquetbolistas":
+                            this.MiComando($"update {tabla} set Nombre = @Nombre, Apellido = @Apellido, Edad = @Edad, Nacion = @Nacion, Altura = @Altura, Calzado = @Calzado, Posicion = @Posicion where Apellido = @Apellido");
+                            break;
+                        default:
+                            this.MiComando($"update {tabla} set Nombre = @Nombre, Apellido = @Apellido, Edad = @Edad, Nacion = @Nacion, ManoDominante = @ManoDominante, Posicion = @Posicion where Apellido = @Apellido");
+                            break;
+
+                    }
+
+                    this.conexion.Open();
+
+                    int filasAfectadas = this.comando.ExecuteNonQuery();
+
+                    if (filasAfectadas > 0)
+                    {
+                        retorno = true;
+                    }
                 }
-
-
-                this.conexion.Open();
-
-                int filasAfectadas = this.comando.ExecuteNonQuery();
-
-                if (filasAfectadas > 0)
+                else
                 {
-                    retorno = true;
+                    throw new JugadoNoExistenteException("El jugador no existo en la Base de datos");
                 }
 
             }
-            catch (Exception ex)
+            catch (JugadoNoExistenteException ex)
             {
                 throw ex;
             }
@@ -252,6 +273,12 @@ namespace Aplicacion
 
         }
 
+        /// <summary>
+        /// Metodo el cual elimino el jugador de la base de datos
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="jugador"></param>
+        /// <returns></returns>
         public bool EliminarJugador<T>(T jugador)
             where T : Jugador
         {
@@ -264,30 +291,38 @@ namespace Aplicacion
                 this.comando = new SqlCommand();
                 this.RecorrerPropiedades(jugador, this.comando);
 
-                switch (tabla)
+                if(this.JugadorExiste(tabla,this.comando))
                 {
-                    case "Futbolistas":
-                        this.MiComando($"delete from {tabla} where Nombre = @Nombre, Apellido = @Apellido, Edad = @Edad, Nacion = @Nacion, Pierna = @Pierna, Goles = @Goles, Posicion = @Posicion");
-                        break;
-                    case "Basquetbolistas":
-                        this.MiComando($"delete from {tabla} where Nombre = @Nombre and Apellido = @Apellido and Edad = @Edad and Nacion = @Nacion and Altura = @Altura and Calzado = @Calzado and Posicion = @Posicion");
-                        break;
-                    default:
-                        this.MiComando($"delete from {tabla} where Nombre = @Nombre, Apellido = @Apellido, Edad = @Edad, Nacion = @Nacion, ManoDominante = @ManoDominante, Posicion = @Posicion ");
-                        break;
+                    switch (tabla)
+                    {
+                        case "Futbolistas":
+                            this.MiComando($"delete from {tabla} where Nombre = @Nombre, Apellido = @Apellido, Edad = @Edad, Nacion = @Nacion, Pierna = @Pierna, Goles = @Goles, Posicion = @Posicion");
+                            break;
+                        case "Basquetbolistas":
+                            this.MiComando($"delete from {tabla} where Nombre = @Nombre and Apellido = @Apellido and Edad = @Edad and Nacion = @Nacion and Altura = @Altura and Calzado = @Calzado and Posicion = @Posicion");
+                            break;
+                        default:
+                            this.MiComando($"delete from {tabla} where Nombre = @Nombre, Apellido = @Apellido, Edad = @Edad, Nacion = @Nacion, ManoDominante = @ManoDominante, Posicion = @Posicion ");
+                            break;
+
+                    }
+
+                    this.conexion.Open();
+
+                    int filasAfectadas = this.comando.ExecuteNonQuery();
+
+                    if (filasAfectadas > 0)
+                    {
+                        retorno = true;
+                    }
 
                 }
-
-                this.conexion.Open();
-
-                int filasAfectadas = this.comando.ExecuteNonQuery();
-
-                if (filasAfectadas > 0)
+                else
                 {
-                    retorno = true;
+                    throw new JugadoNoExistenteException("El jugador no existe en la Base de datos");
                 }
             }
-            catch (Exception ex)
+            catch (JugadoNoExistenteException ex)
             {
                 throw ex;
             }

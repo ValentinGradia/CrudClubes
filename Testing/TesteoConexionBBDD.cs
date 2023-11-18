@@ -40,5 +40,52 @@ namespace Testing
             //Assert
             Assert.IsTrue(retono);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(ObjetoDuplicadoException))]
+        public void AgregarJugador_CuandoYaEsteEnLaBBDD_DeberiaRetornarException()
+        {
+            //Arrange
+            Futbolista f = new Futbolista("Marco", "Polo", 34, ENacionalidad.Argentino, "Delantero", 34, EPierna.Zurdo);
+
+            Futbolista f1 = new Futbolista("Marco", "Polo", 20, ENacionalidad.Brasilero, "Delantero", 34, EPierna.Diestro);
+
+            AccesoDatos a = new AccesoDatos();
+
+            //Act
+            _ = a.AgregarJugador<Futbolista>(f);
+
+            _ = a.AgregarJugador<Futbolista>(f1);
+
+
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(JugadoNoExistenteException))]
+        public void ModificarJugador_CuandoNoExistaEnLaBBDD_DeberiaRetornarException()
+        {
+            //Arrange
+            Futbolista f = new Futbolista("Tute", "Pro", 24, ENacionalidad.Canadiense, "Defensor", 34, EPierna.Zurdo);
+
+            AccesoDatos a = new AccesoDatos();
+
+            //Act
+            _ = a.ModificarJugador<Futbolista>(f);
+
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(JugadoNoExistenteException))]
+        public void EliminarJugador_CuandoNoExistaEnLaBBDD_DeberiaRetornarException()
+        {
+            //Arrange
+            Futbolista f = new Futbolista("Tute", "Pro", 24, ENacionalidad.Canadiense, "Defensor", 34, EPierna.Zurdo);
+
+            AccesoDatos a = new AccesoDatos();
+
+            //Act
+            _ = a.EliminarJugador<Futbolista>(f);
+
+        }
     }
 }
