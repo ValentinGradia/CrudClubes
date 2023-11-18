@@ -21,7 +21,7 @@ namespace Aplicacion
         public FormCrearEquipo(string perfilUsuario)
         {
             InitializeComponent();
-            this.perfilUsuario = perfilUsuario; 
+            this.perfilUsuario = perfilUsuario;
         }
 
         /// <summary>
@@ -41,13 +41,18 @@ namespace Aplicacion
                 {
                     string nombreEquipo = this.txtNombreEquipo.Text;
 
-                    FormCrud formCrud = new FormCrud(cantJugadores, nombreEquipo,this.perfilUsuario);
+                    FormCrud formCrud = new FormCrud(cantJugadores, nombreEquipo, this.perfilUsuario);
 
-                    //this.Visible = false;
                     formCrud.ShowDialog();
                     this.equipoCreado = formCrud.MiEquipo;
-
                     this.DialogResult = DialogResult.OK;
+
+
+                    //this.Visible = false;
+                    /*formCrud.ShowDialog();
+                    this.equipoCreado = formCrud.MiEquipo;
+
+                    this.DialogResult = DialogResult.OK;*/
 
 
                 }

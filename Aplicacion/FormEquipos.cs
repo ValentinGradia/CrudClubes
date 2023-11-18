@@ -1,18 +1,4 @@
 ﻿using LibreriaDeClases;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace Aplicacion
 {
@@ -52,7 +38,7 @@ namespace Aplicacion
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnAgregar_Click(object sender, EventArgs e)
+        private async void btnAgregar_Click(object sender, EventArgs e)
         {
             if (!(this.Validar_perfil_vendedor()))
             {
@@ -62,20 +48,42 @@ namespace Aplicacion
                 }
                 else
                 {
-                    this.formCrearEquipo = new FormCrearEquipo(this.listaEquipos,this.perfilUsuario);
+                    this.formCrearEquipo = new FormCrearEquipo(this.listaEquipos, this.perfilUsuario);
                 }
 
-                this.formCrearEquipo.ShowDialog();
+                await Task.Run(() => formCrearEquipo.ShowDialog());
+
                 if (this.formCrearEquipo.DialogResult == DialogResult.OK)
                 {
+
                     this.listaEquipos.Add(this.formCrearEquipo.EquipoCreado);
+                    await ActualizarInterfaz();
                     this.Actualizar();
                 }
-
             }
             else
             {
                 this.Mostrar_Mensaje_Permiso();
+            }
+
+        }
+
+        
+        private async Task ActualizarInterfaz()
+        {
+
+            if (this.formCrearEquipo.DialogResult == DialogResult.OK)
+            {
+                if (this.lstEquipos.InvokeRequired)
+                {
+                    //Invoco nuevamente a mi metodo Actualizar para que ingrese desde el hilo principal
+                    await Task.Run(() => lstEquipos.Invoke(ActualizarInterfaz));
+                }
+                else
+                { 
+                    this.Actualizar();
+
+                }
             }
 
         }
@@ -96,7 +104,7 @@ namespace Aplicacion
         {
             int selected = this.lstEquipos.SelectedIndex;
 
-            
+
             if (selected == -1)
             {
                 MessageBox.Show("Seleccione uno", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -106,7 +114,7 @@ namespace Aplicacion
                 if (!(this.Validar_perfil_vendedor()))
                 {
                     Equipo equipo = this.listaEquipos[selected];
-                    FormCrud form = new FormCrud(equipo,this.perfilUsuario);
+                    FormCrud form = new FormCrud(equipo, this.perfilUsuario);
                     form.ShowDialog();
                     this.Modificar(form, selected);
                 }
@@ -199,7 +207,7 @@ namespace Aplicacion
 
         private bool Validar_perfil_vendedor()
         {
-            if(this.perfilUsuario == "vendedor")
+            if (this.perfilUsuario == "vendedor")
             {
                 return true;
             }

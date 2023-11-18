@@ -116,6 +116,7 @@
             Controls.Add(btnModificar);
             Controls.Add(btnAgregar);
             Controls.Add(lstEquipos);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "FormEquipos";
             Text = "FormEquipos";
             FormClosing += FormEquipos_FormClosing;

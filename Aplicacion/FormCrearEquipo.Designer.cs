@@ -89,6 +89,7 @@
             Controls.Add(txtNombreEquipo);
             Controls.Add(txtCantJugadores);
             Controls.Add(btnAceptar);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "FormCrearEquipo";
             Text = "FormCrearEquipo";
             ResumeLayout(false);
