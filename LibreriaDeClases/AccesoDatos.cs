@@ -36,10 +36,11 @@ namespace Aplicacion
         /// <typeparam name="T"></typeparam>
         /// <param name="listaJugadores"></param>
         /// <returns></returns>
-        public List<T> ObtenerListaDatos<T>(List<T> listaJugadores)
+        public List<T> ObtenerListaDatos<T>()
             where T : Jugador, new()
         {
             string tabla = this.ObtenerNombreTabla<T>();
+            List<T> listaJugadores = new List<T>();
             try
             {
 

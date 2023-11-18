@@ -11,7 +11,7 @@ namespace Aplicacion
     //IMPORTANTE: La clase serializadora no la pude crear en mi libreria de clases porque no me dejaba utilizar el SaveFileDialog y
     //el openFileDialog porque tenia que importar el system.windows.forms y para eso tenia que tener un proyecto de winforms. Por lo
     //que la clase la cree aca para que pueda usar estas dos clases
-    public class Serializadora<T>
+    public class Serializadora<T> : IValidarJugadorRepetido
         where T : Jugador //Cuando yo cree una instancia le voy a indicar que tipo de jugadores voy a serealizar
     {
         public void Serealizar(List<T> jugadores, string path)//Le paso la lista de jugadores a serializar y el nombre
@@ -65,7 +65,7 @@ namespace Aplicacion
                                     "a que se alcanzo el limite de jugadores", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
 
-                            this.VerificarJugadoresDeserealizados(j, equipo);
+                            this.ValidarJugadorRepetido(j, equipo);
                             //this.Actualizar();
                         }
 
@@ -82,7 +82,7 @@ namespace Aplicacion
         /// </summary>
         /// <param name="jugador"></param>
         /// <param name="equipo"></param>
-        private void VerificarJugadoresDeserealizados(Jugador jugador, Equipo equipo)
+        public void ValidarJugadorRepetido(Jugador jugador, Equipo equipo)
         {
             bool flag = true;
             if (equipo.MiEquipo.Count != 0)//Si en mi equipo no hay jugadores no tengo que hacer la validacion, esto lo hago porque antes si queria hacer
@@ -103,13 +103,41 @@ namespace Aplicacion
                     else
                     {
                         equipo.MiEquipo.Add(jugador);
+                        //Recordemos que mi equipo tiene listas diferentes para cada tipo de jugador (esto por la serializacion de json y sus errores) entonces
+                        //no solo tengo que agregar el jugador a la lista general sino a la lista del tipo del jugador
+                        this.VerificarTipoJugador(jugador, equipo);
+
                     }
                 }
             }
             else
             {
                 equipo.MiEquipo.Add(jugador);
+                this.VerificarTipoJugador(jugador, equipo);
             }
+
+        }
+
+        public void VerificarTipoJugador(Jugador jugador, Equipo equipo)
+        {
+            if (jugador is Futbolista)
+            {
+                this.AgregarJugadores<Futbolista>((Futbolista)jugador, equipo.Futbolistas);
+            }
+            else if (jugador is Basquetbolista)
+            {
+                this.AgregarJugadores<Basquetbolista>((Basquetbolista)jugador, equipo.Basquetbolistas);
+            }
+            else
+            {
+                this.AgregarJugadores<Voleibolista>((Voleibolista)jugador, equipo.Voleibolistas);
+            }
+        }
+
+        public void AgregarJugadores<T>(T jugador, List<T> lista)
+        {
+
+            lista.Add(jugador);
 
         }
     }

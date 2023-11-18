@@ -9,7 +9,7 @@ namespace Aplicacion
     /// Mi formulario FormCrud se encarga de hacer que mi aplicacion cumpla los requisitos de un CRUD, basicamente crear jugadores, leerlos y agregarlos a la listbox, modificar los datos de estos y eliminarlos.
     /// Tambien puedes ordenar estos jugadores por distintos criteros, por ejemplo ordenar por edad. Ademas puedes guardar jugadores para luego poder agregarlos en otros equipos(deserealizandolos)
     /// </summary>
-    public partial class FormCrud : Form, ICrud<FormDatosJugadores>
+    public partial class FormCrud : Form, ICrud<FormDatosJugadores>, IValidarJugadorRepetido
     {
         private Equipo equipo;
         private string nombreEquipo;
@@ -351,38 +351,206 @@ namespace Aplicacion
             {
                 AccesoDatos acceso = new AccesoDatos();
                 Jugador j = this.equipo.MiEquipo[selected];
-
-                if (j is Futbolista)
+                try
                 {
-                    Futbolista f = (Futbolista)j;
-                    flag = acceso.AgregarJugador<Futbolista>(f);
-                    this.VerificarAgregadoBBDD(flag);
+                    if (j is Futbolista)
+                    {
+                        Futbolista f = (Futbolista)j;
+                        flag = acceso.AgregarJugador<Futbolista>(f);
+                        this.VerificarAgregadoBBDD(flag, "guardo");
+                    }
+                    else if (j is Basquetbolista)
+                    {
+                        Basquetbolista b = (Basquetbolista)j;
+                        flag = acceso.AgregarJugador<Basquetbolista>(b);
+                        this.VerificarAgregadoBBDD(flag, "guardo");
+                    }
+                    else
+                    {
+                        Voleibolista v = (Voleibolista)j;
+                        flag = acceso.AgregarJugador<Voleibolista>(v);
+                        this.VerificarAgregadoBBDD(flag, "guardo");
+                    }
                 }
-                else if (j is Basquetbolista)
+                catch (ObjetoDuplicadoException ex)
                 {
-                    Basquetbolista b = (Basquetbolista)j;
-                    flag = acceso.AgregarJugador<Basquetbolista>(b);
-                    this.VerificarAgregadoBBDD(flag);
-                }
-                else
-                {
-                    Voleibolista v = (Voleibolista)j;
-                    flag = acceso.AgregarJugador<Voleibolista>(v);
-                    this.VerificarAgregadoBBDD(flag);
+                    MessageBox.Show(ex.Message);
                 }
             }
 
         }
 
-        private void VerificarAgregadoBBDD(bool flag)
+        private void VerificarAgregadoBBDD(bool flag, string msg)
         {
-            if (flag) { MessageBox.Show("Se guardo el jugador en la base de datos", "SUCCESFULLY", MessageBoxButtons.OK); }
+            if (flag) { MessageBox.Show($"Se {msg} el jugador en la base de datos", "SUCCESFULLY", MessageBoxButtons.OK); }
             else MessageBox.Show("Algo salio mal...", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void btnModificarBBDD_MouseHover(object sender, EventArgs e)
         {
             this.CrearToolTip(this.btnModificarBBDD, "Dicho jugador a modificar debe estar previamente guardado en la BBDD");
+        }
+
+        private void btnEliminarBBDD_MouseHover(object sender, EventArgs e)
+        {
+            this.CrearToolTip(this.btnEliminarBBDD, "Dicho jugador a modificar debe estar previamente guardado en la BBDD");
+        }
+
+        private void btnModificarBBDD_Click(object sender, EventArgs e)
+        {
+            int selected = this.lstEquipo.SelectedIndex;
+            bool flag;
+
+            if (selected == -1)
+            {
+                MessageBox.Show("Seleccione uno", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                AccesoDatos acceso = new AccesoDatos();
+                Jugador j = this.equipo.MiEquipo[selected];
+                try
+                {
+                    if (j is Futbolista)
+                    {
+                        Futbolista f = (Futbolista)j;
+                        flag = acceso.ModificarJugador<Futbolista>(f);
+                        this.VerificarAgregadoBBDD(flag, "modifico");
+                    }
+                    else if (j is Basquetbolista)
+                    {
+                        Basquetbolista b = (Basquetbolista)j;
+                        flag = acceso.ModificarJugador<Basquetbolista>(b);
+                        this.VerificarAgregadoBBDD(flag, "modifico");
+                    }
+                    else
+                    {
+                        Voleibolista v = (Voleibolista)j;
+                        flag = acceso.ModificarJugador<Voleibolista>(v);
+                        this.VerificarAgregadoBBDD(flag, "modifico");
+                    }
+                }
+                catch (JugadoNoExistenteException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+        }
+
+        private void btnEliminarBBDD_Click(object sender, EventArgs e)
+        {
+            int selected = this.lstEquipo.SelectedIndex;
+            bool flag;
+
+            if (selected == -1)
+            {
+                MessageBox.Show("Seleccione uno", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                AccesoDatos acceso = new AccesoDatos();
+                Jugador j = this.equipo.MiEquipo[selected];
+                try
+                {
+                    if (j is Futbolista)
+                    {
+                        Futbolista f = (Futbolista)j;
+                        flag = acceso.EliminarJugador<Futbolista>(f);
+                        this.VerificarAgregadoBBDD(flag, "elimino");
+                    }
+                    else if (j is Basquetbolista)
+                    {
+                        Basquetbolista b = (Basquetbolista)j;
+                        flag = acceso.EliminarJugador<Basquetbolista>(b);
+                        this.VerificarAgregadoBBDD(flag, "elimino");
+                    }
+                    else
+                    {
+                        Voleibolista v = (Voleibolista)j;
+                        flag = acceso.EliminarJugador<Voleibolista>(v);
+                        this.VerificarAgregadoBBDD(flag, "elimino");
+                    }
+                }
+                catch (JugadoNoExistenteException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+        }
+
+        private void btnObtenerBBDD_Click(object sender, EventArgs e)
+        {
+            AccesoDatos acceso = new AccesoDatos();
+
+            if (this.rdbFutbolistas.Checked)
+            {
+                List<Futbolista> listaFutbolistas = acceso.ObtenerListaDatos<Futbolista>();
+                listaFutbolistas.ForEach((jugador) => this.ValidarJugadorRepetido(jugador, this.equipo));
+
+            }
+        }
+
+        public void ValidarJugadorRepetido(Jugador jugador, Equipo equipo)
+        {
+            bool flag = true;
+            if (equipo.MiEquipo.Count != 0)//Si en mi equipo no hay jugadores no tengo que hacer la validacion, esto lo hago porque antes si queria hacer
+                                           //el foreach a la lista de equipo.Miequipo me rompia ya que no existian jugadores.
+            {
+                foreach (Jugador j in equipo.MiEquipo)
+                {
+                    if (j.Equals(jugador))
+                    {
+                        if (flag)
+                        {
+                            MessageBox.Show("Hay jugador/jugadores que ya pertenecen al equipo por lo que no seran agregados",
+                                "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        //Aca le indico que sea false, para que si hay mas jugadores repetidos no vuelva a mostrar el mensaje y lo muestre solo una vez
+                        flag = false;
+                    }
+                    else
+                    {
+                        equipo.MiEquipo.Add(jugador);
+                        //Recordemos que mi equipo tiene listas diferentes para cada tipo de jugador (esto por la serializacion de json y sus errores) entonces
+                        //no solo tengo que agregar el jugador a la lista general sino a la lista del tipo del jugador
+                        this.VerificarTipoJugador(jugador, equipo);
+                        this.Actualizar();
+                    }
+                }
+            }
+            else
+            {
+                equipo.MiEquipo.Add(jugador);
+                this.VerificarTipoJugador(jugador, equipo);
+                this.Actualizar();
+
+            }
+
+        }
+
+        public void VerificarTipoJugador(Jugador jugador, Equipo equipo)
+        {
+            if (jugador is Futbolista)
+            {
+                this.AgregarJugadores<Futbolista>((Futbolista)jugador, equipo.Futbolistas);
+            }
+            else if (jugador is Basquetbolista)
+            {
+                this.AgregarJugadores<Basquetbolista>((Basquetbolista)jugador, equipo.Basquetbolistas);
+            }
+            else
+            {
+                this.AgregarJugadores<Voleibolista>((Voleibolista)jugador, equipo.Voleibolistas);
+            }
+        }
+
+        public void AgregarJugadores<T>(T jugador, List<T> lista)
+        { 
+
+            lista.Add(jugador);
+
         }
     }
 
