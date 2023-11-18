@@ -17,6 +17,9 @@ namespace Aplicacion
         private FormJugadores form;
         private string perfilUsuario;
         private event Action<bool, string> ComprobarProceso;
+        private event Action<Equipo,Jugador,string> ActualizarEquipo;
+        private event Func<DialogResult> ConfirmarEliminacion;
+
 
         private FormCrud()
         {
@@ -168,7 +171,6 @@ namespace Aplicacion
 
             if (this.form.DialogResult == DialogResult.OK)
             {
-                this.equipo = this.equipo + this.form.MiJugador;
                 //Esto lo hago para luego poder serealizar por tipos de jugador
                 switch (this.form.MiJugador)
                 {
@@ -182,7 +184,8 @@ namespace Aplicacion
                         this.equipo.Voleibolistas.Add((Voleibolista)this.form.MiJugador);
                         break;
                 }
-                this.Actualizar();
+
+                this.ActualizarEquipo.Invoke(this.equipo, this.form.MiJugador, "Agregar");
             }
             else
             {
@@ -205,7 +208,7 @@ namespace Aplicacion
             {
                 if (!(this.perfilUsuario == "supervisor"))
                 {
-                    if (this.Eliminar() == DialogResult.Yes)
+                    if (this.ConfirmarEliminacion.Invoke() == DialogResult.Yes)
                     {
                         //this.equipo = this.equipo - this.equipo.MiEquipo[selected];
                         switch (this.equipo.MiEquipo[selected]) //Aca no le paso como parametro el this.form.Mijugador ya que me devuelve el ultimo
@@ -221,8 +224,8 @@ namespace Aplicacion
                                 this.equipo.Voleibolistas.Remove((Voleibolista)this.equipo.MiEquipo[selected]);
                                 break;
                         }
-                        this.equipo = this.equipo - this.equipo.MiEquipo[selected];
-                        this.Actualizar();
+
+                        this.ActualizarEquipo.Invoke(this.equipo, this.equipo.MiEquipo[selected], "Eliminar");
                     }
                 }
                 else
@@ -230,7 +233,24 @@ namespace Aplicacion
                     MessageBox.Show("No tiene permiso ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
 
+        /// <summary>
+        /// Le asocio a mi evento ActualizarEquipo este metodo para que una vez que agregue o elimine un jugador llamar a este para
+        /// no tener que hacerlo en la funcion click
+        /// </summary>
+        /// <param name="equipo"></param>
+        /// <param name="jugador"></param>
+        /// <param name="Accion que voy a hacer"></param>
+        private void ActualizarMiEquipo(Equipo equipo, Jugador jugador,string msg)
+        {
+            if(msg == "Agregar")
+            {
+                equipo = equipo + jugador;
+            }
+            else if (msg == "Eliminar"){equipo = equipo - jugador;}
+
+            this.Actualizar();
         }
 
         /// <summary>
@@ -339,6 +359,14 @@ namespace Aplicacion
             return pregunta;
         }
 
+        /// <summary>
+        /// Metodo el cual guardo mi jugador en la bbdd. Primero, verifico si se ha seleccionado un elemento en la listbox (lstEquipo).
+        /// Luego creo una instancia de la clase AccesoDatos para conectarme  a la BBDD
+        ///  Despues agrego el jugador a la base de datos, invocando un evento (ComprobarProceso) para informar sobre el resultado. 
+        /// Si ocurre una excepción del tipo ObjetoDuplicadoException (que el jugador ya este guardado en la BBDD), muestra un mensaje de error.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAgregarBBDD_Click(object sender, EventArgs e)
         {
             int selected = this.lstEquipo.SelectedIndex;
@@ -397,6 +425,15 @@ namespace Aplicacion
             this.CrearToolTip(this.btnEliminarBBDD, "Dicho jugador a modificar debe estar previamente guardado en la BBDD");
         }
 
+
+        /// <summary>
+        /// Metodo el cual modifico mi jugador en la BBDD. Primero, verifico si se ha seleccionado un elemento en la listbox (lstEquipo).
+        /// Luego creo una instancia de la clase AccesoDatos para conectarme  a la BBDD
+        ///  Despues valido que el jugador este guardado previamenete en la base de datos
+        /// Si ocurre una excepción del tipo JugadorNoexistente (que el jugador no este guardado en la BBDD), muestra un mensaje de error.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnModificarBBDD_Click(object sender, EventArgs e)
         {
             int selected = this.lstEquipo.SelectedIndex;
@@ -439,6 +476,13 @@ namespace Aplicacion
 
         }
 
+
+        /// <summary>
+        /// Mismo procedimiento que la funcion de Modificar_BBDD pero en este caso elimino en vez de modificar
+        /// Todos los pasos son los mismo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnEliminarBBDD_Click(object sender, EventArgs e)
         {
             int selected = this.lstEquipo.SelectedIndex;
@@ -481,6 +525,13 @@ namespace Aplicacion
 
         }
 
+        /// <summary>
+        /// Metodo para obtener la tabla (que en este caso seria la lista de tipos de jugadores) de la BBDD
+        /// Primero verifico el radiobutton para ver que tipo de tabla /lista voy a traer y luego valido que los jugadores
+        /// que traiga no esten agregados en el equipo.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnObtenerBBDD_Click(object sender, EventArgs e)
         {
             AccesoDatos acceso = new AccesoDatos();
@@ -564,6 +615,8 @@ namespace Aplicacion
         private void FormCrud_Load(object sender, EventArgs e)
         {
             this.ComprobarProceso = this.VerificarProceso;
+            this.ActualizarEquipo = this.ActualizarMiEquipo;
+            this.ConfirmarEliminacion = this.Eliminar;
         }
 
         public void AgregarJugadores<T>(T jugador, List<T> lista)

@@ -25,6 +25,7 @@ namespace Aplicacion
         private Usuario miUsuario;
         private string perfil;
         private event Action<bool> comprobarUsuario;
+        private event Action<TextBox, TextBox> limpiarTxt;
 
         public Usuario MiUsuario
         {
@@ -69,6 +70,7 @@ namespace Aplicacion
                     catch (NullContraseñaCorreoException ex)
                     {
                         MessageBox.Show(ex.Message);
+                        this.limpiarTxt.Invoke(this.txtMail, this.txtContraseña);
                     }
 
                 }
@@ -127,6 +129,7 @@ namespace Aplicacion
                 MessageBox.Show("Contraseña y/o mail incorrecto", "ERROR", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
                 this.DialogResult = DialogResult.None;
+                this.limpiarTxt.Invoke(this.txtMail, this.txtContraseña);
             }
         }
 
@@ -138,9 +141,16 @@ namespace Aplicacion
             }
         }
 
+        private void LimpiarTextBox(TextBox txt1, TextBox txt2)
+        {
+            txt1.Text = "";
+            txt2.Text = "";
+        }
+
         private void FormLogin_Load(object sender, EventArgs e)
         {
             this.comprobarUsuario = this.Mostrar;
+            this.limpiarTxt = this.LimpiarTextBox;
         }
     }
 
