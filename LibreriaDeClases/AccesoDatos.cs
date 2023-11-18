@@ -1,11 +1,5 @@
 ﻿using LibreriaDeClases;
 using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Aplicacion
 {
@@ -36,11 +30,11 @@ namespace Aplicacion
         }
 
         public List<T> ObtenerListaDatos<T>(List<T> listaJugadores)
-            where T: Jugador, new()
+            where T : Jugador, new()
         {
             string tabla = this.ObtenerNombreTabla<T>();
             try
-            {   
+            {
 
                 this.MiComando($"select * from {tabla}");
 
@@ -48,7 +42,7 @@ namespace Aplicacion
 
                 this.lector = this.comando.ExecuteReader(); //tipo select
 
-                while(this.lector.Read())//devuelve true cuando hay algo para leer
+                while (this.lector.Read())//devuelve true cuando hay algo para leer
                 {
                     T jugador = new T();
                     jugador.Nombre = (string)this.lector["Nombre"];
@@ -65,7 +59,7 @@ namespace Aplicacion
                 }
                 this.lector.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -119,7 +113,7 @@ namespace Aplicacion
         }
 
         public bool AgregarJugador<T>(T jugador)
-            where T: Jugador
+            where T : Jugador
         {
             bool retorno = false;
 
@@ -131,30 +125,47 @@ namespace Aplicacion
 
                 this.RecorrerPropiedades(jugador, this.comando);
 
-                //Dependiendo del tipo de jugador lo voy a insertar en una tabla diferente
-                switch(tabla)
+
+                if (this.JugadorExiste(tabla, comando))
                 {
-                    case "Futbolistas":
-                        this.MiComando($"insert into {tabla} (Nombre, Apellido, Edad, Nacion, Pierna, Goles, Posicion) values(@Nombre, @Apellido, @Edad, @Nacion, @Pierna, @Goles, @Posicion)");
-                        break;
-                    case "Basquetbolistas":
-                        this.MiComando($"insert into {tabla} (Nombre, Apellido, Edad, Nacion, Altura, Calzado, Posicion) values(@Nombre, @Apellido, @Edad, @Nacion, @Altura, @Calzado, @Posicion)"); //comando
-                        break;
-                    default:
-                        this.MiComando($"insert into {tabla} (Nombre, Apellido, Edad, Nacion, ManoDominante, Posicion) values(@Nombre, @Apellido, @Edad, @Nacion, @ManoDominante, @Posicion)"); //comando
-                        break;
-
+                    throw new ObjetoDuplicadoException("No se agrego el guardo el jugador debido a que ya esta guardado en la Base de Datos");
                 }
-                this.conexion.Open();
-
-                int filasAfectadas = this.comando.ExecuteNonQuery(); // -> tipo insert,update, delete
-
-                if (filasAfectadas > 0)
+                else
                 {
-                    retorno = true;
+                    this.comando = new SqlCommand();
+
+                    this.RecorrerPropiedades(jugador, this.comando);
+
+                    switch (tabla)
+                    {
+                        case "Futbolistas":
+                            this.MiComando($"insert into {tabla} (Nombre, Apellido, Edad, Nacion, Pierna, Goles, Posicion) values(@Nombre, @Apellido, @Edad, @Nacion, @Pierna, @Goles, @Posicion)");
+                            break;
+                        case "Basquetbolistas":
+                            this.MiComando($"insert into {tabla} (Nombre, Apellido, Edad, Nacion, Altura, Calzado, Posicion) values(@Nombre, @Apellido, @Edad, @Nacion, @Altura, @Calzado, @Posicion)"); //comando
+                            break;
+                        default:
+                            this.MiComando($"insert into {tabla} (Nombre, Apellido, Edad, Nacion, ManoDominante, Posicion) values(@Nombre, @Apellido, @Edad, @Nacion, @ManoDominante, @Posicion)"); //comando
+                            break;
+
+                    }
+
+
+                    this.conexion.Open();
+
+                    int filasAfectadas = this.comando.ExecuteNonQuery();
+
+                    if (filasAfectadas > 0)
+                    {
+                        retorno = true;
+                    }
+                    
                 }
+                
+
+
             }
-            catch (Exception ex)
+            catch (ObjetoDuplicadoException ex)
             {
                 throw ex;
             }
@@ -167,7 +178,7 @@ namespace Aplicacion
 
         }
 
-        private void AgregarValoresComando(SqlCommand comando,string columna, string valor)
+        private void AgregarValoresComando(SqlCommand comando, string columna, string valor)
         {
             comando.Parameters.AddWithValue(columna, valor);
         }
@@ -192,7 +203,7 @@ namespace Aplicacion
         }
 
         public bool ModificarJugador<T>(T jugador)
-            where T: Jugador
+            where T : Jugador
         {
             bool retorno = false;
 
@@ -206,16 +217,17 @@ namespace Aplicacion
                 switch (tabla)
                 {
                     case "Futbolistas":
-                        this.MiComando($"update {tabla} set Nombre = @Nombre, Apellido = @Apellido, Edad = @Edad, Nacion = @Nacion, Pierna = @Pierna, Goles = @Goles, Posicion = @Posicion where Apellido = @Apellido"); 
+                        this.MiComando($"update {tabla} set Nombre = @Nombre, Apellido = @Apellido, Edad = @Edad, Nacion = @Nacion, Pierna = @Pierna, Goles = @Goles, Posicion = @Posicion where Apellido = @Apellido");
                         break;
                     case "Basquetbolistas":
-                        this.MiComando($"update {tabla} set Nombre = @Nombre, Apellido = @Apellido, Edad = @Edad, Nacion = @Nacion, Altura = @Altura, Calzado = @Calzado, Posicion = @Posicion where Apellido = @Apellido"); 
+                        this.MiComando($"update {tabla} set Nombre = @Nombre, Apellido = @Apellido, Edad = @Edad, Nacion = @Nacion, Altura = @Altura, Calzado = @Calzado, Posicion = @Posicion where Apellido = @Apellido");
                         break;
                     default:
                         this.MiComando($"update {tabla} set Nombre = @Nombre, Apellido = @Apellido, Edad = @Edad, Nacion = @Nacion, ManoDominante = @ManoDominante, Posicion = @Posicion where Apellido = @Apellido");
                         break;
 
                 }
+
 
                 this.conexion.Open();
 
@@ -225,6 +237,7 @@ namespace Aplicacion
                 {
                     retorno = true;
                 }
+
             }
             catch (Exception ex)
             {
@@ -285,6 +298,46 @@ namespace Aplicacion
 
             return retorno;
 
+        }
+
+        public bool JugadorExiste(string tabla , SqlCommand comando)
+        {
+            bool retorno = false;
+
+            try
+            {
+                //Comparo si existe de igual manera que las sobrecargas
+                switch (tabla)
+                {
+                    case "Futbolistas":
+                        this.MiComando($"SELECT COUNT(*) from {tabla} where Nombre = @Nombre and Apellido = @Apellido and Posicion = @Posicion");
+                        break;
+                    case "Basquetbolistas":
+                        this.MiComando($"select count(*) {tabla} where Nombre = @Nombre and Apellido = @Apellido and Altura = @Altura");
+                        break;
+                    default:
+                        this.MiComando($"select count(*){tabla} where Nombre = @Nombre and Apellido = @Apellido and ManoDominante = @ManoDominante and Posicion = @Posicion ");
+                        break;
+                }
+
+                this.conexion.Open();
+
+                int filasAfectadas = Convert.ToInt32(comando.ExecuteScalar());
+
+                if (filasAfectadas > 0) retorno = true;
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open) this.conexion.Close();
+            }
+
+            return retorno;
         }
     }
 }
