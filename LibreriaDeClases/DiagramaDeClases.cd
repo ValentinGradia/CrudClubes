@@ -1,44 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram MajorVersion="1" MinorVersion="1">
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="LibreriaDeClases.Jugador">
-    <Position X="6.5" Y="0.75" Width="1.5" />
-    <Members>
-      <Method Name="Method" Hidden="true" />
-    </Members>
+    <Position X="9.75" Y="0.5" Width="4.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAgAAAAYAAACEgAAggAAAAAAAIgAAACYAAAAAAig=</HashCode>
+      <HashCode>AAAAAgAAAAYAAACEgAAAgAAAAAAAIgAAACYAAAAAAig=</HashCode>
       <FileName>Jugador.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LibreriaDeClases.Voleibolista">
-    <Position X="10" Y="6" Width="1.5" />
-    <Members>
-      <Method Name="Method" Hidden="true" />
-    </Members>
+    <Position X="16.25" Y="6" Width="7.25" />
     <TypeIdentifier>
-      <HashCode>AIAAAAAAAAAAAAAEgAAgAAAAAAAAAAAAACYAAACEAiA=</HashCode>
+      <HashCode>AIAAAAAAAAAAAAAEgAAAAAAAAAAAAAAAACYAAACEAiA=</HashCode>
       <FileName>Voleibolista.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LibreriaDeClases.Futbolista">
-    <Position X="6.5" Y="6" Width="1.5" />
-    <Members>
-      <Method Name="Method" Hidden="true" />
-    </Members>
+    <Position X="8.5" Y="6" Width="7" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAACAAQAAIEgAAiAAAAAAAAAAAAACQAAAAFAjA=</HashCode>
+      <HashCode>AAAAAAAACAAQAAIEgAACAAAAAAAAAAAAACQAAAAFAjA=</HashCode>
       <FileName>Futbolista.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LibreriaDeClases.Basquetbolista">
-    <Position X="3" Y="6" Width="1.5" />
-    <Members>
-      <Method Name="Method" Hidden="true" />
-    </Members>
+    <Position X="0.5" Y="6" Width="7.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAEAAAAFgAAgAAAAAAAAEAAAADQAAAAEAiA=</HashCode>
+      <HashCode>AAAAAAAAAAEAAAAFgAAAAAAAAAAAEAAAADQAAAAEAiA=</HashCode>
       <FileName>Basquetbolista.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="LibreriaDeClases.NullContraseñaCorreoException">
+    <Position X="17.75" Y="10.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NullContraseñaCorreoException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Aplicacion.IJugadores&lt;T&gt;">
+    <Position X="18.75" Y="2.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IJugadores.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="LibreriaDeClases.IValidarJugadorRepetido">
+    <Position X="4.25" Y="2.25" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>IValidarJugadorRepetido.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
