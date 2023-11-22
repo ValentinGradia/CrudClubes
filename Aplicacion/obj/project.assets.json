@@ -2022,19 +2022,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\valen\\.nuget\\packages\\": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Valen\\SegundoParcial-Labo\\Gradia.Valentinn\\Aplicacion\\Aplicacion.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Desktop\\gradia\\Gradia.Valentin.SegundoParcial\\Aplicacion\\Aplicacion.csproj",
       "projectName": "Aplicacion",
-      "projectPath": "C:\\Valen\\SegundoParcial-Labo\\Gradia.Valentinn\\Aplicacion\\Aplicacion.csproj",
-      "packagesPath": "C:\\Users\\valen\\.nuget\\packages\\",
-      "outputPath": "C:\\Valen\\SegundoParcial-Labo\\Gradia.Valentinn\\Aplicacion\\obj\\",
+      "projectPath": "C:\\Users\\User\\Desktop\\gradia\\Gradia.Valentin.SegundoParcial\\Aplicacion\\Aplicacion.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\User\\Desktop\\gradia\\Gradia.Valentin.SegundoParcial\\Aplicacion\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\valen\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2048,8 +2048,8 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
-            "C:\\Valen\\SegundoParcial-Labo\\Gradia.Valentinn\\LibreriaDeClases\\LibreriaDeClases.csproj": {
-              "projectPath": "C:\\Valen\\SegundoParcial-Labo\\Gradia.Valentinn\\LibreriaDeClases\\LibreriaDeClases.csproj"
+            "C:\\Users\\User\\Desktop\\gradia\\Gradia.Valentin.SegundoParcial\\LibreriaDeClases\\LibreriaDeClases.csproj": {
+              "projectPath": "C:\\Users\\User\\Desktop\\gradia\\Gradia.Valentin.SegundoParcial\\LibreriaDeClases\\LibreriaDeClases.csproj"
             }
           }
         }
@@ -2088,7 +2088,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }

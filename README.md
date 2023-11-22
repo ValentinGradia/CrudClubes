@@ -11,4 +11,6 @@ ___
 **La aplicacion se encarga de crear equipos los cuales puedes agregar jugadores, modificar sus datos o eliminarlos del equipo. No solo eso sino que puedes tambien 
 puedes modificar los equipos en el cual  puedes acceder a estas caracteristicas**
 
-![Alt text](<Captura de pantalla 2023-10-17 123208.png>)
+![Alt text](DiagramaDeClases.png)
+
+

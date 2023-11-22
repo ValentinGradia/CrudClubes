@@ -34,3 +34,17 @@ C:\Valen\SegundoParcial-Labo\Gradia.Valentinn\LibreriaDeClases\obj\Debug\net6.0\
 C:\Valen\SegundoParcial-Labo\Gradia.Valentinn\LibreriaDeClases\obj\Debug\net6.0\refint\LibreriaDeClases.dll
 C:\Valen\SegundoParcial-Labo\Gradia.Valentinn\LibreriaDeClases\obj\Debug\net6.0\LibreriaDeClases.pdb
 C:\Valen\SegundoParcial-Labo\Gradia.Valentinn\LibreriaDeClases\obj\Debug\net6.0\ref\LibreriaDeClases.dll
+C:\Users\User\Desktop\gradia\Gradia.Valentin.SegundoParcial\LibreriaDeClases\bin\Debug\net6.0\LibreriaDeClases.deps.json
+C:\Users\User\Desktop\gradia\Gradia.Valentin.SegundoParcial\LibreriaDeClases\bin\Debug\net6.0\LibreriaDeClases.dll
+C:\Users\User\Desktop\gradia\Gradia.Valentin.SegundoParcial\LibreriaDeClases\bin\Debug\net6.0\LibreriaDeClases.pdb
+C:\Users\User\Desktop\gradia\Gradia.Valentin.SegundoParcial\LibreriaDeClases\obj\Debug\net6.0\LibreriaDeClases.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\gradia\Gradia.Valentin.SegundoParcial\LibreriaDeClases\obj\Debug\net6.0\LibreriaDeClases.Properties.Resources.resources
+C:\Users\User\Desktop\gradia\Gradia.Valentin.SegundoParcial\LibreriaDeClases\obj\Debug\net6.0\LibreriaDeClases.csproj.GenerateResource.cache
+C:\Users\User\Desktop\gradia\Gradia.Valentin.SegundoParcial\LibreriaDeClases\obj\Debug\net6.0\LibreriaDeClases.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\gradia\Gradia.Valentin.SegundoParcial\LibreriaDeClases\obj\Debug\net6.0\LibreriaDeClases.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\gradia\Gradia.Valentin.SegundoParcial\LibreriaDeClases\obj\Debug\net6.0\LibreriaDeClases.AssemblyInfo.cs
+C:\Users\User\Desktop\gradia\Gradia.Valentin.SegundoParcial\LibreriaDeClases\obj\Debug\net6.0\LibreriaDeClases.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\gradia\Gradia.Valentin.SegundoParcial\LibreriaDeClases\obj\Debug\net6.0\LibreriaDeClases.dll
+C:\Users\User\Desktop\gradia\Gradia.Valentin.SegundoParcial\LibreriaDeClases\obj\Debug\net6.0\refint\LibreriaDeClases.dll
+C:\Users\User\Desktop\gradia\Gradia.Valentin.SegundoParcial\LibreriaDeClases\obj\Debug\net6.0\LibreriaDeClases.pdb
+C:\Users\User\Desktop\gradia\Gradia.Valentin.SegundoParcial\LibreriaDeClases\obj\Debug\net6.0\ref\LibreriaDeClases.dll

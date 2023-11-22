@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Valen\\SegundoParcial-Labo\\Gradia.Valentinn\\Testing\\Testing.csproj": {}
+    "C:\\Users\\User\\Desktop\\gradia\\Gradia.Valentin.SegundoParcial\\Testing\\Testing.csproj": {}
   },
   "projects": {
-    "C:\\Valen\\SegundoParcial-Labo\\Gradia.Valentinn\\LibreriaDeClases\\LibreriaDeClases.csproj": {
+    "C:\\Users\\User\\Desktop\\gradia\\Gradia.Valentin.SegundoParcial\\LibreriaDeClases\\LibreriaDeClases.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Valen\\SegundoParcial-Labo\\Gradia.Valentinn\\LibreriaDeClases\\LibreriaDeClases.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\gradia\\Gradia.Valentin.SegundoParcial\\LibreriaDeClases\\LibreriaDeClases.csproj",
         "projectName": "LibreriaDeClases",
-        "projectPath": "C:\\Valen\\SegundoParcial-Labo\\Gradia.Valentinn\\LibreriaDeClases\\LibreriaDeClases.csproj",
-        "packagesPath": "C:\\Users\\valen\\.nuget\\packages\\",
-        "outputPath": "C:\\Valen\\SegundoParcial-Labo\\Gradia.Valentinn\\LibreriaDeClases\\obj\\",
+        "projectPath": "C:\\Users\\User\\Desktop\\gradia\\Gradia.Valentin.SegundoParcial\\LibreriaDeClases\\LibreriaDeClases.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\gradia\\Gradia.Valentin.SegundoParcial\\LibreriaDeClases\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\valen\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -61,21 +61,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Valen\\SegundoParcial-Labo\\Gradia.Valentinn\\Testing\\Testing.csproj": {
+    "C:\\Users\\User\\Desktop\\gradia\\Gradia.Valentin.SegundoParcial\\Testing\\Testing.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Valen\\SegundoParcial-Labo\\Gradia.Valentinn\\Testing\\Testing.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\gradia\\Gradia.Valentin.SegundoParcial\\Testing\\Testing.csproj",
         "projectName": "Testing",
-        "projectPath": "C:\\Valen\\SegundoParcial-Labo\\Gradia.Valentinn\\Testing\\Testing.csproj",
-        "packagesPath": "C:\\Users\\valen\\.nuget\\packages\\",
-        "outputPath": "C:\\Valen\\SegundoParcial-Labo\\Gradia.Valentinn\\Testing\\obj\\",
+        "projectPath": "C:\\Users\\User\\Desktop\\gradia\\Gradia.Valentin.SegundoParcial\\Testing\\Testing.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\gradia\\Gradia.Valentin.SegundoParcial\\Testing\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\valen\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -89,8 +89,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Valen\\SegundoParcial-Labo\\Gradia.Valentinn\\LibreriaDeClases\\LibreriaDeClases.csproj": {
-                "projectPath": "C:\\Valen\\SegundoParcial-Labo\\Gradia.Valentinn\\LibreriaDeClases\\LibreriaDeClases.csproj"
+              "C:\\Users\\User\\Desktop\\gradia\\Gradia.Valentin.SegundoParcial\\LibreriaDeClases\\LibreriaDeClases.csproj": {
+                "projectPath": "C:\\Users\\User\\Desktop\\gradia\\Gradia.Valentin.SegundoParcial\\LibreriaDeClases\\LibreriaDeClases.csproj"
               }
             }
           }
@@ -138,7 +138,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

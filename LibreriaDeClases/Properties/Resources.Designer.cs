@@ -61,7 +61,7 @@ namespace LibreriaDeClases.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Data Source=localhost\SQLEXPRESS;Initial Catalog=Jugadores;User ID=sa;Password=1223;Trust Server Certificate=True.
+        ///   Busca una cadena traducida similar a Data Source=localhost\SQLEXPRESS;Initial Catalog=Jugadores;Integrated Security=True;Trust Server Certificate=True.
         /// </summary>
         internal static string miConexion {
             get {
