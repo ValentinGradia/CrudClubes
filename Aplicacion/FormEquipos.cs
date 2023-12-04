@@ -14,6 +14,7 @@ namespace Aplicacion
         private string nombreUsuario;
         private DateTime fechaRegistro;
         private string perfilUsuario;
+        private AccesoDatos sql = new AccesoDatos();
 
         public FormEquipos()
         {
@@ -68,7 +69,7 @@ namespace Aplicacion
 
         }
 
-        
+
         private async Task ActualizarInterfaz()
         {
 
@@ -80,7 +81,7 @@ namespace Aplicacion
                     await Task.Run(() => lstEquipos.Invoke(ActualizarInterfaz));
                 }
                 else
-                { 
+                {
                     this.Actualizar();
 
                 }
@@ -185,6 +186,23 @@ namespace Aplicacion
             this.lblUsuario.Text = this.nombreUsuario;
             string fechaFormateada = this.fechaRegistro.ToString("yyyy-MM-dd");
             this.lblFechaRegistro.Text = fechaFormateada;
+            sql.ObtenerListaDatosEquipo(listaEquipos);
+        }
+
+        private void ObtenerEquipos()
+        {
+            AccesoDatos acceso = new AccesoDatos();
+
+
+            List<Futbolista> listaFutbolistas = acceso.ObtenerListaDatos<Futbolista>();
+
+            List<Basquetbolista> listaBasquetbolistas = acceso.ObtenerListaDatos<Basquetbolista>();
+
+            List<Voleibolista> listaVoleibolistas = acceso.ObtenerListaDatos<Voleibolista>();
+
+            //this.l
+
+
         }
 
 

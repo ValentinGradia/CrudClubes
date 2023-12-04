@@ -79,6 +79,126 @@ namespace Aplicacion
             return listaJugadores;
         }
 
+
+        public List<Equipo> ObtenerListaDatosEquipo(List<Equipo> listEquipo)
+        {
+
+            try
+            {
+
+                this.MiComando($"select * from Equipo");
+
+                this.conexion.Open();
+
+                this.lector = this.comando.ExecuteReader(); //tipo select
+
+                while (this.lector.Read())//devuelve true cuando hay algo para leer
+                {
+                    //jugador.Nombre = (string)this.lector["Nombre"];
+                    Equipo equipo = new Equipo();
+                    equipo.NombreEquipo = (string)this.lector["nombre"];
+                    equipo.CantidadJugadores = (int)this.lector["cantidad"];
+
+
+                    //llamo a mi funcion para ver(dependiendo del tipo de jugador) que valores tengo que caster
+                    //this.ManejoEspecificoJugadores(jugador, this.lector);
+
+                    listEquipo.Add(equipo);
+
+                }
+                this.lector.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open) this.conexion.Close();
+            }
+
+            return listEquipo;
+        }
+
+        public List<Equipo> ObtenerListaDatosEquipo()
+        {
+            List<Equipo> listEquipo = new List<Equipo>();
+
+            try
+            {
+
+                this.MiComando($"select * from Equipo");
+
+                this.conexion.Open();
+
+                this.lector = this.comando.ExecuteReader(); //tipo select
+
+                while (this.lector.Read())//devuelve true cuando hay algo para leer
+                {
+                    //jugador.Nombre = (string)this.lector["Nombre"];
+                    Equipo equipo = new Equipo();
+                    equipo.NombreEquipo = (string)this.lector["nombre"];
+                    equipo.CantidadJugadores = (int)this.lector["cantidad"];
+
+
+                    //llamo a mi funcion para ver(dependiendo del tipo de jugador) que valores tengo que caster
+                    //this.ManejoEspecificoJugadores(jugador, this.lector);
+
+                    listEquipo.Add(equipo);
+
+                }
+                this.lector.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open) this.conexion.Close();
+            }
+
+            return listEquipo;
+        }
+
+
+        public bool AgregarEquipo<T>(T equipo)
+            where T : Equipo
+        {
+            bool retorno = false;
+
+            try
+            {
+                this.comando = new SqlCommand();
+
+                this.MiComando($"insert into Equipo (nombre, cantidad) values(@NombreEquipo, @CantidadJugadores)");
+
+                this.AgregarValoresComando(this.comando, @"nombre", equipo.NombreEquipo);
+                this.AgregarValoresComando(this.comando, @"cantidad", equipo.CantidadJugadores.ToString());
+
+
+                this.conexion.Open();
+                int filasAfectadas = this.comando.ExecuteNonQuery();
+
+                if (filasAfectadas > 0)
+                {
+                    retorno = true;
+                }
+
+            }
+            catch (ObjetoDuplicadoException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open) this.conexion.Close();
+            }
+
+            return retorno;
+
+        }
+
         private string ObtenerNombreTabla<T>()
         {
             if (typeof(T) == typeof(Futbolista))
@@ -165,7 +285,7 @@ namespace Aplicacion
                     if (filasAfectadas > 0)
                     {
                         retorno = true;
-                    }  
+                    }
                 }
             }
             catch (ObjetoDuplicadoException ex)
@@ -226,7 +346,7 @@ namespace Aplicacion
 
                 this.RecorrerPropiedades(jugador, this.comando);
 
-                if(this.JugadorExiste(tabla,comando))
+                if (this.JugadorExiste(tabla, comando))
                 {
                     this.comando = new SqlCommand();
 
@@ -292,7 +412,7 @@ namespace Aplicacion
                 this.comando = new SqlCommand();
                 this.RecorrerPropiedades(jugador, this.comando);
 
-                if(this.JugadorExiste(tabla,this.comando))
+                if (this.JugadorExiste(tabla, this.comando))
                 {
                     switch (tabla)
                     {
@@ -336,7 +456,7 @@ namespace Aplicacion
 
         }
 
-        public bool JugadorExiste(string tabla , SqlCommand comando)
+        public bool JugadorExiste(string tabla, SqlCommand comando)
         {
             bool retorno = false;
 
@@ -349,10 +469,10 @@ namespace Aplicacion
                         this.MiComando($"SELECT COUNT(*) from {tabla} where Nombre = @Nombre and Apellido = @Apellido and Posicion = @Posicion");
                         break;
                     case "Basquetbolistas":
-                        this.MiComando($"select count(*) {tabla} where Nombre = @Nombre and Apellido = @Apellido and Altura = @Altura");
+                        this.MiComando($"select count(*) from {tabla} where Nombre = @Nombre and Apellido = @Apellido and Altura = @Altura");
                         break;
                     default:
-                        this.MiComando($"select count(*){tabla} where Nombre = @Nombre and Apellido = @Apellido and ManoDominante = @ManoDominante and Posicion = @Posicion ");
+                        this.MiComando($"select count(*) from {tabla} where Nombre = @Nombre and Apellido = @Apellido and ManoDominante = @ManoDominante and Posicion = @Posicion ");
                         break;
                 }
 
