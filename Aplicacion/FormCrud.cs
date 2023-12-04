@@ -1,6 +1,7 @@
 ﻿using LibreriaDeClases;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Aplicacion
@@ -55,6 +56,20 @@ namespace Aplicacion
             foreach (Jugador jugadores in equipo.MiEquipo)
             {
                 lstEquipo.Items.Add(jugadores.ToString());
+            }
+        }
+
+        private async Task ActualizarListBox()
+        {
+            if (this.lstEquipo.InvokeRequired)
+            {
+                //Invoco nuevamente a mi metodo Actualizar para que ingrese desde el hilo principal
+                await Task.Run(() => lstEquipo.Invoke(ActualizarListBox));
+            }
+            else
+            {
+                this.Actualizar();
+
             }
         }
 
@@ -297,10 +312,15 @@ namespace Aplicacion
         /// <param name="e"></param>
         private void btnGuardarFutbolistas_Click(object sender, EventArgs e)
         {
+            Thread thread = new Thread(() =>
+            {
+                Serializadora<Futbolista> serializarFutbolistas = new Serializadora<Futbolista>();
+                serializarFutbolistas.Serealizar(this.equipo.Futbolistas, "Futbolistas.JSON");
+            });
 
-            Serializadora<Futbolista> serializarFutbolistas = new Serializadora<Futbolista>();
-            serializarFutbolistas.Serealizar(this.equipo.Futbolistas, "Futbolistas.JSON");
-
+            thread.IsBackground = true;
+            thread.SetApartmentState(ApartmentState.STA);
+            thread.Start();
 
         }
 
@@ -314,40 +334,78 @@ namespace Aplicacion
         /// <param name="e"></param>
         private void btnDeserealizarFutbolistas_Click(object sender, EventArgs e)
         {
-            Serializadora<Futbolista> deserealizarFutbolistas = new Serializadora<Futbolista>();
-            deserealizarFutbolistas.Deserealizar(this.equipo);
-            this.Actualizar();
+            //Creo un hilo para poder serealizar trabajando con llamadas a interfaces ya que antes tenia el error
+            //de System.Threading.ThreadStateException
+            Thread thread = new Thread(async () =>
+            {
+                Serializadora<Futbolista> deserealizarFutbolistas = new Serializadora<Futbolista>();
+                deserealizarFutbolistas.Deserealizar(this.equipo);
+                await ActualizarListBox();//llamo a mi metodo actualizarlistbox porque la listbox va a ser modificada desde otro hilo al
+                                            // que se inicio
+            });
 
+            thread.IsBackground = true; //Esto es para considerar el hilo de fondo, esto para que no siga ejecutando en segundo plano
+            thread.SetApartmentState(ApartmentState.STA);//Por lo que vi sirve para tener acceso a objetos COM (El error que tenia antes venia con
+                                                         //algo relacionado a esto)
+            thread.Start();
         }
 
         private void btnGuardarBasquetbolistas_Click(object sender, EventArgs e)
         {
+            Thread thread = new Thread(() =>
+            {
+                Serializadora<Basquetbolista> serializarBasquetbolistas = new Serializadora<Basquetbolista>();
+                serializarBasquetbolistas.Serealizar(this.equipo.Basquetbolistas, "Basquetbolistas.JSON");
+            });
 
-            Serializadora<Basquetbolista> serializarBasquetbolistas = new Serializadora<Basquetbolista>();
-            serializarBasquetbolistas.Serealizar(this.equipo.Basquetbolistas, "Basquetbolistas.JSON");
-
+            thread.IsBackground = true; //Esto es para considerar el hilo de fondo, esto para que no siga ejecutando en segundo plano
+            thread.SetApartmentState(ApartmentState.STA);//Por lo que vi sirve para tener acceso a objetos COM (El error que tenia antes venia con
+                                                         //algo relacionado a esto)
+            thread.Start();
         }
 
         private void btnDeserealizarBasquetbolistas_Click(object sender, EventArgs e)
         {
-            Serializadora<Basquetbolista> deserealizarBasquetbolistas = new Serializadora<Basquetbolista>();
-            deserealizarBasquetbolistas.Deserealizar(this.equipo);
-            this.Actualizar();
+
+            Thread thread = new Thread(async () =>
+            {
+                Serializadora<Basquetbolista> deserealizarBasquetbolistas = new Serializadora<Basquetbolista>();
+                deserealizarBasquetbolistas.Deserealizar(this.equipo);
+                await ActualizarListBox();
+            });
+
+            thread.IsBackground = true;
+            thread.SetApartmentState(ApartmentState.STA);
+            thread.Start();
 
         }
 
         private void btnGuardarVoleibolistas_Click(object sender, EventArgs e)
         {
-            Serializadora<Voleibolista> serializarVoleibolistas = new Serializadora<Voleibolista>();
-            serializarVoleibolistas.Serealizar(this.equipo.Voleibolistas, "Voleibolistas.JSON");
+            Thread thread = new Thread(() =>
+            {
+                Serializadora<Voleibolista> serializarVoleibolistas = new Serializadora<Voleibolista>();
+                serializarVoleibolistas.Serealizar(this.equipo.Voleibolistas, "Voleibolistas.JSON");
+            });
+
+            thread.IsBackground = true;
+            thread.SetApartmentState(ApartmentState.STA);
+            thread.Start();
 
         }
 
         private void btnDeserealizarVoleibolistas_Click(object sender, EventArgs e)
         {
-            Serializadora<Voleibolista> deserealizarVoleibolistas = new Serializadora<Voleibolista>();
-            deserealizarVoleibolistas.Deserealizar(this.equipo);
-            this.Actualizar();
+            Thread thread = new Thread(async () =>
+            {
+                Serializadora<Voleibolista> deserealizarVoleibolistas = new Serializadora<Voleibolista>();
+                deserealizarVoleibolistas.Deserealizar(this.equipo);
+                await ActualizarListBox();
+            });
+
+            thread.IsBackground = true;
+            thread.SetApartmentState(ApartmentState.STA);
+            thread.Start();
 
         }
 
