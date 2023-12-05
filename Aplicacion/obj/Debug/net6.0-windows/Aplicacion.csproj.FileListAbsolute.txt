@@ -202,7 +202,6 @@ D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\Aplic
 D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.FormFutbolista.resources
 D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.FormHistorialUsuarios.resources
 D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.FormJugadores.resources
-D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.FormLogin.resources
 D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.FormVoleibolista.resources
 D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.csproj.GenerateResource.cache
 D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.GeneratedMSBuildEditorConfig.editorconfig
@@ -215,3 +214,5 @@ D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\refin
 D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.pdb
 D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.genruntimeconfig.cache
 D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\ref\Aplicacion.dll
+D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.FormLogin.resources
+D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.Properties.Resources.resources

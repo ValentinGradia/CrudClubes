@@ -48,6 +48,8 @@ namespace Aplicacion
         public FormLogin()
         {
             InitializeComponent();
+            cbxContraseña.CheckedChanged += cbxContraseña_CheckedChanged;
+            CargarImagenes();
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -141,6 +143,22 @@ namespace Aplicacion
             }
         }
 
+        private void CargarImagenes()
+        {
+            try
+            {
+
+                pictureBox1.Image = System.Drawing.Image.FromFile(@"welcome.png");
+                pictureBox2.Image = System.Drawing.Image.FromFile(@"hola.png");
+
+                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar la imagen: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void LimpiarTextBox(TextBox txt1, TextBox txt2)
         {
             txt1.Text = "";
@@ -151,6 +169,11 @@ namespace Aplicacion
         {
             this.comprobarUsuario = this.Mostrar;
             this.limpiarTxt = this.LimpiarTextBox;
+        }
+
+        private void cbxContraseña_CheckedChanged(object sender, EventArgs e)
+        {
+            txtContraseña.PasswordChar = cbxContraseña.Checked ? '\0' : '*';
         }
     }
 
