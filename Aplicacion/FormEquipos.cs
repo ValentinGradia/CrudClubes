@@ -14,12 +14,42 @@ namespace Aplicacion
         private string nombreUsuario;
         private DateTime fechaRegistro;
         private string perfilUsuario;
-        private AccesoDatos sql = new AccesoDatos();
+        public delegate void DelegadoImagenes(int num);
+        
 
         public FormEquipos()
         {
             InitializeComponent();
             this.listaEquipos = new List<Equipo>();
+            CargarImagenes();
+            Task hiloSecundario = Task.Run(() => CargarEquipos());
+        }
+
+        private void CargarEquipos()
+        {
+            do
+            {
+                Random random = new Random();
+                MostrarImagenEquipo(random.Next(1, 6));
+                Thread.Sleep(3000);
+
+            } while (true);
+        }
+
+        private async void MostrarImagenEquipo(int num)
+        {
+            if (pictureBox4.InvokeRequired)
+            {
+                //Instancio mi delegado
+                this.pictureBox4.Invoke((Action)(() => MostrarImagenEquipo(num)));
+            }
+            else
+            {
+                pictureBox4.Image = System.Drawing.Image.FromFile($@"{num}.png");
+
+                pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            }
         }
 
         /// <summary>
@@ -67,6 +97,25 @@ namespace Aplicacion
                 this.Mostrar_Mensaje_Permiso();
             }
 
+        }
+
+        private void CargarImagenes()
+        {
+            try
+            {
+
+                pictureBox1.Image = System.Drawing.Image.FromFile(@"agregar.png");
+                pictureBox2.Image = System.Drawing.Image.FromFile(@"modificar.png");
+                pictureBox3.Image = System.Drawing.Image.FromFile(@"eliminar.png");
+
+                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+                pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar la imagen: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
 
@@ -181,30 +230,13 @@ namespace Aplicacion
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void FormEquipos_Load(object sender, EventArgs e)
+        private  void FormEquipos_Load(object sender, EventArgs e)
         {
             this.lblUsuario.Text = this.nombreUsuario;
             string fechaFormateada = this.fechaRegistro.ToString("yyyy-MM-dd");
             this.lblFechaRegistro.Text = fechaFormateada;
-            sql.ObtenerListaDatosEquipo(listaEquipos);
-        }
-
-        private void ObtenerEquipos()
-        {
-            AccesoDatos acceso = new AccesoDatos();
-
-
-            List<Futbolista> listaFutbolistas = acceso.ObtenerListaDatos<Futbolista>();
-
-            List<Basquetbolista> listaBasquetbolistas = acceso.ObtenerListaDatos<Basquetbolista>();
-
-            List<Voleibolista> listaVoleibolistas = acceso.ObtenerListaDatos<Voleibolista>();
-
-            //this.l
-
 
         }
-
 
         private void btnMostrarHistorial_Click(object sender, EventArgs e)
         {
