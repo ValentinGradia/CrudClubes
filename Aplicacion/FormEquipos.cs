@@ -31,7 +31,7 @@ namespace Aplicacion
             {
                 Random random = new Random();
                 MostrarImagenEquipo(random.Next(1, 6));
-                Thread.Sleep(3000);
+                Thread.Sleep(2500);
 
             } while (true);
         }

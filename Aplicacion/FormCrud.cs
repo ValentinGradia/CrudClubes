@@ -18,7 +18,7 @@ namespace Aplicacion
         private FormJugadores form;
         private string perfilUsuario;
         private event Action<bool, string> ComprobarProceso;
-        private event Action<Equipo,Jugador,string> ActualizarEquipo;
+        private event Action<Equipo, Jugador, string> ActualizarEquipo;
         private event Func<DialogResult> ConfirmarEliminacion;
 
 
@@ -257,13 +257,13 @@ namespace Aplicacion
         /// <param name="equipo"></param>
         /// <param name="jugador"></param>
         /// <param name="Accion que voy a hacer"></param>
-        private void ActualizarMiEquipo(Equipo equipo, Jugador jugador,string msg)
+        private void ActualizarMiEquipo(Equipo equipo, Jugador jugador, string msg)
         {
-            if(msg == "Agregar")
+            if (msg == "Agregar")
             {
                 equipo = equipo + jugador;
             }
-            else if (msg == "Eliminar"){equipo = equipo - jugador;}
+            else if (msg == "Eliminar") { equipo = equipo - jugador; }
 
             this.Actualizar();
         }
@@ -341,7 +341,7 @@ namespace Aplicacion
                 Serializadora<Futbolista> deserealizarFutbolistas = new Serializadora<Futbolista>();
                 deserealizarFutbolistas.Deserealizar(this.equipo);
                 await ActualizarListBox();//llamo a mi metodo actualizarlistbox porque la listbox va a ser modificada desde otro hilo al
-                                            // que se inicio
+                                          // que se inicio
             });
 
             thread.IsBackground = true; //Esto es para considerar el hilo de fondo, esto para que no siga ejecutando en segundo plano

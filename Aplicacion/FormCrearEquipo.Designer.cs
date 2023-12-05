@@ -37,12 +37,14 @@
             // 
             // btnAceptar
             // 
+            btnAceptar.BackColor = SystemColors.InactiveBorder;
+            btnAceptar.Font = new Font("Myanmar Text", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             btnAceptar.Location = new Point(124, 151);
             btnAceptar.Name = "btnAceptar";
-            btnAceptar.Size = new Size(99, 47);
+            btnAceptar.Size = new Size(92, 47);
             btnAceptar.TabIndex = 0;
-            btnAceptar.Text = "Aceptar";
-            btnAceptar.UseVisualStyleBackColor = true;
+            btnAceptar.Text = "Crear";
+            btnAceptar.UseVisualStyleBackColor = false;
             btnAceptar.Click += btnAceptar_Click;
             // 
             // txtCantJugadores
@@ -83,6 +85,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(406, 241);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -91,7 +94,7 @@
             Controls.Add(btnAceptar);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "FormCrearEquipo";
-            Text = "FormCrearEquipo";
+            Text = " ";
             ResumeLayout(false);
             PerformLayout();
         }
