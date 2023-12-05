@@ -9,8 +9,11 @@ que hacer una calculadora lo cual me gusto mucho y encontre una relacion por asi
 ___
 ## Resumen
 **La aplicacion se encarga de crear equipos los cuales puedes agregar jugadores, modificar sus datos o eliminarlos del equipo. No solo eso sino que puedes tambien 
-puedes modificar los equipos en el cual  puedes acceder a estas caracteristicas**
+puedes modificar los equipos en el cual  puedes acceder a estas caracteristicas. Dichos jugadores pueden ser guardados y/O almacenados en una base de datos, o si optas 
+otra opcion, serealizarlos en archivo JSON**
 
 ![Alt text](DiagramaDeClases.png)
+
+
 
 
