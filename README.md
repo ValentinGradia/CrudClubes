@@ -14,6 +14,33 @@ otra opcion, serealizarlos en archivo JSON**
 
 ![Alt text](DiagramaDeClases.png)
 
+___
+
+## SQL
+**Se utiliza la BBDD para almacenar los tipos de jugadores. De ese modo podras tenerlos guardados y poder obtenerlos en otro equipo**
+
+## Excepciones
+**Se emplean excepciones en diversas secciones del código, en situaciones donde podría surgir un error durante la ejecución o en casos de errores del usuario. 
+Por ejemplo, en el proceso de inicio de sesión, se desencadena una excepción controlada si los datos proporcionados por el usuario son incorrectos.**
+
+##Generics
+**Se utilizan generics tanto en metodos como en interfaces para poder trabajar con varios tipos de datos con el fin de hacer el codigo mucho mas flexible y
+reutilizable, adaptandose a los diferentes datos.**
+
+##Delegados
+**Se emplean delegados a la hora de la creacion de eventos tales como confirmar una serie de eliminacion de datos o para actualizar procesos y comprobarlos**
+
+##Task
+**Se utilizan task para poder agregar y modificar diferentes equipos y no estar agregando y/o modificando equipo por equipo.**
+
+##Serializacion
+**Se emplea el termino serealizacion a la hora de obtener la lista de usuarios que pueden acceder a la aplicacion y tambien si el usuario quiere serelizar los diferentes
+tipos de jugadores**
+
+##Eventos
+**Se utilizan eventos a la hora de comprobar la contraseña del usuario que este ingresando, lanzar mensajes de dialogos si ocurre algun error.**
+
+
 
 
 
