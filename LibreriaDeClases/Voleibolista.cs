@@ -72,7 +72,7 @@ namespace LibreriaDeClases
 
         public override string ToString()
         {
-            return base.ToString() + $" - ManoDominante: {this.manoDominante} - Posicion {this.posicion}";
+            return base.ToString() + $" - ManoDominante: {this.manoDominante} - Posicion {this.posicion} - VOLEIBOLISTA";
         }
 
         public override bool Equals(object? obj)

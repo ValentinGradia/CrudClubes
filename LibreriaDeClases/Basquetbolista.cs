@@ -74,7 +74,7 @@ namespace LibreriaDeClases
 
         public override string ToString()
         {
-            return base.ToString() + $"Altura: {this.altura} - Posicion: {this.posicion}";
+            return base.ToString() + $"Altura: {this.altura} - Posicion: {this.posicion} -  BASQUETBOLISTA";
         }
 
         public override bool Equals(object? obj)

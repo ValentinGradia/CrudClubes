@@ -101,8 +101,8 @@ namespace LibreriaDeClases
 
         public override string ToString()
         {
-            return base.ToString() + $"- Posicion: {this.posicion} - Goles: {this.cantGoles} " +
-                $" - Pierna habil: {this.pierna}";
+            return base.ToString() + $"- Posicion: {this.posicion} - Goles: {this.cantGoles}" +
+                $" - Pierna habil: {this.pierna} - FUTBOLISTA";
         }
 
         public override bool Equals(object? obj)

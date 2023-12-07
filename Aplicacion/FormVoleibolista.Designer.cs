@@ -87,7 +87,6 @@
             Controls.Add(label5);
             Name = "FormVoleibolista";
             Text = "FormVoleibolista";
-            Load += FormVoleibolista_Load;
             Controls.SetChildIndex(label1, 0);
             Controls.SetChildIndex(label2, 0);
             Controls.SetChildIndex(label3, 0);

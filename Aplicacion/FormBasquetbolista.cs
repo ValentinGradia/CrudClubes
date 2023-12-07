@@ -19,8 +19,7 @@ namespace Aplicacion
     /// </summary>
     public partial class FormBasquetbolista : FormDatosJugadores, IJugadores<Basquetbolista>
     {
-        private string pais;
-        private bool flag;
+
 
         public FormBasquetbolista():base()
         {
@@ -35,30 +34,7 @@ namespace Aplicacion
         public FormBasquetbolista(Basquetbolista b) : this()
         {
             this.CargarDatos(b);
-            this.txtCalzado.Text = b.Calzado.ToString();
-            this.txtAltura.Text = b.Altura.ToString();
-            this.txtPosicion.Text = b.Posicion;
-
-            string pais = b.Nacion.ToString();
-
-            switch (pais)
-            {
-                case "Argentino":
-                    this.pais = "Argentino";
-                    break;
-                case "Brasilero":
-                    this.pais = "Brasilero";
-                    break;
-                case "Peruano":
-                    this.pais = "Peruano";
-                    break;
-                default:
-                    this.pais = "Canadiense";
-                    break;
-            }
-
-            this.flag = true;
-
+            this.btnAgregar.Text = "Modificar";
         }
 
         public void CargarDatos(Basquetbolista b)
@@ -66,10 +42,10 @@ namespace Aplicacion
             base.txtApellido.Text = b.Apellido;
             base.txtEdad.Text = b.Edad.ToString();
             base.txtNombre.Text = b.Nombre;
-            base.txtApellido.Enabled = false;
-            base.txtEdad.Enabled = false;
-            base.txtNombre.Enabled = false;
-            base.cmbNacionalidades.Enabled = false;
+            this.txtCalzado.Text = b.Calzado.ToString();
+            this.txtAltura.Text = b.Altura.ToString();
+            this.txtPosicion.Text = b.Posicion;
+            base.cmbNacionalidades.SelectedIndex = Convert.ToInt32(b.Nacion);
         }
 
         /// <summary>
@@ -86,25 +62,7 @@ namespace Aplicacion
             }
             else
             {
-                if (this.flag)
-                {
-                    switch (this.pais)
-                    {
-                        case "Argentino":
-                            this.cmbNacionalidades.SelectedIndex = 0;
-                            break;
-                        case "Brasilero":
-                            this.cmbNacionalidades.SelectedIndex = 1;
-                            break;
-                        case "Peruano":
-                            this.cmbNacionalidades.SelectedIndex = 2;
-                            break;
-                        default:
-                            this.cmbNacionalidades.SelectedIndex = 3;
-                            break;
-                    }
-
-                }
+                this.ValidarCmbNull();
 
                 string n = this.cmbNacionalidades.SelectedItem.ToString();
 
@@ -139,6 +97,14 @@ namespace Aplicacion
 
         }
 
+        public void ValidarCmbNull()
+        {
+            if (this.cmbNacionalidades.SelectedItem.ToString() == null)
+            {
+                MessageBox.Show("Complete su informacion", "ERROR!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private bool ValidarAlturaCalzado()
         {
             bool flag = false;
@@ -154,19 +120,7 @@ namespace Aplicacion
             return flag;
         }
 
-        private void FormBasquetbolista_Load_1(object sender, EventArgs e)
-        {
-            //Cuando el usuario agregue un basquetbolista esto va a ser el default de las nacionalidades
-            this.VerificarNacionalidades();
-        }
 
-        public void VerificarNacionalidades()
-        {
-            if (this.flag == false)
-            {
-                this.cmbNacionalidades.SelectedIndex = 0;
-            }
 
-        }
     }
 }

@@ -115,7 +115,6 @@
             Controls.Add(txtCalzado);
             Name = "FormBasquetbolista";
             Text = "FormBasquetbolista";
-            Load += FormBasquetbolista_Load_1;
             Controls.SetChildIndex(label1, 0);
             Controls.SetChildIndex(label2, 0);
             Controls.SetChildIndex(label3, 0);

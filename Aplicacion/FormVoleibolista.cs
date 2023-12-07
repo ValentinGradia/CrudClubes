@@ -11,58 +11,24 @@ using System.Windows.Forms;
 
 namespace Aplicacion
 {
-    //public delegate void DelegateNacionalidades(bool flag, string pais, ComboBox cmb);
     public partial class FormVoleibolista : FormDatosJugadores, IJugadores<Voleibolista>
     {
-        private string pais;
-        private bool flag = false;
 
         public FormVoleibolista():base()
         {
             InitializeComponent();
-        }
 
-        private void FormVoleibolista_Load(object sender, EventArgs e)
-        {
-            this.cmbMano.Items.Add("Derecha");
-            this.cmbMano.Items.Add("Izquierda");
-            this.VerificarNacionalidades();
-
-            this.cmbMano.SelectedIndex = 0;
-        }
-
-        public void VerificarNacionalidades()
-        {
-            if (this.flag == false)
+            Array manos = Enum.GetValues(typeof(EMano));
+            foreach(EMano mano in manos)
             {
-                this.cmbNacionalidades.SelectedIndex = 0;
+                this.cmbMano.Items.Add(mano);
             }
         }
+
         public FormVoleibolista(Voleibolista v) : this()
         {
             this.CargarDatos(v);
-            this.txtPosicion.Text = v.Posicion;
-
-            string pais = v.Nacion.ToString();
-
-            switch (pais)
-            {
-                case "Argentino":
-                    this.pais = "Argentino";
-                    break;
-                case "Brasilero":
-                    this.pais = "Brasilero";
-                    break;
-                case "Peruano":
-                    this.pais = "Peruano";
-                    break;
-                default:
-                    this.pais = "Canadiense";
-                    break;
-            }
-
-
-            this.flag = true;
+            this.btnAgregar.Text = "Modificar";
         }
 
         public void CargarDatos(Voleibolista v)
@@ -70,10 +36,9 @@ namespace Aplicacion
             base.txtApellido.Text = v.Apellido;
             base.txtNombre.Text = v.Nombre;
             base.txtEdad.Text = v.Edad.ToString();
-            base.txtApellido.Enabled = false;
-            base.txtNombre.Enabled = false;
-            base.txtEdad.Enabled = false;
-            base.cmbNacionalidades.Enabled = false;
+            this.txtPosicion.Text = v.Posicion;
+            base.cmbNacionalidades.SelectedIndex = Convert.ToInt32(v.Nacion);
+            this.cmbMano.SelectedIndex = Convert.ToInt32(v.ManoDominante);
 
         }
 
@@ -85,25 +50,7 @@ namespace Aplicacion
             }
             else
             {
-                
-                if (this.flag)
-                {
-                    switch (this.pais)
-                    {
-                        case "Argentino":
-                            this.cmbNacionalidades.SelectedIndex = 0;
-                            break;
-                        case "Brasilero":
-                            this.cmbNacionalidades.SelectedIndex = 1;
-                            break;
-                        case "Peruano":
-                            this.cmbNacionalidades.SelectedIndex = 2;
-                            break;
-                        default:
-                            this.cmbNacionalidades.SelectedIndex = 3;
-                            break;
-                    }
-                }
+                this.ValidarCmbNull();
 
                 string n = this.cmbNacionalidades.SelectedItem.ToString();
 
@@ -129,27 +76,12 @@ namespace Aplicacion
 
         }
 
-        /*private void RestablecerNacionalidades(bool flag, string pais, ComboBox cmb)
+        public void ValidarCmbNull()
         {
-            if (flag)
+            if (this.cmbMano.SelectedItem.ToString() == null | this.cmbNacionalidades.SelectedItem.ToString() == null)
             {
-                switch (pais)
-                {
-                    case "Argentino":
-                        cmb.SelectedIndex = 0;
-                        break;
-                    case "Brasilero":
-                        cmb.SelectedIndex = 1;
-                        break;
-                    case "Peruano":
-                        cmb.SelectedIndex = 2;
-                        break;
-                    default:
-                        cmb.SelectedIndex = 3;
-                        break;
-                }
+                MessageBox.Show("Complete su informacion", "ERROR!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-        }*/
+        }
     }
 }

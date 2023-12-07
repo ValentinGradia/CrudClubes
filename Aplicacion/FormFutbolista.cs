@@ -41,6 +41,7 @@ namespace Aplicacion
         public FormFutbolista(Futbolista f) : this()
         {
             this.CargarDatos(f);
+            this.btnAgregar.Text = "Modificar";
 
         }
 
@@ -63,6 +64,18 @@ namespace Aplicacion
             }
             else
             {
+                try
+                {
+                    this.cmbPierna.SelectedItem.ToString();
+
+                    this.cmbNacionalidades.SelectedItem.ToString();
+                }
+                catch(NullReferenceException ex)
+                {
+                    MessageBox.Show("Complete sus datos", "ERROR!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+
                 string p = this.cmbPierna.SelectedItem.ToString();
 
                 EPierna pierna = (EPierna)Enum.Parse(typeof(EPierna), p);
