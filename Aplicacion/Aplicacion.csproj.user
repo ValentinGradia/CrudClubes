@@ -4,13 +4,13 @@
     <Compile Update="FormBasquetbolista.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="FormEquipos.cs">
+    <Compile Update="FormClubes.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="FormFutbolista.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="FormCrearEquipo.cs">
+    <Compile Update="FormCrearClubes.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="FormCrud.cs">

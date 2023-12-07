@@ -9,10 +9,8 @@ namespace LibreriaDeClases
     public interface IValidarJugadorRepetido
     {
 
-        void ValidarJugadorRepetido(Jugador j, Equipo e);
+        void ValidarJugadorRepetido(Jugador j, Club e);
 
-
-        void VerificarTipoJugador(Jugador jugador, Equipo equipo);
 
         public void AgregarJugadores<T>(T jugador, List<T> lista);
     }

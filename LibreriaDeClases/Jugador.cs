@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Xml.Serialization;
 
 namespace LibreriaDeClases
 {
@@ -7,6 +8,9 @@ namespace LibreriaDeClases
     /// Además, define métodos para comparar jugadores, generar habilidades aleatorias y proporciona una descripción general del jugador. Las clases de jugadores específicos, 
     /// como futbolistas o baloncestistas, heredan de esta clase para agregar detalles particulares a sus deportes. 
     /// </summary>
+    [XmlInclude(typeof(Futbolista))]
+    [XmlInclude(typeof(Voleibolista))]
+    [XmlInclude(typeof(Basquetbolista))]
     public abstract class Jugador
     {
         protected string nombre;

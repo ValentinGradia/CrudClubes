@@ -10,34 +10,11 @@ namespace LibreriaDeClases
     /// <summary>
     /// Equipo es una clase que modela un equipo deportivo y gestiona jugadores de varios deportes. Permite agregar y quitar jugadores, así como ordenarlos por apellido o edad.
     /// </summary>
-    public class Equipo
+    public class Club
     {
         private List<Jugador> miEquipo;
         private int cantidadJugadores;
         private string nombreEquipo;
-        private List<Futbolista> futbolistas;
-        private List<Basquetbolista> basquetbolistas;
-        private List<Voleibolista> voleibolistas;
-
-        public List<Voleibolista> Voleibolistas
-        {
-            get { return this.voleibolistas; }
-            set { this.voleibolistas = value; }
-        }
-
-
-        public List<Basquetbolista> Basquetbolistas
-        {
-            get { return this.basquetbolistas; }
-            set { this.basquetbolistas = value; }
-        }
-
-
-        public List<Futbolista> Futbolistas
-        {
-            get { return this.futbolistas; }
-            set { this.futbolistas = value; }
-        }
 
 
         public int CantidadJugadores
@@ -63,19 +40,16 @@ namespace LibreriaDeClases
             set { this.miEquipo = value; }
         }
 
-        public Equipo()
+        public Club()
         {
 
         }
 
-        public Equipo(int cantidadJugadores, string nombreEquipo) : this()
+        public Club(int cantidadJugadores, string nombreEquipo) : this()
         {
             this.cantidadJugadores = cantidadJugadores;
             this.nombreEquipo = nombreEquipo;
             this.miEquipo = new List<Jugador>();
-            this.futbolistas = new List<Futbolista>();
-            this.basquetbolistas = new List<Basquetbolista>();
-            this.voleibolistas = new List<Voleibolista>();
         }
 
         public override string ToString()
@@ -86,16 +60,16 @@ namespace LibreriaDeClases
         public override bool Equals(object? obj)
         {
             bool flag = false;
-            if (obj is Equipo)
+            if (obj is Club)
             {
-                flag = this == ((Equipo)obj);
+                flag = this == ((Club)obj);
 
             }
 
             return flag;
         }
 
-        public static Equipo operator +(Equipo e, Jugador j)
+        public static Club operator +(Club e, Jugador j)
         {
 
             e.miEquipo.Add(j); //las validaciones las hice en el crud
@@ -103,7 +77,7 @@ namespace LibreriaDeClases
 
         }
 
-        public static Equipo operator -(Equipo e, Jugador j)
+        public static Club operator -(Club e, Jugador j)
         {
 
            e.miEquipo.Remove(j);
@@ -112,22 +86,22 @@ namespace LibreriaDeClases
         }
 
 
-        public static bool operator ==(Equipo e, Jugador j)
+        public static bool operator ==(Club e, Jugador j)
         {
             return e.miEquipo.Contains(j);
         }
 
-        public static bool operator ==(Equipo e,Equipo e2)
+        public static bool operator ==(Club e, Club e2)
         {
             return (e.nombreEquipo == e2.nombreEquipo);
         }
 
-        public static bool operator !=(Equipo e, Equipo e2)
+        public static bool operator !=(Club e, Club e2)
         {
             return !(e==e2);
         }
 
-        public static bool operator !=(Equipo e, Jugador j)
+        public static bool operator !=(Club e, Jugador j)
         {
             return !(e==j);
         }

@@ -80,46 +80,8 @@ namespace Aplicacion
         }
 
 
-        public List<Equipo> ObtenerListaDatosEquipo(List<Equipo> listEquipo)
-        {
-
-            try
-            {
-
-                this.MiComando($"select * from Equipo");
-
-                this.conexion.Open();
-
-                this.lector = this.comando.ExecuteReader(); //tipo select
-
-                while (this.lector.Read())//devuelve true cuando hay algo para leer
-                {
-                    //jugador.Nombre = (string)this.lector["Nombre"];
-                    Equipo equipo = new Equipo();
-                    equipo.NombreEquipo = (string)this.lector["nombre"];
-                    equipo.CantidadJugadores = (int)this.lector["cantidad"];
-
-
-                    //llamo a mi funcion para ver(dependiendo del tipo de jugador) que valores tengo que caster
-                    //this.ManejoEspecificoJugadores(jugador, this.lector);
-
-                    listEquipo.Add(equipo);
-
-                }
-                this.lector.Close();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                if (this.conexion.State == System.Data.ConnectionState.Open) this.conexion.Close();
-            }
-
-            return listEquipo;
-        }
-
+       
+        /*
         public List<Equipo> ObtenerListaDatosEquipo()
         {
             List<Equipo> listEquipo = new List<Equipo>();
@@ -159,11 +121,11 @@ namespace Aplicacion
             }
 
             return listEquipo;
-        }
+        }*/
 
 
         public bool AgregarEquipo<T>(T equipo)
-            where T : Equipo
+            where T : Club
         {
             bool retorno = false;
 

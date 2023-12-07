@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Threading;
 using System.Windows.Forms;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace Aplicacion
 {
@@ -12,13 +13,13 @@ namespace Aplicacion
     /// </summary>
     public partial class FormCrud : Form, ICrud<FormDatosJugadores>, IValidarJugadorRepetido
     {
-        private Equipo equipo;
+        private Club equipo;
         private string nombreEquipo;
         protected int cantJugadoresMax;
         private FormJugadores form;
         private string perfilUsuario;
         private event Action<bool, string> ComprobarProceso;
-        private event Action<Equipo, Jugador, string> ActualizarEquipo;
+        private event Action<Club, Jugador, string> ActualizarEquipo;
         private event Func<DialogResult> ConfirmarEliminacion;
 
 
@@ -30,23 +31,25 @@ namespace Aplicacion
         //Cuando crea un equipo nuevo estos son los parametros que requieren para crearlo
         public FormCrud(int cantJugadores, string nombreEquipo, string perfil) : this()
         {
-            this.equipo = new Equipo(cantJugadores, nombreEquipo);
+            this.equipo = new Club(cantJugadores, nombreEquipo);
             this.nombreEquipo = nombreEquipo;
             this.cantJugadoresMax = cantJugadores;
             this.perfilUsuario = perfil;
+            this.Text = nombreEquipo;
         }
 
         //Si quiere modificar jugadores de un equipo, el parametro va a ser el equipo que selecciono modificar
-        public FormCrud(Equipo equipo, string perfil) : this()
+        public FormCrud(Club equipo, string perfil) : this()
         {
             this.equipo = equipo;
             this.cantJugadoresMax = equipo.CantidadJugadores;
             this.nombreEquipo = equipo.NombreEquipo;
+            this.Text = nombreEquipo;
             this.perfilUsuario = perfil;
             this.Actualizar();
         }
 
-        public Equipo MiEquipo
+        public Club MiEquipo
         { get { return this.equipo; } }
 
 
@@ -186,19 +189,7 @@ namespace Aplicacion
 
             if (this.form.DialogResult == DialogResult.OK)
             {
-                //Esto lo hago para luego poder serealizar por tipos de jugador
-                switch (this.form.MiJugador)
-                {
-                    case Futbolista:
-                        this.equipo.Futbolistas.Add((Futbolista)this.form.MiJugador);
-                        break;
-                    case Basquetbolista:
-                        this.equipo.Basquetbolistas.Add((Basquetbolista)this.form.MiJugador);
-                        break;
-                    default:
-                        this.equipo.Voleibolistas.Add((Voleibolista)this.form.MiJugador);
-                        break;
-                }
+
 
                 this.ActualizarEquipo.Invoke(this.equipo, this.form.MiJugador, "Agregar");
             }
@@ -225,20 +216,6 @@ namespace Aplicacion
                 {
                     if (this.ConfirmarEliminacion.Invoke() == DialogResult.Yes)
                     {
-                        //this.equipo = this.equipo - this.equipo.MiEquipo[selected];
-                        switch (this.equipo.MiEquipo[selected]) //Aca no le paso como parametro el this.form.Mijugador ya que me devuelve el ultimo
-                                                                //jugador que se agrego a la lista y por eso tiraba error solo al eliminar
-                        {
-                            case Futbolista:
-                                this.equipo.Futbolistas.Remove((Futbolista)this.equipo.MiEquipo[selected]);
-                                break;
-                            case Basquetbolista:
-                                this.equipo.Basquetbolistas.Remove((Basquetbolista)this.equipo.MiEquipo[selected]);
-                                break;
-                            default:
-                                this.equipo.Voleibolistas.Remove((Voleibolista)this.equipo.MiEquipo[selected]);
-                                break;
-                        }
 
                         this.ActualizarEquipo.Invoke(this.equipo, this.equipo.MiEquipo[selected], "Eliminar");
                     }
@@ -257,13 +234,13 @@ namespace Aplicacion
         /// <param name="equipo"></param>
         /// <param name="jugador"></param>
         /// <param name="Accion que voy a hacer"></param>
-        private void ActualizarMiEquipo(Equipo equipo, Jugador jugador, string msg)
+        private void ActualizarMiEquipo(Club equipo, Jugador jugador, string msg)
         {
             if (msg == "Agregar")
             {
-                equipo = equipo + jugador;
+                equipo += jugador;
             }
-            else if (msg == "Eliminar") { equipo = equipo - jugador; }
+            else if (msg == "Eliminar") { equipo -= jugador; }
 
             this.Actualizar();
         }
@@ -310,17 +287,26 @@ namespace Aplicacion
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnGuardarFutbolistas_Click(object sender, EventArgs e)
+        private void btnSerealizar_Click(object sender, EventArgs e)
         {
-            Thread thread = new Thread(() =>
-            {
-                Serializadora<Futbolista> serializarFutbolistas = new Serializadora<Futbolista>();
-                serializarFutbolistas.Serealizar(this.equipo.Futbolistas, "Futbolistas.JSON");
-            });
+            int selected = this.lstEquipo.SelectedIndex;
 
-            thread.IsBackground = true;
-            thread.SetApartmentState(ApartmentState.STA);
-            thread.Start();
+            if (selected == -1)
+            {
+                MessageBox.Show("Seleccione uno", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                Thread thread = new Thread(() =>
+                {
+                    Serializadora<Jugador> serializar = new Serializadora<Jugador>();
+                    serializar.Serealizar(this.equipo.MiEquipo[selected], $"{this.equipo.MiEquipo[selected].Nombre}.XML");
+                });
+
+                thread.IsBackground = true;
+                thread.SetApartmentState(ApartmentState.STA);
+                thread.Start();
+            }
 
         }
 
@@ -332,14 +318,14 @@ namespace Aplicacion
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnDeserealizarFutbolistas_Click(object sender, EventArgs e)
+        private void btnDeserealizar_Click(object sender, EventArgs e)
         {
             //Creo un hilo para poder serealizar trabajando con llamadas a interfaces ya que antes tenia el error
             //de System.Threading.ThreadStateException
             Thread thread = new Thread(async () =>
             {
-                Serializadora<Futbolista> deserealizarFutbolistas = new Serializadora<Futbolista>();
-                deserealizarFutbolistas.Deserealizar(this.equipo);
+                Serializadora<Jugador> Deserializar = new Serializadora<Jugador>();
+                Deserializar.Deserealizar(this.equipo);
                 await ActualizarListBox();//llamo a mi metodo actualizarlistbox porque la listbox va a ser modificada desde otro hilo al
                                           // que se inicio
             });
@@ -348,65 +334,6 @@ namespace Aplicacion
             thread.SetApartmentState(ApartmentState.STA);//Por lo que vi sirve para tener acceso a objetos COM (El error que tenia antes venia con
                                                          //algo relacionado a esto)
             thread.Start();
-        }
-
-        private void btnGuardarBasquetbolistas_Click(object sender, EventArgs e)
-        {
-            Thread thread = new Thread(() =>
-            {
-                Serializadora<Basquetbolista> serializarBasquetbolistas = new Serializadora<Basquetbolista>();
-                serializarBasquetbolistas.Serealizar(this.equipo.Basquetbolistas, "Basquetbolistas.JSON");
-            });
-
-            thread.IsBackground = true; //Esto es para considerar el hilo de fondo, esto para que no siga ejecutando en segundo plano
-            thread.SetApartmentState(ApartmentState.STA);//Por lo que vi sirve para tener acceso a objetos COM (El error que tenia antes venia con
-                                                         //algo relacionado a esto)
-            thread.Start();
-        }
-
-        private void btnDeserealizarBasquetbolistas_Click(object sender, EventArgs e)
-        {
-
-            Thread thread = new Thread(async () =>
-            {
-                Serializadora<Basquetbolista> deserealizarBasquetbolistas = new Serializadora<Basquetbolista>();
-                deserealizarBasquetbolistas.Deserealizar(this.equipo);
-                await ActualizarListBox();
-            });
-
-            thread.IsBackground = true;
-            thread.SetApartmentState(ApartmentState.STA);
-            thread.Start();
-
-        }
-
-        private void btnGuardarVoleibolistas_Click(object sender, EventArgs e)
-        {
-            Thread thread = new Thread(() =>
-            {
-                Serializadora<Voleibolista> serializarVoleibolistas = new Serializadora<Voleibolista>();
-                serializarVoleibolistas.Serealizar(this.equipo.Voleibolistas, "Voleibolistas.JSON");
-            });
-
-            thread.IsBackground = true;
-            thread.SetApartmentState(ApartmentState.STA);
-            thread.Start();
-
-        }
-
-        private void btnDeserealizarVoleibolistas_Click(object sender, EventArgs e)
-        {
-            Thread thread = new Thread(async () =>
-            {
-                Serializadora<Voleibolista> deserealizarVoleibolistas = new Serializadora<Voleibolista>();
-                deserealizarVoleibolistas.Deserealizar(this.equipo);
-                await ActualizarListBox();
-            });
-
-            thread.IsBackground = true;
-            thread.SetApartmentState(ApartmentState.STA);
-            thread.Start();
-
         }
 
         public DialogResult Eliminar()
@@ -425,7 +352,7 @@ namespace Aplicacion
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnAgregarBBDD_Click(object sender, EventArgs e)
+        /*private void btnAgregarBBDD_Click(object sender, EventArgs e)
         {
             int selected = this.lstEquipo.SelectedIndex;
             bool flag;
@@ -465,7 +392,7 @@ namespace Aplicacion
                 }
             }
 
-        }
+        }*/
 
         private void VerificarProceso(bool flag, string msg)
         {
@@ -473,67 +400,11 @@ namespace Aplicacion
             else MessageBox.Show("Algo salio mal...", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private void btnModificarBBDD_MouseHover(object sender, EventArgs e)
-        {
-            this.CrearToolTip(this.btnModificarBBDD, "Dicho jugador a modificar debe estar previamente guardado en la BBDD");
-        }
 
         private void btnEliminarBBDD_MouseHover(object sender, EventArgs e)
         {
             this.CrearToolTip(this.btnEliminarBBDD, "Dicho jugador a modificar debe estar previamente guardado en la BBDD");
         }
-
-
-        /// <summary>
-        /// Metodo el cual modifico mi jugador en la BBDD. Primero, verifico si se ha seleccionado un elemento en la listbox (lstEquipo).
-        /// Luego creo una instancia de la clase AccesoDatos para conectarme  a la BBDD
-        ///  Despues valido que el jugador este guardado previamenete en la base de datos
-        /// Si ocurre una excepción del tipo JugadorNoexistente (que el jugador no este guardado en la BBDD), muestra un mensaje de error.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnModificarBBDD_Click(object sender, EventArgs e)
-        {
-            int selected = this.lstEquipo.SelectedIndex;
-            bool flag;
-
-            if (selected == -1)
-            {
-                MessageBox.Show("Seleccione uno", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                AccesoDatos acceso = new AccesoDatos();
-                Jugador j = this.equipo.MiEquipo[selected];
-                try
-                {
-                    if (j is Futbolista)
-                    {
-                        Futbolista f = (Futbolista)j;
-                        flag = acceso.ModificarJugador<Futbolista>(f);
-                        this.ComprobarProceso.Invoke(flag, "modifico");
-                    }
-                    else if (j is Basquetbolista)
-                    {
-                        Basquetbolista b = (Basquetbolista)j;
-                        flag = acceso.ModificarJugador<Basquetbolista>(b);
-                        this.ComprobarProceso.Invoke(flag, "modifico");
-                    }
-                    else
-                    {
-                        Voleibolista v = (Voleibolista)j;
-                        flag = acceso.ModificarJugador<Voleibolista>(v);
-                        this.ComprobarProceso.Invoke(flag, "modifico");
-                    }
-                }
-                catch (JugadoNoExistenteException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-
-        }
-
 
         /// <summary>
         /// Mismo procedimiento que la funcion de Modificar_BBDD pero en este caso elimino en vez de modificar
@@ -541,6 +412,7 @@ namespace Aplicacion
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /*
         private void btnEliminarBBDD_Click(object sender, EventArgs e)
         {
             int selected = this.lstEquipo.SelectedIndex;
@@ -581,7 +453,7 @@ namespace Aplicacion
                 }
             }
 
-        }
+        }*/
 
         /// <summary>
         /// Metodo para obtener la tabla (que en este caso seria la lista de tipos de jugadores) de la BBDD
@@ -590,6 +462,7 @@ namespace Aplicacion
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /*
         private void btnObtenerBBDD_Click(object sender, EventArgs e)
         {
             AccesoDatos acceso = new AccesoDatos();
@@ -610,14 +483,14 @@ namespace Aplicacion
                 listaVoleibolistas.ForEach((jugador) => this.ValidarJugadorRepetido(jugador, this.equipo));
 
             }
-        }
+        }*/
 
         /// <summary>
         /// Al deserealizar los jugadores que tenga en la BBDD tengo que fijarme si alguno de esos jugadores ya estan en el equipo o no
         /// </summary>
         /// <param name="jugador"></param>
         /// <param name="equipo"></param>
-        public void ValidarJugadorRepetido(Jugador jugador, Equipo equipo)
+        public void ValidarJugadorRepetido(Jugador jugador, Club equipo)
         {
             bool flag = true;
             if (equipo.MiEquipo.Count != 0)//Si en mi equipo no hay jugadores no tengo que hacer la validacion, esto lo hago porque antes si queria hacer
@@ -640,34 +513,16 @@ namespace Aplicacion
                         equipo.MiEquipo.Add(jugador);
                         //Recordemos que mi equipo tiene listas diferentes para cada tipo de jugador (esto por la serializacion de json y sus errores) entonces
                         //no solo tengo que agregar el jugador a la lista general sino a la lista del tipo del jugador
-                        this.VerificarTipoJugador(jugador, equipo);
                     }
                 }
             }
             else
             {
                 equipo.MiEquipo.Add(jugador);
-                this.VerificarTipoJugador(jugador, equipo);
             }
 
             this.Actualizar();
 
-        }
-
-        public void VerificarTipoJugador(Jugador jugador, Equipo equipo)
-        {
-            if (jugador is Futbolista)
-            {
-                this.AgregarJugadores<Futbolista>((Futbolista)jugador, equipo.Futbolistas);
-            }
-            else if (jugador is Basquetbolista)
-            {
-                this.AgregarJugadores<Basquetbolista>((Basquetbolista)jugador, equipo.Basquetbolistas);
-            }
-            else
-            {
-                this.AgregarJugadores<Voleibolista>((Voleibolista)jugador, equipo.Voleibolistas);
-            }
         }
 
         private void FormCrud_Load(object sender, EventArgs e)

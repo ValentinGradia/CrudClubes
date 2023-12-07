@@ -1,10 +1,14 @@
 ﻿using LibreriaDeClases;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Serialization;
+
 
 namespace Aplicacion
 {
@@ -14,7 +18,7 @@ namespace Aplicacion
     public class Serializadora<T> : IValidarJugadorRepetido
         where T : Jugador //Cuando yo cree una instancia le voy a indicar que tipo de jugadores voy a serealizar
     {
-        public void Serealizar(List<T> jugadores, string path)//Le paso la lista de jugadores a serializar y el nombre
+        public void Serealizar(T jugador, string path)//Le paso la lista de jugadores a serializar y el nombre
         {
             try
             {
@@ -26,11 +30,9 @@ namespace Aplicacion
                 {
                     using (StreamWriter sw = new StreamWriter(guardarJugadores.FileName))
                     {
-                        System.Text.Json.JsonSerializerOptions opciones = new System.Text.Json.JsonSerializerOptions();
-                        opciones.WriteIndented = true;
+                        XmlSerializer serializer = new XmlSerializer(typeof(T));
 
-                        string objJson = JsonSerializer.Serialize(jugadores, opciones);
-                        sw.WriteLine(objJson);
+                        serializer.Serialize(sw, jugador);
 
                     }
                 }
@@ -42,23 +44,22 @@ namespace Aplicacion
             }
         }
 
-        public void Deserealizar(Equipo equipo)//Aca le paso como parametro el equipo en el que estan TODOS los jugadores para que los que
+        public void Deserealizar(Club equipo)//Aca le paso como parametro el equipo en el que estan TODOS los jugadores para que los que
             //sean deserealizados me los agregue
         {
             try
             {
-                OpenFileDialog traerJugadores = new OpenFileDialog();
+                OpenFileDialog jugador = new OpenFileDialog();
 
-                if (traerJugadores.ShowDialog() == DialogResult.OK)
+                if (jugador.ShowDialog() == DialogResult.OK)
                 {
-                    using (StreamReader sr = new StreamReader(traerJugadores.FileName))
+                    using (StreamReader sr = new StreamReader(jugador.FileName))
                     {
-                        string json = sr.ReadToEnd();
+                        XmlSerializer serializer = new XmlSerializer(typeof(Jugador));
 
-                        List<T> jugadores = JsonSerializer.Deserialize<List<T>>(json);
+                        Jugador j = (Jugador)serializer.Deserialize(sr);
 
-                        foreach (Jugador j in jugadores)
-                        {
+
                             if (equipo.MiEquipo.Count == equipo.CantidadJugadores)
                             {
                                 MessageBox.Show("No se podran agregar mas jugadores serializados debido " +
@@ -67,7 +68,7 @@ namespace Aplicacion
 
                             this.ValidarJugadorRepetido(j, equipo);
                             //this.Actualizar();
-                        }
+                        
 
                     }
                 }
@@ -82,7 +83,7 @@ namespace Aplicacion
         /// </summary>
         /// <param name="jugador"></param>
         /// <param name="equipo"></param>
-        public void ValidarJugadorRepetido(Jugador jugador, Equipo equipo)
+        public void ValidarJugadorRepetido(Jugador jugador, Club equipo)
         {
             bool flag = true;
             if (equipo.MiEquipo.Count != 0)//Si en mi equipo no hay jugadores no tengo que hacer la validacion, esto lo hago porque antes si queria hacer
@@ -105,7 +106,6 @@ namespace Aplicacion
                         equipo.MiEquipo.Add(jugador);
                         //Recordemos que mi equipo tiene listas diferentes para cada tipo de jugador (esto por la serializacion de json y sus errores) entonces
                         //no solo tengo que agregar el jugador a la lista general sino a la lista del tipo del jugador
-                        this.VerificarTipoJugador(jugador, equipo);
 
                     }
                 }
@@ -113,26 +113,10 @@ namespace Aplicacion
             else
             {
                 equipo.MiEquipo.Add(jugador);
-                this.VerificarTipoJugador(jugador, equipo);
             }
 
         }
 
-        public void VerificarTipoJugador(Jugador jugador, Equipo equipo)
-        {
-            if (jugador is Futbolista)
-            {
-                this.AgregarJugadores<Futbolista>((Futbolista)jugador, equipo.Futbolistas);
-            }
-            else if (jugador is Basquetbolista)
-            {
-                this.AgregarJugadores<Basquetbolista>((Basquetbolista)jugador, equipo.Basquetbolistas);
-            }
-            else
-            {
-                this.AgregarJugadores<Voleibolista>((Voleibolista)jugador, equipo.Voleibolistas);
-            }
-        }
 
         public void AgregarJugadores<T>(T jugador, List<T> lista)
         {

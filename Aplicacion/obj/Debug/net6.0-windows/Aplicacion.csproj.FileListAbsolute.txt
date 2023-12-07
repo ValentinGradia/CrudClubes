@@ -195,10 +195,8 @@ D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\bin\Debug\net6.0-windows\Libre
 D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\bin\Debug\net6.0-windows\LibreriaDeClases.pdb
 D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.csproj.AssemblyReference.cache
 D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.FormBasquetbolista.resources
-D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.FormCrearEquipo.resources
 D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.FormCrud.resources
 D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.FormDatosJugadores.resources
-D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.FormEquipos.resources
 D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.FormFutbolista.resources
 D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.FormHistorialUsuarios.resources
 D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.FormJugadores.resources
@@ -216,3 +214,5 @@ D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\Aplic
 D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\ref\Aplicacion.dll
 D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.FormLogin.resources
 D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.Properties.Resources.resources
+D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.FormClubes.resources
+D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.FormCrearClubes.resources

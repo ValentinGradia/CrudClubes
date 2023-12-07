@@ -64,56 +64,54 @@ namespace Aplicacion
             }
             else
             {
-                try
+
+                if(!(this.cmbNacionalidades.SelectedItem == null | this.cmbNacionalidades.SelectedItem == null))
                 {
-                    this.cmbPierna.SelectedItem.ToString();
+                    string p = this.cmbPierna.SelectedItem.ToString();
 
-                    this.cmbNacionalidades.SelectedItem.ToString();
-                }
-                catch(NullReferenceException ex)
-                {
-                    MessageBox.Show("Complete sus datos", "ERROR!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                    EPierna pierna = (EPierna)Enum.Parse(typeof(EPierna), p);
 
+                    string n = this.cmbNacionalidades.SelectedItem.ToString();
 
-                string p = this.cmbPierna.SelectedItem.ToString();
-
-                EPierna pierna = (EPierna)Enum.Parse(typeof(EPierna), p);
-
-                string n = this.cmbNacionalidades.SelectedItem.ToString();
-
-                ENacionalidad nacionalidad = (ENacionalidad)Enum.Parse(typeof(ENacionalidad), n);
+                    ENacionalidad nacionalidad = (ENacionalidad)Enum.Parse(typeof(ENacionalidad), n);
 
 
-                if (this.ValidarGoles())
-                {
-                    int goles = int.Parse(this.txtGoles.Text);
-                    //La posicion es un parametro opcional
-                    if (FormDatosJugadores.ValidarNull(this.txtPosicion.Text))
+                    if (this.ValidarGoles())
                     {
-                        string posicion = this.txtPosicion.Text;
+                        int goles = int.Parse(this.txtGoles.Text);
+                        //La posicion es un parametro opcional
+                        if (FormDatosJugadores.ValidarNull(this.txtPosicion.Text))
+                        {
+                            string posicion = this.txtPosicion.Text;
 
-                        base.miDeportista = new Futbolista(base.nombre, base.apellido, base.edad, nacionalidad, posicion,
-                                        goles, pierna);
+                            base.miDeportista = new Futbolista(base.nombre, base.apellido, base.edad, nacionalidad, posicion,
+                                            goles, pierna);
 
-                        this.DialogResult = DialogResult.OK;
-                        return;
+                            this.DialogResult = DialogResult.OK;
+                            return;
 
+                        }
+                        else
+                        {
+                            base.miDeportista = new Futbolista(base.nombre, base.apellido, base.edad, nacionalidad, "Sin posicion",
+                                            goles, pierna);
+
+                            this.DialogResult = DialogResult.OK;
+                            return;
+                        }
                     }
                     else
                     {
-                        base.miDeportista = new Futbolista(base.nombre, base.apellido, base.edad, nacionalidad, "Sin posicion",
-                                        goles, pierna);
+                        this.DialogResult = DialogResult.None;
 
-                        this.DialogResult = DialogResult.OK;
-                        return;
                     }
                 }
-                else
+                else 
                 {
+                    MessageBox.Show("Complete los datos!", "ERROR!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     this.DialogResult = DialogResult.None;
-
                 }
+                
             }
         }
 

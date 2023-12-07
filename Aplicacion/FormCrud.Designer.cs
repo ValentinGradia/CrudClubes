@@ -39,12 +39,8 @@
             label2 = new Label();
             btnOrdenarEdadDescendente = new Button();
             btnOrdenarApellidosDescendente = new Button();
-            btnGuardarFutbolistas = new Button();
-            btnGuardarBasquetbolistas = new Button();
-            btnDeserealizarVoleibolistas = new Button();
-            btnDeserealizarBasquetbolistas = new Button();
-            btnDeserealizarFutbolistas = new Button();
-            btnGuardarVoleibolistas = new Button();
+            btnSerealizar = new Button();
+            btnDeserealizar = new Button();
             groupBox1 = new GroupBox();
             groupBox2 = new GroupBox();
             btnEliminarBBDD = new Button();
@@ -179,87 +175,39 @@
             btnOrdenarApellidosDescendente.UseVisualStyleBackColor = false;
             btnOrdenarApellidosDescendente.Click += btnOrdenarApellidosDescendente_Click;
             // 
-            // btnGuardarFutbolistas
+            // btnSerealizar
             // 
-            btnGuardarFutbolistas.BackColor = SystemColors.InactiveCaption;
-            btnGuardarFutbolistas.Location = new Point(233, 22);
-            btnGuardarFutbolistas.Name = "btnGuardarFutbolistas";
-            btnGuardarFutbolistas.Size = new Size(98, 68);
-            btnGuardarFutbolistas.TabIndex = 11;
-            btnGuardarFutbolistas.Text = "Guardar Futbolistas";
-            btnGuardarFutbolistas.UseVisualStyleBackColor = false;
-            btnGuardarFutbolistas.Click += btnGuardarFutbolistas_Click;
+            btnSerealizar.BackColor = SystemColors.InactiveCaption;
+            btnSerealizar.Location = new Point(57, 43);
+            btnSerealizar.Name = "btnSerealizar";
+            btnSerealizar.Size = new Size(98, 68);
+            btnSerealizar.TabIndex = 11;
+            btnSerealizar.Text = "Serealizar jugador";
+            btnSerealizar.UseVisualStyleBackColor = false;
+            btnSerealizar.Click += btnSerealizar_Click;
             // 
-            // btnGuardarBasquetbolistas
+            // btnDeserealizar
             // 
-            btnGuardarBasquetbolistas.BackColor = SystemColors.InactiveCaption;
-            btnGuardarBasquetbolistas.Location = new Point(22, 22);
-            btnGuardarBasquetbolistas.Name = "btnGuardarBasquetbolistas";
-            btnGuardarBasquetbolistas.Size = new Size(99, 68);
-            btnGuardarBasquetbolistas.TabIndex = 12;
-            btnGuardarBasquetbolistas.Text = "Guardar Basquetbolistas";
-            btnGuardarBasquetbolistas.UseVisualStyleBackColor = false;
-            btnGuardarBasquetbolistas.Click += btnGuardarBasquetbolistas_Click;
-            // 
-            // btnDeserealizarVoleibolistas
-            // 
-            btnDeserealizarVoleibolistas.BackColor = SystemColors.InactiveCaption;
-            btnDeserealizarVoleibolistas.Location = new Point(22, 127);
-            btnDeserealizarVoleibolistas.Name = "btnDeserealizarVoleibolistas";
-            btnDeserealizarVoleibolistas.Size = new Size(96, 68);
-            btnDeserealizarVoleibolistas.TabIndex = 13;
-            btnDeserealizarVoleibolistas.Text = "Deserealizar Voleibolistas";
-            btnDeserealizarVoleibolistas.UseVisualStyleBackColor = false;
-            btnDeserealizarVoleibolistas.Click += btnDeserealizarVoleibolistas_Click;
-            // 
-            // btnDeserealizarBasquetbolistas
-            // 
-            btnDeserealizarBasquetbolistas.BackColor = SystemColors.InactiveCaption;
-            btnDeserealizarBasquetbolistas.Location = new Point(124, 127);
-            btnDeserealizarBasquetbolistas.Name = "btnDeserealizarBasquetbolistas";
-            btnDeserealizarBasquetbolistas.Size = new Size(99, 68);
-            btnDeserealizarBasquetbolistas.TabIndex = 14;
-            btnDeserealizarBasquetbolistas.Text = "Deserealizar Basquetbolistas";
-            btnDeserealizarBasquetbolistas.UseVisualStyleBackColor = false;
-            btnDeserealizarBasquetbolistas.Click += btnDeserealizarBasquetbolistas_Click;
-            // 
-            // btnDeserealizarFutbolistas
-            // 
-            btnDeserealizarFutbolistas.BackColor = SystemColors.InactiveCaption;
-            btnDeserealizarFutbolistas.Location = new Point(233, 127);
-            btnDeserealizarFutbolistas.Name = "btnDeserealizarFutbolistas";
-            btnDeserealizarFutbolistas.Size = new Size(98, 68);
-            btnDeserealizarFutbolistas.TabIndex = 15;
-            btnDeserealizarFutbolistas.Text = "Deserealizar Futbolistas";
-            btnDeserealizarFutbolistas.UseVisualStyleBackColor = false;
-            btnDeserealizarFutbolistas.Click += btnDeserealizarFutbolistas_Click;
-            // 
-            // btnGuardarVoleibolistas
-            // 
-            btnGuardarVoleibolistas.BackColor = SystemColors.InactiveCaption;
-            btnGuardarVoleibolistas.Location = new Point(127, 22);
-            btnGuardarVoleibolistas.Name = "btnGuardarVoleibolistas";
-            btnGuardarVoleibolistas.Size = new Size(96, 68);
-            btnGuardarVoleibolistas.TabIndex = 16;
-            btnGuardarVoleibolistas.Text = "Guardar Voleibolistas";
-            btnGuardarVoleibolistas.UseVisualStyleBackColor = false;
-            btnGuardarVoleibolistas.Click += btnGuardarVoleibolistas_Click;
+            btnDeserealizar.BackColor = SystemColors.InactiveCaption;
+            btnDeserealizar.Location = new Point(57, 144);
+            btnDeserealizar.Name = "btnDeserealizar";
+            btnDeserealizar.Size = new Size(98, 68);
+            btnDeserealizar.TabIndex = 15;
+            btnDeserealizar.Text = "Deserealizar jugador";
+            btnDeserealizar.UseVisualStyleBackColor = false;
+            btnDeserealizar.Click += btnDeserealizar_Click;
             // 
             // groupBox1
             // 
             groupBox1.BackColor = Color.LightSkyBlue;
-            groupBox1.Controls.Add(btnGuardarBasquetbolistas);
-            groupBox1.Controls.Add(btnDeserealizarVoleibolistas);
-            groupBox1.Controls.Add(btnDeserealizarBasquetbolistas);
-            groupBox1.Controls.Add(btnDeserealizarFutbolistas);
-            groupBox1.Controls.Add(btnGuardarVoleibolistas);
-            groupBox1.Controls.Add(btnGuardarFutbolistas);
-            groupBox1.Location = new Point(154, 413);
+            groupBox1.Controls.Add(btnDeserealizar);
+            groupBox1.Controls.Add(btnSerealizar);
+            groupBox1.Location = new Point(174, 413);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(345, 255);
+            groupBox1.Size = new Size(207, 255);
             groupBox1.TabIndex = 17;
             groupBox1.TabStop = false;
-            groupBox1.Text = "Serializacion JSON";
+            groupBox1.Text = "Serializacion XML";
             // 
             // groupBox2
             // 
@@ -284,7 +232,6 @@
             btnEliminarBBDD.TabIndex = 18;
             btnEliminarBBDD.Text = "Eliminar Jugador";
             btnEliminarBBDD.UseVisualStyleBackColor = false;
-            btnEliminarBBDD.Click += btnEliminarBBDD_Click;
             btnEliminarBBDD.MouseHover += btnEliminarBBDD_MouseHover;
             // 
             // btnModificarBBDD
@@ -296,8 +243,6 @@
             btnModificarBBDD.TabIndex = 1;
             btnModificarBBDD.Text = "Modificar Jugador";
             btnModificarBBDD.UseVisualStyleBackColor = false;
-            btnModificarBBDD.Click += btnModificarBBDD_Click;
-            btnModificarBBDD.MouseHover += btnModificarBBDD_MouseHover;
             // 
             // btnAgregarBBDD
             // 
@@ -308,7 +253,6 @@
             btnAgregarBBDD.TabIndex = 0;
             btnAgregarBBDD.Text = "Guardar Jugador";
             btnAgregarBBDD.UseVisualStyleBackColor = false;
-            btnAgregarBBDD.Click += btnAgregarBBDD_Click;
             // 
             // groupBox3
             // 
@@ -333,7 +277,6 @@
             btnObtenerBBDD.TabIndex = 18;
             btnObtenerBBDD.Text = "Obtener";
             btnObtenerBBDD.UseVisualStyleBackColor = false;
-            btnObtenerBBDD.Click += btnObtenerBBDD_Click;
             // 
             // rdbVoleibolistas
             // 
@@ -412,12 +355,8 @@
         private Label label2;
         private Button btnOrdenarEdadDescendente;
         private Button btnOrdenarApellidosDescendente;
-        private Button btnGuardarFutbolistas;
-        private Button btnGuardarBasquetbolistas;
-        private Button btnDeserealizarVoleibolistas;
-        private Button btnDeserealizarBasquetbolistas;
-        private Button btnDeserealizarFutbolistas;
-        private Button btnGuardarVoleibolistas;
+        private Button btnSerealizar;
+        private Button btnDeserealizar;
         private GroupBox groupBox1;
         private GroupBox groupBox2;
         private Button btnModificarBBDD;
