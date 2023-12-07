@@ -15,8 +15,6 @@ namespace Aplicacion
     public interface IJugadores<T>
         where T: Jugador
     {
-        void VerificarNacionalidades();
-
         void CargarDatos(T jugador);
     }
 }

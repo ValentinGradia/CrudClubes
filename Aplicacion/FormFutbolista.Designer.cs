@@ -110,7 +110,6 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "FormFutbolista";
             Text = "FormAgregarFutbolista";
-            Load += FormAgregarFutbolista_Load;
             Controls.SetChildIndex(label1, 0);
             Controls.SetChildIndex(label2, 0);
             Controls.SetChildIndex(label3, 0);

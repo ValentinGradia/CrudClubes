@@ -247,7 +247,7 @@
             // 
             // groupBox1
             // 
-            groupBox1.BackColor = SystemColors.MenuHighlight;
+            groupBox1.BackColor = Color.LightSkyBlue;
             groupBox1.Controls.Add(btnGuardarBasquetbolistas);
             groupBox1.Controls.Add(btnDeserealizarVoleibolistas);
             groupBox1.Controls.Add(btnDeserealizarBasquetbolistas);

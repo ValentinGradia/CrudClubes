@@ -19,12 +19,16 @@ namespace Aplicacion
     /// </summary>
     public partial class FormFutbolista : FormDatosJugadores, IJugadores<Futbolista>
     {
-        private string pais;
-        private bool flag = false;
 
         public FormFutbolista():base()
         {
-            InitializeComponent();
+            InitializeComponent(); 
+            Array piernas = Enum.GetValues(typeof(EPierna));
+
+            foreach (EPierna pierna in piernas)
+            {
+                this.cmbPierna.Items.Add(pierna);
+            }
         }
 
         /// <summary>
@@ -37,32 +41,7 @@ namespace Aplicacion
         public FormFutbolista(Futbolista f) : this()
         {
             this.CargarDatos(f);
-            this.txtGoles.Text = f.Goles.ToString();
 
-
-            string pais = f.Nacion.ToString();
-
-            switch (pais)
-            {
-                case "Argentino":
-                    this.pais = "Argentino";
-                    break;
-                case "Brasilero":
-                    this.pais = "Brasilero";
-                    break;
-                case "Peruano":
-                    this.pais = "Peruano";
-                    break;
-                default:
-                    this.pais = "Canadiense";
-                    break;
-            }
-
-            this.txtGoles.Enabled = false;
-            this.flag = true;
-
-            f.Restablecer("", EPierna.Diestro);
-            //this.cmbPierna.SelectedItem = f.Pierna.ToString();
         }
 
         public void CargarDatos(Futbolista f)
@@ -70,30 +49,10 @@ namespace Aplicacion
             base.txtApellido.Text = f.Apellido;
             base.txtEdad.Text = f.Edad.ToString();
             base.txtNombre.Text = f.Nombre;
-            base.txtApellido.Enabled = false;
-            base.txtEdad.Enabled = false;
-            base.txtNombre.Enabled = false;
-            base.cmbNacionalidades.Enabled = false;
-        }
-
-        private void FormAgregarFutbolista_Load(object sender, EventArgs e)
-        {
-
-            this.cmbPierna.Items.Add("Diestro");
-            this.cmbPierna.Items.Add("Zurdo");
-            //Cuando el usuario agregue un futbolista esto va a ser el default de las nacionalidades
-            this.VerificarNacionalidades();
-
-            this.cmbPierna.SelectedIndex = 0;
-
-        }
-
-        public void VerificarNacionalidades()
-        {
-            if (this.flag == false)
-            {
-                this.cmbNacionalidades.SelectedIndex = 0;
-            }
+            this.txtGoles.Text = f.Goles.ToString();
+            base.cmbNacionalidades.SelectedIndex = Convert.ToInt32(f.Nacion);
+            this.cmbPierna.SelectedIndex = Convert.ToInt32(f.Pierna);
+            this.txtPosicion.Text = f.Posicion;
         }
 
         private void btnAgregar_Click_1(object sender, EventArgs e)
@@ -107,28 +66,6 @@ namespace Aplicacion
                 string p = this.cmbPierna.SelectedItem.ToString();
 
                 EPierna pierna = (EPierna)Enum.Parse(typeof(EPierna), p);
-
-                //Si la bandera es true, quiere decir que el jugador ya se agrego por lo que se va a modificar datos y la nacionalidad es disabled. Entonces a traves de la opcion que eligio
-                // va a ser la opcion que quede. Esto lo cree para que no tire error en el combobox, ya que apareceria como que no selecciono ninguno.
-                if (this.flag)
-                {
-                    switch (this.pais)
-                    {
-                        case "Argentino":
-                            this.cmbNacionalidades.SelectedIndex = 0;
-                            break;
-                        case "Brasilero":
-                            this.cmbNacionalidades.SelectedIndex = 1;
-                            break;
-                        case "Peruano":
-                            this.cmbNacionalidades.SelectedIndex = 2;
-                            break;
-                        default:
-                            this.cmbNacionalidades.SelectedIndex = 3;
-                            break;
-                    }
-
-                }
 
                 string n = this.cmbNacionalidades.SelectedItem.ToString();
 

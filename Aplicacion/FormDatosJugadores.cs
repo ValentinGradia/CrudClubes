@@ -37,17 +37,20 @@ namespace Aplicacion
         public FormDatosJugadores()
         {
             InitializeComponent();
+            Array paises = Enum.GetValues(typeof(ENacionalidad));
+
+            foreach (ENacionalidad pais in paises)
+            {
+                this.cmbNacionalidades.Items.Add(pais);
+
+            }
         }
 
         protected void FormDatosJugadores_Load(object sender, EventArgs e)
         {
-            //Para el combobox
-            this.cmbNacionalidades.Items.Add("Argentino");
-            this.cmbNacionalidades.Items.Add("Brasilero");
-            this.cmbNacionalidades.Items.Add("Peruano");
-            this.cmbNacionalidades.Items.Add("Canadiense");
 
-            //this.cmbNacionalidades.SelectedIndex = 0;
+            //int valor = this.cmbNacionalidades.Items.Count;
+
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)
@@ -84,7 +87,11 @@ namespace Aplicacion
         protected static bool ValidarEdad(string text)
         {
             bool flag = false;
-            if (int.TryParse(text, out int edad))
+            if(!(int.TryParse(text, out int edad)))
+            {
+                MessageBox.Show("Edad incorrecta, ingrese un numero", "ERROR!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
             {
                 if (edad > 50 | edad < 18)
                 {
@@ -95,11 +102,6 @@ namespace Aplicacion
                 {
                     flag = true;
                 }
-
-            }
-            else
-            {
-                MessageBox.Show("Edad incorrecta, ingrese un numero", "ERROR!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return flag;
@@ -110,11 +112,8 @@ namespace Aplicacion
         protected static bool ValidarNull(string text)
         {
             bool flag = false;
-            if (string.IsNullOrEmpty(text))
-            {
 
-            }
-            else
+            if(!(string.IsNullOrEmpty(text)))
             {
                 flag = true;
             }
@@ -126,22 +125,6 @@ namespace Aplicacion
         {
             bool flag = false;
             if (string.IsNullOrEmpty(text) | string.IsNullOrEmpty(text2))
-            {
-                //MessageBox.Show("Error, datos incorrectos", "ERRORR!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            }
-            else
-            {
-                flag = true;
-            }
-
-            return flag;
-        }
-
-        protected static bool ValidarNull(string text, string text2, string text3)
-        {
-            bool flag = false;
-            if (string.IsNullOrEmpty(text) | string.IsNullOrEmpty(text2) | string.IsNullOrEmpty(text3))
             {
                 //MessageBox.Show("Error, datos incorrectos", "ERRORR!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 

@@ -15,6 +15,9 @@ namespace Aplicacion
 
             FormLogin formLogin = new FormLogin();
 
+            Application.Run(new FormCrud(5, "Boca", "administrador"));
+
+            /*
             try
             {
                 do
@@ -48,6 +51,7 @@ namespace Aplicacion
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
             }
+            */
         }
     }
 }
