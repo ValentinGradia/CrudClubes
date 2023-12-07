@@ -37,47 +37,56 @@
             // lblInformacion
             // 
             lblInformacion.AutoSize = true;
+            lblInformacion.BackColor = Color.White;
+            lblInformacion.BorderStyle = BorderStyle.FixedSingle;
             lblInformacion.Font = new Font("Segoe UI", 14.25F, FontStyle.Italic, GraphicsUnit.Point);
             lblInformacion.Location = new Point(33, 73);
             lblInformacion.Name = "lblInformacion";
-            lblInformacion.Size = new Size(343, 50);
+            lblInformacion.Size = new Size(345, 52);
             lblInformacion.TabIndex = 0;
-            lblInformacion.Text = "Selecciona el tipo de jugador que quieras\r\n agregar a tu equipo";
+            lblInformacion.Text = "Selecciona el tipo de jugador que quieras\r\n agregar a tu club\r\n";
             // 
             // btnAgregarFutbolista
             // 
+            btnAgregarFutbolista.BackColor = Color.DarkGray;
+            btnAgregarFutbolista.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btnAgregarFutbolista.Location = new Point(33, 180);
             btnAgregarFutbolista.Name = "btnAgregarFutbolista";
             btnAgregarFutbolista.Size = new Size(92, 47);
             btnAgregarFutbolista.TabIndex = 1;
             btnAgregarFutbolista.Text = "Futbolista";
-            btnAgregarFutbolista.UseVisualStyleBackColor = true;
+            btnAgregarFutbolista.UseVisualStyleBackColor = false;
             btnAgregarFutbolista.Click += btnAgregarFutbolista_Click;
             // 
             // btnAgregarBasquetbolista
             // 
+            btnAgregarBasquetbolista.BackColor = Color.DarkGray;
+            btnAgregarBasquetbolista.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btnAgregarBasquetbolista.Location = new Point(146, 180);
             btnAgregarBasquetbolista.Name = "btnAgregarBasquetbolista";
             btnAgregarBasquetbolista.Size = new Size(105, 47);
             btnAgregarBasquetbolista.TabIndex = 2;
             btnAgregarBasquetbolista.Text = "Basquetbolista";
-            btnAgregarBasquetbolista.UseVisualStyleBackColor = true;
+            btnAgregarBasquetbolista.UseVisualStyleBackColor = false;
             btnAgregarBasquetbolista.Click += btnAgregarBasquetbolista_Click;
             // 
             // btnAgregarVoleibolista
             // 
+            btnAgregarVoleibolista.BackColor = Color.DarkGray;
+            btnAgregarVoleibolista.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btnAgregarVoleibolista.Location = new Point(273, 180);
             btnAgregarVoleibolista.Name = "btnAgregarVoleibolista";
             btnAgregarVoleibolista.Size = new Size(103, 47);
             btnAgregarVoleibolista.TabIndex = 3;
             btnAgregarVoleibolista.Text = "Voleibolista";
-            btnAgregarVoleibolista.UseVisualStyleBackColor = true;
+            btnAgregarVoleibolista.UseVisualStyleBackColor = false;
             btnAgregarVoleibolista.Click += btnAgregarVoleibolista_Click_1;
             // 
             // FormJugadores
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Salmon;
             ClientSize = new Size(438, 268);
             Controls.Add(btnAgregarVoleibolista);
             Controls.Add(btnAgregarBasquetbolista);
@@ -86,7 +95,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "FormJugadores";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "FormJugadores";
+            Text = "Jugadores";
             ResumeLayout(false);
             PerformLayout();
         }

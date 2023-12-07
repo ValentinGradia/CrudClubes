@@ -34,8 +34,9 @@
             txtPosicion = new TextBox();
             SuspendLayout();
             // 
-            // cmbNacionalidades
+            // txtEdad
             // 
+            txtEdad.PlaceholderText = "Entre 18 y 50";
             // 
             // btnAgregar
             // 
@@ -45,6 +46,7 @@
             // label5
             // 
             label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label5.Location = new Point(58, 273);
             label5.Name = "label5";
             label5.Size = new Size(38, 15);
@@ -54,6 +56,7 @@
             // label6
             // 
             label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label6.Location = new Point(44, 339);
             label6.Name = "label6";
             label6.Size = new Size(52, 15);
@@ -86,7 +89,7 @@
             Controls.Add(label6);
             Controls.Add(label5);
             Name = "FormVoleibolista";
-            Text = "FormVoleibolista";
+            Text = "Voleibolista";
             Controls.SetChildIndex(label1, 0);
             Controls.SetChildIndex(label2, 0);
             Controls.SetChildIndex(label3, 0);

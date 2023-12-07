@@ -20,9 +20,9 @@ namespace Aplicacion
     public partial class FormFutbolista : FormDatosJugadores, IJugadores<Futbolista>
     {
 
-        public FormFutbolista():base()
+        public FormFutbolista() : base()
         {
-            InitializeComponent(); 
+            InitializeComponent();
             Array piernas = Enum.GetValues(typeof(EPierna));
 
             foreach (EPierna pierna in piernas)
@@ -65,7 +65,7 @@ namespace Aplicacion
             else
             {
 
-                if(!(this.cmbNacionalidades.SelectedItem == null | this.cmbNacionalidades.SelectedItem == null))
+                if (!(this.cmbNacionalidades.SelectedItem == null | this.cmbNacionalidades.SelectedItem == null))
                 {
                     string p = this.cmbPierna.SelectedItem.ToString();
 
@@ -106,12 +106,12 @@ namespace Aplicacion
 
                     }
                 }
-                else 
+                else
                 {
                     MessageBox.Show("Complete los datos!", "ERROR!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     this.DialogResult = DialogResult.None;
                 }
-                
+
             }
         }
 
@@ -128,6 +128,5 @@ namespace Aplicacion
                 return false;
             }
         }
-
     }
 }

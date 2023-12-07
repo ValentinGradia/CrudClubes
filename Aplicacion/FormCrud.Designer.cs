@@ -42,18 +42,7 @@
             btnSerealizar = new Button();
             btnDeserealizar = new Button();
             groupBox1 = new GroupBox();
-            groupBox2 = new GroupBox();
-            btnEliminarBBDD = new Button();
-            btnModificarBBDD = new Button();
-            btnAgregarBBDD = new Button();
-            groupBox3 = new GroupBox();
-            btnObtenerBBDD = new Button();
-            rdbVoleibolistas = new RadioButton();
-            rdbFutbolistas = new RadioButton();
-            rdbBasquetbolistas = new RadioButton();
             groupBox1.SuspendLayout();
-            groupBox2.SuspendLayout();
-            groupBox3.SuspendLayout();
             SuspendLayout();
             // 
             // lstEquipo
@@ -68,9 +57,9 @@
             // btnAgregar
             // 
             btnAgregar.BackColor = SystemColors.ScrollBar;
-            btnAgregar.Location = new Point(12, 430);
+            btnAgregar.Location = new Point(12, 445);
             btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(98, 68);
+            btnAgregar.Size = new Size(111, 78);
             btnAgregar.TabIndex = 1;
             btnAgregar.Text = "Agregar Jugador";
             btnAgregar.UseVisualStyleBackColor = false;
@@ -80,9 +69,9 @@
             // btnModificar
             // 
             btnModificar.BackColor = SystemColors.ScrollBar;
-            btnModificar.Location = new Point(12, 526);
+            btnModificar.Location = new Point(153, 445);
             btnModificar.Name = "btnModificar";
-            btnModificar.Size = new Size(98, 68);
+            btnModificar.Size = new Size(112, 78);
             btnModificar.TabIndex = 2;
             btnModificar.Text = "Modificar Jugador";
             btnModificar.UseVisualStyleBackColor = false;
@@ -92,9 +81,9 @@
             // btnEliminar
             // 
             btnEliminar.BackColor = SystemColors.ScrollBar;
-            btnEliminar.Location = new Point(12, 625);
+            btnEliminar.Location = new Point(296, 445);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(98, 68);
+            btnEliminar.Size = new Size(105, 78);
             btnEliminar.TabIndex = 3;
             btnEliminar.Text = "Eliminar Jugador";
             btnEliminar.UseVisualStyleBackColor = false;
@@ -105,9 +94,9 @@
             // 
             btnAgregarEquipo.BackColor = Color.IndianRed;
             btnAgregarEquipo.ForeColor = SystemColors.ButtonFace;
-            btnAgregarEquipo.Location = new Point(854, 503);
+            btnAgregarEquipo.Location = new Point(773, 440);
             btnAgregarEquipo.Name = "btnAgregarEquipo";
-            btnAgregarEquipo.Size = new Size(109, 68);
+            btnAgregarEquipo.Size = new Size(131, 89);
             btnAgregarEquipo.TabIndex = 4;
             btnAgregarEquipo.Text = "Agregar Equipo";
             btnAgregarEquipo.UseVisualStyleBackColor = false;
@@ -178,7 +167,7 @@
             // btnSerealizar
             // 
             btnSerealizar.BackColor = SystemColors.InactiveCaption;
-            btnSerealizar.Location = new Point(57, 43);
+            btnSerealizar.Location = new Point(18, 43);
             btnSerealizar.Name = "btnSerealizar";
             btnSerealizar.Size = new Size(98, 68);
             btnSerealizar.TabIndex = 11;
@@ -189,7 +178,7 @@
             // btnDeserealizar
             // 
             btnDeserealizar.BackColor = SystemColors.InactiveCaption;
-            btnDeserealizar.Location = new Point(57, 144);
+            btnDeserealizar.Location = new Point(103, 119);
             btnDeserealizar.Name = "btnDeserealizar";
             btnDeserealizar.Size = new Size(98, 68);
             btnDeserealizar.TabIndex = 15;
@@ -202,122 +191,19 @@
             groupBox1.BackColor = Color.LightSkyBlue;
             groupBox1.Controls.Add(btnDeserealizar);
             groupBox1.Controls.Add(btnSerealizar);
-            groupBox1.Location = new Point(174, 413);
+            groupBox1.Location = new Point(462, 397);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(207, 255);
+            groupBox1.Size = new Size(218, 201);
             groupBox1.TabIndex = 17;
             groupBox1.TabStop = false;
             groupBox1.Text = "Serializacion XML";
-            // 
-            // groupBox2
-            // 
-            groupBox2.BackColor = SystemColors.Highlight;
-            groupBox2.Controls.Add(btnEliminarBBDD);
-            groupBox2.Controls.Add(btnModificarBBDD);
-            groupBox2.Controls.Add(btnAgregarBBDD);
-            groupBox2.Controls.Add(groupBox3);
-            groupBox2.Location = new Point(517, 413);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(249, 294);
-            groupBox2.TabIndex = 17;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Base de Datos";
-            // 
-            // btnEliminarBBDD
-            // 
-            btnEliminarBBDD.BackColor = SystemColors.ActiveBorder;
-            btnEliminarBBDD.Location = new Point(23, 127);
-            btnEliminarBBDD.Name = "btnEliminarBBDD";
-            btnEliminarBBDD.Size = new Size(95, 63);
-            btnEliminarBBDD.TabIndex = 18;
-            btnEliminarBBDD.Text = "Eliminar Jugador";
-            btnEliminarBBDD.UseVisualStyleBackColor = false;
-            btnEliminarBBDD.MouseHover += btnEliminarBBDD_MouseHover;
-            // 
-            // btnModificarBBDD
-            // 
-            btnModificarBBDD.BackColor = SystemColors.ActiveBorder;
-            btnModificarBBDD.Location = new Point(130, 69);
-            btnModificarBBDD.Name = "btnModificarBBDD";
-            btnModificarBBDD.Size = new Size(95, 68);
-            btnModificarBBDD.TabIndex = 1;
-            btnModificarBBDD.Text = "Modificar Jugador";
-            btnModificarBBDD.UseVisualStyleBackColor = false;
-            // 
-            // btnAgregarBBDD
-            // 
-            btnAgregarBBDD.BackColor = SystemColors.ActiveBorder;
-            btnAgregarBBDD.Location = new Point(23, 22);
-            btnAgregarBBDD.Name = "btnAgregarBBDD";
-            btnAgregarBBDD.Size = new Size(95, 68);
-            btnAgregarBBDD.TabIndex = 0;
-            btnAgregarBBDD.Text = "Guardar Jugador";
-            btnAgregarBBDD.UseVisualStyleBackColor = false;
-            // 
-            // groupBox3
-            // 
-            groupBox3.BackColor = Color.IndianRed;
-            groupBox3.Controls.Add(btnObtenerBBDD);
-            groupBox3.Controls.Add(rdbVoleibolistas);
-            groupBox3.Controls.Add(rdbFutbolistas);
-            groupBox3.Controls.Add(rdbBasquetbolistas);
-            groupBox3.Location = new Point(6, 208);
-            groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(237, 80);
-            groupBox3.TabIndex = 5;
-            groupBox3.TabStop = false;
-            groupBox3.Text = "Traer lista ";
-            // 
-            // btnObtenerBBDD
-            // 
-            btnObtenerBBDD.BackColor = Color.RosyBrown;
-            btnObtenerBBDD.Location = new Point(17, 27);
-            btnObtenerBBDD.Name = "btnObtenerBBDD";
-            btnObtenerBBDD.Size = new Size(75, 45);
-            btnObtenerBBDD.TabIndex = 18;
-            btnObtenerBBDD.Text = "Obtener";
-            btnObtenerBBDD.UseVisualStyleBackColor = false;
-            // 
-            // rdbVoleibolistas
-            // 
-            rdbVoleibolistas.AutoSize = true;
-            rdbVoleibolistas.Location = new Point(141, 55);
-            rdbVoleibolistas.Name = "rdbVoleibolistas";
-            rdbVoleibolistas.Size = new Size(90, 19);
-            rdbVoleibolistas.TabIndex = 3;
-            rdbVoleibolistas.TabStop = true;
-            rdbVoleibolistas.Text = "Voleibolistas";
-            rdbVoleibolistas.UseVisualStyleBackColor = true;
-            // 
-            // rdbFutbolistas
-            // 
-            rdbFutbolistas.AutoSize = true;
-            rdbFutbolistas.Location = new Point(149, 22);
-            rdbFutbolistas.Name = "rdbFutbolistas";
-            rdbFutbolistas.Size = new Size(82, 19);
-            rdbFutbolistas.TabIndex = 4;
-            rdbFutbolistas.TabStop = true;
-            rdbFutbolistas.Text = "Futbolistas";
-            rdbFutbolistas.UseVisualStyleBackColor = true;
-            // 
-            // rdbBasquetbolistas
-            // 
-            rdbBasquetbolistas.AutoSize = true;
-            rdbBasquetbolistas.Location = new Point(124, 39);
-            rdbBasquetbolistas.Name = "rdbBasquetbolistas";
-            rdbBasquetbolistas.Size = new Size(107, 19);
-            rdbBasquetbolistas.TabIndex = 2;
-            rdbBasquetbolistas.TabStop = true;
-            rdbBasquetbolistas.Text = "Basquetbolistas";
-            rdbBasquetbolistas.UseVisualStyleBackColor = true;
             // 
             // FormCrud
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(1058, 719);
-            Controls.Add(groupBox2);
+            ClientSize = new Size(1058, 609);
             Controls.Add(groupBox1);
             Controls.Add(btnOrdenarApellidosDescendente);
             Controls.Add(btnOrdenarEdadDescendente);
@@ -335,9 +221,6 @@
             Text = "FormCrud";
             Load += FormCrud_Load;
             groupBox1.ResumeLayout(false);
-            groupBox2.ResumeLayout(false);
-            groupBox3.ResumeLayout(false);
-            groupBox3.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -358,14 +241,5 @@
         private Button btnSerealizar;
         private Button btnDeserealizar;
         private GroupBox groupBox1;
-        private GroupBox groupBox2;
-        private Button btnModificarBBDD;
-        private Button btnAgregarBBDD;
-        private GroupBox groupBox3;
-        private Button btnObtenerBBDD;
-        private RadioButton rdbVoleibolistas;
-        private RadioButton rdbFutbolistas;
-        private RadioButton rdbBasquetbolistas;
-        private Button btnEliminarBBDD;
     }
 }

@@ -21,7 +21,7 @@ namespace Aplicacion
     {
 
 
-        public FormBasquetbolista():base()
+        public FormBasquetbolista() : base()
         {
             InitializeComponent();
         }
@@ -86,7 +86,7 @@ namespace Aplicacion
                         base.miDeportista = new Basquetbolista(altura, calzado, "Sin posicion", base.nombre, base.apellido, base.edad, nacionalidad);
                         this.DialogResult = DialogResult.OK;
                     }
-                    
+
                 }
                 else
                 {

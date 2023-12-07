@@ -44,8 +44,9 @@
             // 
             label2.Location = new Point(47, 97);
             // 
-            // cmbNacionalidades
+            // txtEdad
             // 
+            txtEdad.PlaceholderText = "Entre 18 y 50";
             // 
             // btnAgregar
             // 
@@ -78,15 +79,17 @@
             // label5
             // 
             label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label5.Location = new Point(57, 265);
             label5.Name = "label5";
-            label5.Size = new Size(39, 15);
+            label5.Size = new Size(41, 15);
             label5.TabIndex = 12;
             label5.Text = "Altura";
             // 
             // label6
             // 
             label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label6.Location = new Point(47, 318);
             label6.Name = "label6";
             label6.Size = new Size(49, 15);
@@ -96,6 +99,7 @@
             // label7
             // 
             label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label7.Location = new Point(44, 369);
             label7.Name = "label7";
             label7.Size = new Size(52, 15);
@@ -114,7 +118,7 @@
             Controls.Add(txtAltura);
             Controls.Add(txtCalzado);
             Name = "FormBasquetbolista";
-            Text = "FormBasquetbolista";
+            Text = "Basquetbolista";
             Controls.SetChildIndex(label1, 0);
             Controls.SetChildIndex(label2, 0);
             Controls.SetChildIndex(label3, 0);

@@ -14,12 +14,12 @@ namespace Aplicacion
     public partial class FormVoleibolista : FormDatosJugadores, IJugadores<Voleibolista>
     {
 
-        public FormVoleibolista():base()
+        public FormVoleibolista() : base()
         {
             InitializeComponent();
 
             Array manos = Enum.GetValues(typeof(EMano));
-            foreach(EMano mano in manos)
+            foreach (EMano mano in manos)
             {
                 this.cmbMano.Items.Add(mano);
             }

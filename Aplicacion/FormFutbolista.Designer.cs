@@ -37,8 +37,9 @@
             cmbPierna = new ComboBox();
             SuspendLayout();
             // 
-            // cmbNacionalidades
+            // txtEdad
             // 
+            txtEdad.PlaceholderText = "Entre 18 y 50";
             // 
             // btnAgregar
             // 
@@ -48,24 +49,27 @@
             // label5
             // 
             label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label5.Location = new Point(58, 265);
             label5.Name = "label5";
-            label5.Size = new Size(40, 15);
+            label5.Size = new Size(42, 15);
             label5.TabIndex = 9;
             label5.Text = "Pierna";
             // 
             // label6
             // 
             label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label6.Location = new Point(54, 312);
             label6.Name = "label6";
-            label6.Size = new Size(36, 15);
+            label6.Size = new Size(38, 15);
             label6.TabIndex = 10;
             label6.Text = "Goles";
             // 
             // label7
             // 
             label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label7.Location = new Point(54, 371);
             label7.Name = "label7";
             label7.Size = new Size(52, 15);
@@ -109,7 +113,7 @@
             Controls.Add(label5);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "FormFutbolista";
-            Text = "FormAgregarFutbolista";
+            Text = "Futbolista";
             Controls.SetChildIndex(label1, 0);
             Controls.SetChildIndex(label2, 0);
             Controls.SetChildIndex(label3, 0);

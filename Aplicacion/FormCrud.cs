@@ -280,13 +280,6 @@ namespace Aplicacion
         }
 
 
-        /// <summary>
-        /// El método btnGuardarFutbolistas_Click se encarga de guardar la información de los futbolistas del equipo en un archivo JSON. Primero, define el nombre predeterminado del archivo y 
-        /// muestra un cuadro de diálogo para que el usuario elija dónde guardar el archivo. Si el usuario confirma la ubicación de guardado, utiliza la clase StreamWriter para escribir los datos 
-        /// de los futbolistas en formato JSON en el archivo. Además, se maneja cualquier excepción que pueda ocurrir y muestra un mensaje de error si se produce un problema durante la operación. 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void btnSerealizar_Click(object sender, EventArgs e)
         {
             int selected = this.lstEquipo.SelectedIndex;
@@ -310,14 +303,6 @@ namespace Aplicacion
 
         }
 
-        /// <summary>
-        /// El método btnDeserealizarFutbolistas_Click se encarga de deserializar datos de futbolistas desde un archivo JSON. Primero, el usuario selecciona el archivo a través de un cuadro de diálogo, 
-        /// y luego el método lee y deserializa los datos en una lista de objetos Futbolista, que se almacena en la propiedad correspondiente del equipo. 
-        /// Luego, se verifica si el equipo ha alcanzado su límite de jugadores, mostrando una advertencia en caso afirmativo. Posteriormente, se verifica 
-        /// y actualiza la información de los jugadores deserializados en el equipo y se llama al método Actualizar para reflejar estos cambios en la interfaz de usuario. 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void btnDeserealizar_Click(object sender, EventArgs e)
         {
             //Creo un hilo para poder serealizar trabajando con llamadas a interfaces ya que antes tenia el error
@@ -400,11 +385,6 @@ namespace Aplicacion
             else MessageBox.Show("Algo salio mal...", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-
-        private void btnEliminarBBDD_MouseHover(object sender, EventArgs e)
-        {
-            this.CrearToolTip(this.btnEliminarBBDD, "Dicho jugador a modificar debe estar previamente guardado en la BBDD");
-        }
 
         /// <summary>
         /// Mismo procedimiento que la funcion de Modificar_BBDD pero en este caso elimino en vez de modificar

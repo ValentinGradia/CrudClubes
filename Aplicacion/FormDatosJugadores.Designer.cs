@@ -42,24 +42,27 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label1.Location = new Point(63, 34);
             label1.Name = "label1";
-            label1.Size = new Size(51, 15);
+            label1.Size = new Size(53, 15);
             label1.TabIndex = 0;
             label1.Text = "Nombre";
             // 
             // label2
             // 
             label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label2.Location = new Point(63, 97);
             label2.Name = "label2";
-            label2.Size = new Size(51, 15);
+            label2.Size = new Size(52, 15);
             label2.TabIndex = 1;
             label2.Text = "Apellido";
             // 
             // label3
             // 
             label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label3.Location = new Point(63, 149);
             label3.Name = "label3";
             label3.Size = new Size(33, 15);
@@ -69,6 +72,7 @@
             // label4
             // 
             label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label4.Location = new Point(19, 212);
             label4.Name = "label4";
             label4.Size = new Size(77, 15);
@@ -92,6 +96,7 @@
             // 
             // txtNombre
             // 
+            txtNombre.BackColor = Color.WhiteSmoke;
             txtNombre.Location = new Point(98, 52);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(142, 23);
@@ -108,18 +113,21 @@
             // 
             // btnAgregar
             // 
+            btnAgregar.BackColor = Color.Silver;
+            btnAgregar.ForeColor = SystemColors.ControlText;
             btnAgregar.Location = new Point(112, 302);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(94, 41);
             btnAgregar.TabIndex = 8;
             btnAgregar.Text = "Agregar";
-            btnAgregar.UseVisualStyleBackColor = true;
+            btnAgregar.UseVisualStyleBackColor = false;
             btnAgregar.Click += btnAgregar_Click;
             // 
             // FormDatosJugadores
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.LightCoral;
             ClientSize = new Size(347, 371);
             Controls.Add(btnAgregar);
             Controls.Add(cmbNacionalidades);

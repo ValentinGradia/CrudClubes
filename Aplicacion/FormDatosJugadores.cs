@@ -44,11 +44,13 @@ namespace Aplicacion
                 this.cmbNacionalidades.Items.Add(pais);
 
             }
+            this.Shown += FormDatosJugadores_Load;
         }
 
         protected void FormDatosJugadores_Load(object sender, EventArgs e)
         {
-
+            this.txtNombre.Focus();
+            this.txtEdad.PlaceholderText = "Entre 18 y 50";
             //int valor = this.cmbNacionalidades.Items.Count;
 
         }
@@ -75,7 +77,7 @@ namespace Aplicacion
 
                 }
             }
-            catch(FormatException ex)
+            catch (FormatException ex)
             {
                 MessageBox.Show($"Edad: {ex.Message}");
                 this.DialogResult = DialogResult.None;
@@ -87,7 +89,7 @@ namespace Aplicacion
         protected static bool ValidarEdad(string text)
         {
             bool flag = false;
-            if(!(int.TryParse(text, out int edad)))
+            if (!(int.TryParse(text, out int edad)))
             {
                 MessageBox.Show("Edad incorrecta, ingrese un numero", "ERROR!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -113,7 +115,7 @@ namespace Aplicacion
         {
             bool flag = false;
 
-            if(!(string.IsNullOrEmpty(text)))
+            if (!(string.IsNullOrEmpty(text)))
             {
                 flag = true;
             }
