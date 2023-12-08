@@ -88,7 +88,9 @@
             Controls.Add(cmbMano);
             Controls.Add(label6);
             Controls.Add(label5);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "FormVoleibolista";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Voleibolista";
             Controls.SetChildIndex(label1, 0);
             Controls.SetChildIndex(label2, 0);

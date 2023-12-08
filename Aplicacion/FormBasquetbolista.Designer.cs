@@ -110,14 +110,16 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(389, 527);
+            ClientSize = new Size(340, 527);
             Controls.Add(label7);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(txtPosicion);
             Controls.Add(txtAltura);
             Controls.Add(txtCalzado);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "FormBasquetbolista";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Basquetbolista";
             Controls.SetChildIndex(label1, 0);
             Controls.SetChildIndex(label2, 0);
