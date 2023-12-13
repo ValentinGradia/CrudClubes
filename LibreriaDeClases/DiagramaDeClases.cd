@@ -1,53 +1,95 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="LibreriaDeClases.Jugador">
-    <Position X="9.75" Y="0.5" Width="4.5" />
+    <Position X="9.25" Y="1" Width="6" />
     <TypeIdentifier>
-      <HashCode>AAAAAgAAAAYAAACEgAAAgAAAAAAAIgAAACYAAAAAAig=</HashCode>
+      <HashCode>ABACAgAAAAYAAACEgAAAhAAAAAAAIoAAACYAAAAQAig=</HashCode>
       <FileName>Jugador.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LibreriaDeClases.Voleibolista">
-    <Position X="16.25" Y="6" Width="7.25" />
+    <Position X="16" Y="7.5" Width="7.25" />
     <TypeIdentifier>
-      <HashCode>AIAAAAAAAAAAAAAEgAAAAAAAAAAAAAAAACYAAACEAiA=</HashCode>
+      <HashCode>AIACAAAAAAAAAAAEgAAABAAAAAAAAAAAACYAAACEAiA=</HashCode>
       <FileName>Voleibolista.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LibreriaDeClases.Futbolista">
-    <Position X="8.5" Y="6" Width="7" />
+    <Position X="8.5" Y="7.5" Width="7" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAACAAQAAIEgAACAAAAAAAAAAAAACQAAAAFAjA=</HashCode>
+      <HashCode>AAACAAAACAAQAAIEgAACBAAAAAAAAAAAACQAAAAFAjA=</HashCode>
       <FileName>Futbolista.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LibreriaDeClases.Basquetbolista">
-    <Position X="0.5" Y="6" Width="7.25" />
+    <Position X="1" Y="7.5" Width="7.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAEAAAAFgAAAAAAAAAAAEAAAADQAAAAEAiA=</HashCode>
+      <HashCode>AAACAAAAAAEAAAAFgAAABAAAAAAAEAAAADQAAAAEAiA=</HashCode>
       <FileName>Basquetbolista.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Aplicacion.AccesoDatos">
+    <Position X="16.5" Y="1.25" Width="7.75" />
+    <TypeIdentifier>
+      <HashCode>AACAEoAAAAAAAAABABAAAEIAAAIEAAAAIAAAAEABAAE=</HashCode>
+      <FileName>AccesoDatos.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LibreriaDeClases.Club">
+    <Position X="1" Y="1.25" Width="6" />
+    <TypeIdentifier>
+      <HashCode>BACAAAAAgAAAABAEwAEAAAAAAAAAAIAAAAAAAAYAgiA=</HashCode>
+      <FileName>Club.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Aplicacion.Usuario">
+    <Position X="26.5" Y="1.75" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQBAACEgQAAhAAAAIQAAACAAAAQAAAAEiA=</HashCode>
+      <FileName>Usuario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LibreriaDeClases.ObjetoDuplicadoException">
+    <Position X="27.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ObjetoDuplicadoException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="LibreriaDeClases.NullContraseñaCorreoException">
-    <Position X="17.75" Y="10.5" Width="4.25" />
+    <Position X="29.25" Y="9.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>NullContraseñaCorreoException.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Interface Name="Aplicacion.IJugadores&lt;T&gt;">
-    <Position X="18.75" Y="2.5" Width="2.5" />
+  <Class Name="LibreriaDeClases.JugadoNoExistenteException">
+    <Position X="25.25" Y="9.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAACIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>JugadoNoExistenteException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Aplicacion.IJugadores&lt;T&gt;">
+    <Position X="25.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IJugadores.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="LibreriaDeClases.IValidarJugadorRepetido">
-    <Position X="4.25" Y="2.25" Width="4" />
+    <Position X="29.25" Y="7.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAQAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
       <FileName>IValidarJugadorRepetido.cs</FileName>
     </TypeIdentifier>
   </Interface>
+  <Enum Name="ENacionalidad">
+    <Position X="27.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAACAAAAAAAAAAAAAAAAAACAAQAAA=</HashCode>
+      <FileName>Enum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

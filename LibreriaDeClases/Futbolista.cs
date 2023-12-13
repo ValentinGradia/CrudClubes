@@ -15,11 +15,25 @@ namespace LibreriaDeClases
         private EPierna pierna;
         private int cantGoles;
         private string posicion;
+        private static int contador = 0;
+        private int id;
 
         public EPierna Pierna
         {
             get { return this.pierna; }
             set { this.pierna = value; }
+        }
+
+        public override int Contador
+        {
+            set { Futbolista.contador = value; }
+            get { return Futbolista.contador; }
+        }
+
+        public override int Id
+        {
+            get { return id; }
+            set { this.id = value; }
         }
 
         public int Goles    
@@ -46,6 +60,8 @@ namespace LibreriaDeClases
         {
             this.cantGoles = cantGoles;
             this.pierna = pierna;
+            Futbolista.contador++;
+            this.Id = Futbolista.contador;
         }
 
         public Futbolista(string nombre, string apellido, int edad, ENacionalidad nacion, string posicion
@@ -134,7 +150,7 @@ namespace LibreriaDeClases
 
     }
 
-    [JsonConverter(typeof(JsonStringEnumConverter))]
+    //[JsonConverter(typeof(JsonStringEnumConverter))]
     public enum EPierna
     {
         Diestro,

@@ -62,3 +62,4 @@ D:\Labo\Gradia.Valentin.SegundoParcial\LibreriaDeClases\obj\Debug\net6.0\Libreri
 D:\Labo\Gradia.Valentin.SegundoParcial\LibreriaDeClases\obj\Debug\net6.0\refint\LibreriaDeClases.dll
 D:\Labo\Gradia.Valentin.SegundoParcial\LibreriaDeClases\obj\Debug\net6.0\LibreriaDeClases.pdb
 D:\Labo\Gradia.Valentin.SegundoParcial\LibreriaDeClases\obj\Debug\net6.0\ref\LibreriaDeClases.dll
+D:\Labo\Gradia.Valentin.SegundoParcial\LibreriaDeClases\obj\Debug\net6.0\LibreriaDeClases.sourcelink.json

@@ -39,25 +39,23 @@
             label2 = new Label();
             btnOrdenarEdadDescendente = new Button();
             btnOrdenarApellidosDescendente = new Button();
-            btnSerealizar = new Button();
-            btnDeserealizar = new Button();
-            groupBox1 = new GroupBox();
-            groupBox1.SuspendLayout();
+            button1 = new Button();
             SuspendLayout();
             // 
             // lstEquipo
             // 
+            lstEquipo.Font = new Font("Cambria Math", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             lstEquipo.FormattingEnabled = true;
-            lstEquipo.ItemHeight = 15;
+            lstEquipo.ItemHeight = 84;
             lstEquipo.Location = new Point(12, 12);
             lstEquipo.Name = "lstEquipo";
-            lstEquipo.Size = new Size(892, 379);
+            lstEquipo.Size = new Size(997, 340);
             lstEquipo.TabIndex = 0;
             // 
             // btnAgregar
             // 
             btnAgregar.BackColor = SystemColors.ScrollBar;
-            btnAgregar.Location = new Point(12, 445);
+            btnAgregar.Location = new Point(28, 389);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(111, 78);
             btnAgregar.TabIndex = 1;
@@ -69,7 +67,7 @@
             // btnModificar
             // 
             btnModificar.BackColor = SystemColors.ScrollBar;
-            btnModificar.Location = new Point(153, 445);
+            btnModificar.Location = new Point(161, 389);
             btnModificar.Name = "btnModificar";
             btnModificar.Size = new Size(112, 78);
             btnModificar.TabIndex = 2;
@@ -81,7 +79,7 @@
             // btnEliminar
             // 
             btnEliminar.BackColor = SystemColors.ScrollBar;
-            btnEliminar.Location = new Point(296, 445);
+            btnEliminar.Location = new Point(312, 389);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(105, 78);
             btnEliminar.TabIndex = 3;
@@ -94,18 +92,18 @@
             // 
             btnAgregarEquipo.BackColor = Color.IndianRed;
             btnAgregarEquipo.ForeColor = SystemColors.ButtonFace;
-            btnAgregarEquipo.Location = new Point(773, 440);
+            btnAgregarEquipo.Location = new Point(520, 378);
             btnAgregarEquipo.Name = "btnAgregarEquipo";
             btnAgregarEquipo.Size = new Size(131, 89);
             btnAgregarEquipo.TabIndex = 4;
-            btnAgregarEquipo.Text = "Agregar Equipo";
+            btnAgregarEquipo.Text = "Agregar Club";
             btnAgregarEquipo.UseVisualStyleBackColor = false;
             btnAgregarEquipo.Click += btnAgregarEquipo_Click;
             // 
             // btnOrdenarEdadAscendente
             // 
             btnOrdenarEdadAscendente.BackColor = Color.FromArgb(255, 192, 128);
-            btnOrdenarEdadAscendente.Location = new Point(910, 43);
+            btnOrdenarEdadAscendente.Location = new Point(1015, 45);
             btnOrdenarEdadAscendente.Name = "btnOrdenarEdadAscendente";
             btnOrdenarEdadAscendente.Size = new Size(88, 53);
             btnOrdenarEdadAscendente.TabIndex = 5;
@@ -116,7 +114,7 @@
             // btnOrdenarApellidosAscendente
             // 
             btnOrdenarApellidosAscendente.BackColor = Color.FromArgb(255, 224, 192);
-            btnOrdenarApellidosAscendente.Location = new Point(910, 121);
+            btnOrdenarApellidosAscendente.Location = new Point(1015, 104);
             btnOrdenarApellidosAscendente.Name = "btnOrdenarApellidosAscendente";
             btnOrdenarApellidosAscendente.Size = new Size(88, 55);
             btnOrdenarApellidosAscendente.TabIndex = 6;
@@ -127,7 +125,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(910, 12);
+            label1.Location = new Point(1015, 12);
             label1.Name = "label1";
             label1.Size = new Size(69, 15);
             label1.TabIndex = 7;
@@ -136,7 +134,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(910, 212);
+            label2.Location = new Point(1015, 194);
             label2.Name = "label2";
             label2.Size = new Size(75, 15);
             label2.TabIndex = 8;
@@ -145,7 +143,7 @@
             // btnOrdenarEdadDescendente
             // 
             btnOrdenarEdadDescendente.BackColor = Color.FromArgb(255, 192, 128);
-            btnOrdenarEdadDescendente.Location = new Point(910, 247);
+            btnOrdenarEdadDescendente.Location = new Point(1015, 223);
             btnOrdenarEdadDescendente.Name = "btnOrdenarEdadDescendente";
             btnOrdenarEdadDescendente.Size = new Size(88, 59);
             btnOrdenarEdadDescendente.TabIndex = 9;
@@ -156,7 +154,7 @@
             // btnOrdenarApellidosDescendente
             // 
             btnOrdenarApellidosDescendente.BackColor = Color.FromArgb(255, 224, 192);
-            btnOrdenarApellidosDescendente.Location = new Point(910, 328);
+            btnOrdenarApellidosDescendente.Location = new Point(1015, 289);
             btnOrdenarApellidosDescendente.Name = "btnOrdenarApellidosDescendente";
             btnOrdenarApellidosDescendente.Size = new Size(88, 63);
             btnOrdenarApellidosDescendente.TabIndex = 10;
@@ -164,47 +162,26 @@
             btnOrdenarApellidosDescendente.UseVisualStyleBackColor = false;
             btnOrdenarApellidosDescendente.Click += btnOrdenarApellidosDescendente_Click;
             // 
-            // btnSerealizar
+            // button1
             // 
-            btnSerealizar.BackColor = SystemColors.InactiveCaption;
-            btnSerealizar.Location = new Point(18, 43);
-            btnSerealizar.Name = "btnSerealizar";
-            btnSerealizar.Size = new Size(98, 68);
-            btnSerealizar.TabIndex = 11;
-            btnSerealizar.Text = "Serealizar jugador";
-            btnSerealizar.UseVisualStyleBackColor = false;
-            btnSerealizar.Click += btnSerealizar_Click;
-            // 
-            // btnDeserealizar
-            // 
-            btnDeserealizar.BackColor = SystemColors.InactiveCaption;
-            btnDeserealizar.Location = new Point(103, 119);
-            btnDeserealizar.Name = "btnDeserealizar";
-            btnDeserealizar.Size = new Size(98, 68);
-            btnDeserealizar.TabIndex = 15;
-            btnDeserealizar.Text = "Deserealizar jugador";
-            btnDeserealizar.UseVisualStyleBackColor = false;
-            btnDeserealizar.Click += btnDeserealizar_Click;
-            // 
-            // groupBox1
-            // 
-            groupBox1.BackColor = Color.LightSkyBlue;
-            groupBox1.Controls.Add(btnDeserealizar);
-            groupBox1.Controls.Add(btnSerealizar);
-            groupBox1.Location = new Point(462, 397);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(218, 201);
-            groupBox1.TabIndex = 17;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Serializacion XML";
+            button1.BackColor = Color.IndianRed;
+            button1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.ForeColor = SystemColors.ButtonFace;
+            button1.Location = new Point(885, 388);
+            button1.Name = "button1";
+            button1.Size = new Size(103, 76);
+            button1.TabIndex = 11;
+            button1.Text = "Volver";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // FormCrud
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(1058, 609);
-            Controls.Add(groupBox1);
+            ClientSize = new Size(1135, 492);
+            Controls.Add(button1);
             Controls.Add(btnOrdenarApellidosDescendente);
             Controls.Add(btnOrdenarEdadDescendente);
             Controls.Add(label2);
@@ -220,7 +197,6 @@
             Name = "FormCrud";
             Text = "FormCrud";
             Load += FormCrud_Load;
-            groupBox1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -238,8 +214,6 @@
         private Label label2;
         private Button btnOrdenarEdadDescendente;
         private Button btnOrdenarApellidosDescendente;
-        private Button btnSerealizar;
-        private Button btnDeserealizar;
-        private GroupBox groupBox1;
+        private Button button1;
     }
 }

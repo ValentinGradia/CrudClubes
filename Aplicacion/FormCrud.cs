@@ -1,9 +1,5 @@
 ﻿using LibreriaDeClases;
-using System.Runtime.CompilerServices;
-using System.Text.Json;
-using System.Threading;
 using System.Windows.Forms;
-using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace Aplicacion
 {
@@ -15,13 +11,17 @@ namespace Aplicacion
     {
         private Club equipo;
         private string nombreEquipo;
-        protected int cantJugadoresMax;
         private FormJugadores form;
         private string perfilUsuario;
-        private event Action<bool, string> ComprobarProceso;
         private event Action<Club, Jugador, string> ActualizarEquipo;
         private event Func<DialogResult> ConfirmarEliminacion;
-
+        private event DelegadoGuardarBBDD GuardarJugadores;
+        private event DelegadoEliminarBBDD EliminarJugadores;
+        private event DelegadoModificarBBDD ModificarJugadores;
+        private delegate void DelegadoModificarBBDD(Jugador jugador);
+        private delegate void DelegadoEliminarBBDD(Jugador jugador);
+        private delegate void DelegadoGuardarBBDD(Jugador jugador);
+        private AccesoDatos sql = new AccesoDatos();
 
         private FormCrud()
         {
@@ -29,11 +29,10 @@ namespace Aplicacion
         }
 
         //Cuando crea un equipo nuevo estos son los parametros que requieren para crearlo
-        public FormCrud(int cantJugadores, string nombreEquipo, string perfil) : this()
+        public FormCrud(string nombreEquipo, string perfil) : this()
         {
-            this.equipo = new Club(cantJugadores, nombreEquipo);
+            this.equipo = new Club(nombreEquipo);
             this.nombreEquipo = nombreEquipo;
-            this.cantJugadoresMax = cantJugadores;
             this.perfilUsuario = perfil;
             this.Text = nombreEquipo;
         }
@@ -42,11 +41,11 @@ namespace Aplicacion
         public FormCrud(Club equipo, string perfil) : this()
         {
             this.equipo = equipo;
-            this.cantJugadoresMax = equipo.CantidadJugadores;
             this.nombreEquipo = equipo.NombreEquipo;
             this.Text = nombreEquipo;
             this.perfilUsuario = perfil;
             this.Actualizar();
+            this.btnAgregarEquipo.Text = "Modificar Equipo";
         }
 
         public Club MiEquipo
@@ -144,6 +143,7 @@ namespace Aplicacion
         {
             if (form.DialogResult == DialogResult.OK)
             {
+                this.ModificarJugadores.Invoke(form.MiDeportista);
                 this.equipo.MiEquipo[selected] = form.MiDeportista;
 
                 this.Actualizar();
@@ -174,11 +174,6 @@ namespace Aplicacion
             {
                 this.form = new FormJugadores();
             }
-            else if (this.equipo.MiEquipo.Count == this.cantJugadoresMax)
-            {
-                MessageBox.Show("Se alcanzo el limite de jugadores", "ERROR!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
             else
             {
                 //En el caso qu ya haya jugadores, le paso como parametro la lista para que no pase el limite de jugadores
@@ -190,15 +185,83 @@ namespace Aplicacion
             if (this.form.DialogResult == DialogResult.OK)
             {
 
-
+                this.GuardarJugadores.Invoke(this.form.MiJugador);
                 this.ActualizarEquipo.Invoke(this.equipo, this.form.MiJugador, "Agregar");
             }
             else
             {
                 this.form.Close();
             }
+        }
+
+        private void GuardarJugadoresBBDD(Jugador jugador)
+        {
+
+            if (jugador is Futbolista)
+            {
+                Futbolista f = (Futbolista)jugador;
+                sql.AgregarJugador<Futbolista>(f, this.equipo.NombreEquipo);
+            }
+            else if (jugador is Basquetbolista)
+            {
+                Basquetbolista b = (Basquetbolista)jugador;
+                sql.AgregarJugador<Basquetbolista>(b, this.equipo.NombreEquipo);
+            }
+            else
+            {
+                Voleibolista v = (Voleibolista)jugador;
+                sql.AgregarJugador<Voleibolista>(v, this.equipo.NombreEquipo);
+            }
+
+        }
+
+        private void EliminarJugadoresBBDD(Jugador jugador)
+        {
+
+            if (jugador is Futbolista)
+            {
+                Futbolista f = (Futbolista)jugador;
+                sql.EliminarJugador<Futbolista>(f, equipo.NombreEquipo);
+            }
+            else if (jugador is Basquetbolista)
+            {
+                Basquetbolista b = (Basquetbolista)jugador;
+                sql.EliminarJugador<Basquetbolista>(b, equipo.NombreEquipo);
+            }
+            else
+            {
+                Voleibolista v = (Voleibolista)jugador;
+                sql.EliminarJugador<Voleibolista>(v, equipo.NombreEquipo);
+            }
 
 
+        }
+
+
+        private void ModificarJugadoresBBDD(Jugador jugador)
+        {
+            try
+            {
+                if (jugador is Futbolista)
+                {
+                    Futbolista f = (Futbolista)jugador;
+                    sql.ModificarJugador(f, equipo.NombreEquipo);
+                }
+                else if (jugador is Basquetbolista)
+                {
+                    Basquetbolista b = (Basquetbolista)jugador;
+                    sql.ModificarJugador(b, equipo.NombreEquipo);
+                }
+                else
+                {
+                    Voleibolista v = (Voleibolista)jugador;
+                    sql.ModificarJugador(v, equipo.NombreEquipo);
+                }
+            }
+            catch (JugadoNoExistenteException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
 
@@ -216,7 +279,7 @@ namespace Aplicacion
                 {
                     if (this.ConfirmarEliminacion.Invoke() == DialogResult.Yes)
                     {
-
+                        this.EliminarJugadores.Invoke(this.equipo.MiEquipo[selected]);
                         this.ActualizarEquipo.Invoke(this.equipo, this.equipo.MiEquipo[selected], "Eliminar");
                     }
                 }
@@ -226,6 +289,7 @@ namespace Aplicacion
                 }
             }
         }
+
 
         /// <summary>
         /// Le asocio a mi evento ActualizarEquipo este metodo para que una vez que agregue o elimine un jugador llamar a este para
@@ -279,7 +343,7 @@ namespace Aplicacion
             this.Actualizar();
         }
 
-
+        /*
         private void btnSerealizar_Click(object sender, EventArgs e)
         {
             int selected = this.lstEquipo.SelectedIndex;
@@ -319,7 +383,7 @@ namespace Aplicacion
             thread.SetApartmentState(ApartmentState.STA);//Por lo que vi sirve para tener acceso a objetos COM (El error que tenia antes venia con
                                                          //algo relacionado a esto)
             thread.Start();
-        }
+        }*/
 
         public DialogResult Eliminar()
         {
@@ -329,141 +393,6 @@ namespace Aplicacion
             return pregunta;
         }
 
-        /// <summary>
-        /// Metodo el cual guardo mi jugador en la bbdd. Primero, verifico si se ha seleccionado un elemento en la listbox (lstEquipo).
-        /// Luego creo una instancia de la clase AccesoDatos para conectarme  a la BBDD
-        ///  Despues agrego el jugador a la base de datos, invocando un evento (ComprobarProceso) para informar sobre el resultado. 
-        /// Si ocurre una excepción del tipo ObjetoDuplicadoException (que el jugador ya este guardado en la BBDD), muestra un mensaje de error.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /*private void btnAgregarBBDD_Click(object sender, EventArgs e)
-        {
-            int selected = this.lstEquipo.SelectedIndex;
-            bool flag;
-
-            if (selected == -1)
-            {
-                MessageBox.Show("Seleccione uno", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                AccesoDatos acceso = new AccesoDatos();
-                Jugador j = this.equipo.MiEquipo[selected];
-                try
-                {
-                    if (j is Futbolista)
-                    {
-                        Futbolista f = (Futbolista)j;
-                        flag = acceso.AgregarJugador<Futbolista>(f);
-                        this.ComprobarProceso.Invoke(flag, "guardo");
-                    }
-                    else if (j is Basquetbolista)
-                    {
-                        Basquetbolista b = (Basquetbolista)j;
-                        flag = acceso.AgregarJugador<Basquetbolista>(b);
-                        this.ComprobarProceso.Invoke(flag, "guardo");
-                    }
-                    else
-                    {
-                        Voleibolista v = (Voleibolista)j;
-                        flag = acceso.AgregarJugador<Voleibolista>(v);
-                        this.ComprobarProceso.Invoke(flag, "guardo");
-                    }
-                }
-                catch (ObjetoDuplicadoException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-
-        }*/
-
-        private void VerificarProceso(bool flag, string msg)
-        {
-            if (flag) { MessageBox.Show($"Se {msg} el jugador en la base de datos", "SUCCESFULLY", MessageBoxButtons.OK); }
-            else MessageBox.Show("Algo salio mal...", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-
-        /// <summary>
-        /// Mismo procedimiento que la funcion de Modificar_BBDD pero en este caso elimino en vez de modificar
-        /// Todos los pasos son los mismo
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /*
-        private void btnEliminarBBDD_Click(object sender, EventArgs e)
-        {
-            int selected = this.lstEquipo.SelectedIndex;
-            bool flag;
-
-            if (selected == -1)
-            {
-                MessageBox.Show("Seleccione uno", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                AccesoDatos acceso = new AccesoDatos();
-                Jugador j = this.equipo.MiEquipo[selected];
-                try
-                {
-                    if (j is Futbolista)
-                    {
-                        Futbolista f = (Futbolista)j;
-                        flag = acceso.EliminarJugador<Futbolista>(f);
-                        this.ComprobarProceso.Invoke(flag, "elimino");
-                    }
-                    else if (j is Basquetbolista)
-                    {
-                        Basquetbolista b = (Basquetbolista)j;
-                        flag = acceso.EliminarJugador<Basquetbolista>(b);
-                        this.ComprobarProceso.Invoke(flag, "elimino");
-                    }
-                    else
-                    {
-                        Voleibolista v = (Voleibolista)j;
-                        flag = acceso.EliminarJugador<Voleibolista>(v);
-                        this.ComprobarProceso.Invoke(flag, "elimino");
-                    }
-                }
-                catch (JugadoNoExistenteException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-
-        }*/
-
-        /// <summary>
-        /// Metodo para obtener la tabla (que en este caso seria la lista de tipos de jugadores) de la BBDD
-        /// Primero verifico el radiobutton para ver que tipo de tabla /lista voy a traer y luego valido que los jugadores
-        /// que traiga no esten agregados en el equipo.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /*
-        private void btnObtenerBBDD_Click(object sender, EventArgs e)
-        {
-            AccesoDatos acceso = new AccesoDatos();
-
-            if (this.rdbFutbolistas.Checked)
-            {
-                List<Futbolista> listaFutbolistas = acceso.ObtenerListaDatos<Futbolista>();
-                listaFutbolistas.ForEach((jugador) => this.ValidarJugadorRepetido(jugador, this.equipo));
-            }
-            else if (this.rdbBasquetbolistas.Checked)
-            {
-                List<Basquetbolista> listaBasquetbolistas = acceso.ObtenerListaDatos<Basquetbolista>();
-                listaBasquetbolistas.ForEach((jugador) => this.ValidarJugadorRepetido(jugador, this.equipo));
-            }
-            else
-            {
-                List<Voleibolista> listaVoleibolistas = acceso.ObtenerListaDatos<Voleibolista>();
-                listaVoleibolistas.ForEach((jugador) => this.ValidarJugadorRepetido(jugador, this.equipo));
-
-            }
-        }*/
 
         /// <summary>
         /// Al deserealizar los jugadores que tenga en la BBDD tengo que fijarme si alguno de esos jugadores ya estan en el equipo o no
@@ -507,9 +436,21 @@ namespace Aplicacion
 
         private void FormCrud_Load(object sender, EventArgs e)
         {
-            this.ComprobarProceso = this.VerificarProceso;
             this.ActualizarEquipo = this.ActualizarMiEquipo;
             this.ConfirmarEliminacion = this.Eliminar;
+
+            DelegadoGuardarBBDD delegado = new DelegadoGuardarBBDD(this.GuardarJugadoresBBDD);
+            DelegadoEliminarBBDD delegadoEliminar = new DelegadoEliminarBBDD(this.EliminarJugadoresBBDD);
+            DelegadoModificarBBDD delegadoModificar = new DelegadoModificarBBDD(this.ModificarJugadoresBBDD);
+
+            this.GuardarJugadores = delegado;
+            this.ModificarJugadores = delegadoModificar;
+            this.EliminarJugadores = delegadoEliminar;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         public void AgregarJugadores<T>(T jugador, List<T> lista)

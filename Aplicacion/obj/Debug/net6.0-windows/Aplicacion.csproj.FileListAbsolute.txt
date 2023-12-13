@@ -216,3 +216,4 @@ D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\Aplic
 D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.Properties.Resources.resources
 D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.FormClubes.resources
 D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.FormCrearClubes.resources
+D:\Labo\Gradia.Valentin.SegundoParcial\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.sourcelink.json

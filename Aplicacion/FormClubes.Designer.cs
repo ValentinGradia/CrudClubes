@@ -47,11 +47,12 @@
             // 
             // lstEquipos
             // 
+            lstEquipos.Font = new Font("Gadugi", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             lstEquipos.FormattingEnabled = true;
-            lstEquipos.ItemHeight = 15;
+            lstEquipos.ItemHeight = 19;
             lstEquipos.Location = new Point(12, 40);
             lstEquipos.Name = "lstEquipos";
-            lstEquipos.Size = new Size(275, 244);
+            lstEquipos.Size = new Size(275, 232);
             lstEquipos.TabIndex = 0;
             // 
             // btnAgregar
@@ -169,6 +170,7 @@
             Controls.Add(lstEquipos);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "FormClubes";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Clubes";
             FormClosing += FormEquipos_FormClosing;
             Load += FormEquipos_Load;

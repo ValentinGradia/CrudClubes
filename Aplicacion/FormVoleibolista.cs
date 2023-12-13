@@ -13,6 +13,7 @@ namespace Aplicacion
 {
     public partial class FormVoleibolista : FormDatosJugadores, IJugadores<Voleibolista>
     {
+        private Voleibolista voleibolista;
 
         public FormVoleibolista() : base()
         {
@@ -29,6 +30,7 @@ namespace Aplicacion
         {
             this.CargarDatos(v);
             this.btnAgregar.Text = "Modificar";
+            base.JugadorNuevo = false;
         }
 
         public void CargarDatos(Voleibolista v)
@@ -39,6 +41,7 @@ namespace Aplicacion
             this.txtPosicion.Text = v.Posicion;
             base.cmbNacionalidades.SelectedIndex = Convert.ToInt32(v.Nacion);
             this.cmbMano.SelectedIndex = Convert.ToInt32(v.ManoDominante);
+            this.voleibolista = v;
 
         }
 
@@ -60,20 +63,25 @@ namespace Aplicacion
 
                 EMano mano = (EMano)Enum.Parse(typeof(EMano), m);
 
-                if (FormDatosJugadores.ValidarNull(this.txtPosicion.Text))
-                {
-                    string posicion = this.txtPosicion.Text;
+                string posicion = FormDatosJugadores.ValidarNull(this.txtPosicion.Text) ? this.txtPosicion.Text : "Sin posicion";
 
-                    base.miDeportista = new Voleibolista(mano, base.nombre, base.apellido, base.edad, nacion, posicion);
-                    this.DialogResult = DialogResult.OK;
+                if (!(base.JugadorNuevo))
+                {
+                    this.voleibolista.Nombre = base.nombre;
+                    this.voleibolista.Apellido = base.apellido;
+                    this.voleibolista.Edad = base.edad;
+                    this.voleibolista.Nacion = nacion;
+                    this.voleibolista.Posicion = posicion;
+
+                    base.miDeportista = this.voleibolista;
                 }
                 else
                 {
-                    base.miDeportista = new Voleibolista(mano, base.nombre, base.apellido, base.edad, nacion, "Sin posicion");
+                    base.miDeportista = new Voleibolista(mano, base.nombre, base.apellido, base.edad, nacion, posicion);
                     this.DialogResult = DialogResult.OK;
                 }
-            }
 
+            }
         }
 
         public void ValidarCmbNull()

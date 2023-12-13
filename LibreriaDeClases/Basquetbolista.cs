@@ -15,6 +15,8 @@ namespace LibreriaDeClases
         private int altura;
         private int calzado;
         private string posicion;
+        private static int contador = 0;
+        private int id;
 
         public int Altura
         {
@@ -28,6 +30,16 @@ namespace LibreriaDeClases
             set { this.calzado = value; }
         }
 
+        public override int Contador
+        {
+            set { Basquetbolista.contador = value; }
+            get { return Basquetbolista.contador; }
+        }
+        public override int Id
+        {
+            get { return id; }
+            set { this.id = value; }
+        }
         public override string Posicion
         {
             get
@@ -49,6 +61,8 @@ namespace LibreriaDeClases
             this.altura = altura;
             this.calzado = calzado;
             this.posicion = "";
+            Basquetbolista.contador++;
+            this.Id = Basquetbolista.contador;
         }
 
         public Basquetbolista(int altura, int calzado, string posicion ,string nombre, string apellido,

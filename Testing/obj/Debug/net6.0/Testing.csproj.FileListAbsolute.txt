@@ -278,3 +278,4 @@ D:\Labo\Gradia.Valentin.SegundoParcial\Testing\obj\Debug\net6.0\refint\Testing.d
 D:\Labo\Gradia.Valentin.SegundoParcial\Testing\obj\Debug\net6.0\Testing.pdb
 D:\Labo\Gradia.Valentin.SegundoParcial\Testing\obj\Debug\net6.0\Testing.genruntimeconfig.cache
 D:\Labo\Gradia.Valentin.SegundoParcial\Testing\obj\Debug\net6.0\ref\Testing.dll
+D:\Labo\Gradia.Valentin.SegundoParcial\Testing\obj\Debug\net6.0\Testing.sourcelink.json

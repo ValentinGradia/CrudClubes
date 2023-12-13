@@ -12,6 +12,8 @@ namespace Aplicacion
         private Club equipoCreado;
         private List<Club> equiposLista;
         private string perfilUsuario;
+        public delegate void DelegadoEquipoYaCreado(List<Club> clubes, string nombreEquipoACrear);
+        public event DelegadoEquipoYaCreado EventoEquipoDuplicado;
 
         public Club EquipoCreado
         {
@@ -22,6 +24,7 @@ namespace Aplicacion
         {
             InitializeComponent();
             this.perfilUsuario = perfilUsuario;
+
         }
 
         /// <summary>
@@ -35,43 +38,46 @@ namespace Aplicacion
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(this.txtCantJugadores.Text, out int cantJugadores))
+            string nombreEquipo = this.txtNombreEquipo.Text;
+
+            this.EventoEquipoDuplicado(this.equiposLista, nombreEquipo);
+            
+
+            if (!(this.DialogResult == DialogResult.None))
             {
-                if (cantJugadores > 0)
-                {
-                    string nombreEquipo = this.txtNombreEquipo.Text;
+                FormCrud formCrud = new FormCrud(nombreEquipo, this.perfilUsuario);
 
-                    FormCrud formCrud = new FormCrud(cantJugadores, nombreEquipo, this.perfilUsuario);
-
-                    formCrud.ShowDialog();
-                    this.equipoCreado = formCrud.MiEquipo;
-                    this.DialogResult = DialogResult.OK;
-
-
-                    //this.Visible = false;
-                    /*formCrud.ShowDialog();
-                    this.equipoCreado = formCrud.MiEquipo;
-
-                    this.DialogResult = DialogResult.OK;*/
-
-
-                }
-                else
-                {
-                    MessageBox.Show("Minimo debe tener un jugador", "ERRORR!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    this.DialogResult = DialogResult.None;
-                }
-
+                formCrud.ShowDialog();
+                this.equipoCreado = formCrud.MiEquipo;
+                this.DialogResult = DialogResult.OK;
             }
-            else
-            {
-                MessageBox.Show("Datos incorrectos", "ERRORR!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.DialogResult = DialogResult.None;
-            }
-
         }
 
+        public void VerificarEquipoDuplicado(List<Club> clubes, string nombreEquipo)
+        {
+            if (clubes != null)
+            {
+                foreach (Club club in clubes)
+                {
+                    if (club.NombreEquipo.ToLower() == nombreEquipo.ToLower())
+                    {
+                        MessageBox.Show("El equipo ya existe!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        this.DialogResult = DialogResult.None;
+                        return;
+                    }
 
+                    this.DialogResult = DialogResult.OK;
 
+                }
+            }
+            this.DialogResult = DialogResult.OK;
+        }
+
+        private void FormCrearClubes_Load(object sender, EventArgs e)
+        {
+            DelegadoEquipoYaCreado delegado = new DelegadoEquipoYaCreado(this.VerificarEquipoDuplicado);
+
+            this.EventoEquipoDuplicado = delegado;
+        }
     }
 }

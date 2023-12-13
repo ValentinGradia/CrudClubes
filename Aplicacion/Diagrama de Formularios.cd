@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Aplicacion.FormBasquetbolista">
+    <Position X="5.5" Y="0.75" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAECACARAAAgiAIAACAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FormBasquetbolista.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Aplicacion.FormClubes">
+    <Position X="16" Y="6.75" Width="5.25" />
+    <NestedTypes>
+      <Delegate Name="Aplicacion.FormClubes.DelegadoEliminarBBDD" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>FormClubes.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="Aplicacion.FormClubes.DelegadoImagenes" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>FormClubes.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAEChAAgiSAAAEQCYCCQEACDQFEAACIABAAICjDGAA=</HashCode>
+      <FileName>FormClubes.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Aplicacion.FormCrearClubes">
+    <Position X="16.25" Y="1" Width="4.75" />
+    <NestedTypes>
+      <Delegate Name="Aplicacion.FormCrearClubes.DelegadoEquipoYaCreado" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>FormCrearClubes.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAgACAAACACABkABACAAAICAAAAAAAAIAAAAAAEBAA=</HashCode>
+      <FileName>FormCrearClubes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Aplicacion.FormCrud">
+    <Position X="22" Y="1.5" Width="6.75" />
+    <NestedTypes>
+      <Delegate Name="Aplicacion.FormCrud.DelegadoModificarBBDD" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>FormCrud.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="Aplicacion.FormCrud.DelegadoEliminarBBDD" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>FormCrud.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="Aplicacion.FormCrud.DelegadoGuardarBBDD" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>FormCrud.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>ARCACGAwACTQAFEgCAiAE2gCCABIQAIaAFFAISQACCA=</HashCode>
+      <FileName>FormCrud.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Aplicacion.FormDatosJugadores">
+    <Position X="5.75" Y="7" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAGSAABCAAECgAQACICFAQAAAAAIIAABAAAI=</HashCode>
+      <FileName>FormDatosJugadores.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Aplicacion.FormFutbolista">
+    <Position X="10.5" Y="0.75" Width="5" />
+    <InheritanceLine Type="Aplicacion.FormDatosJugadores" ManuallyRouted="true">
+      <Path>
+        <Point X="7.75" Y="7" />
+        <Point X="7.75" Y="6.092" />
+        <Point X="13" Y="6.092" />
+        <Point X="13" Y="4.934" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AEACAAAAACAAABAAAACAICACAAAEAAAAAEAAAAABAAA=</HashCode>
+      <FileName>FormFutbolista.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Aplicacion.FormVoleibolista">
+    <Position X="0.5" Y="0.75" Width="4.5" />
+    <InheritanceLine Type="Aplicacion.FormDatosJugadores" ManuallyRouted="true">
+      <Path>
+        <Point X="7.75" Y="7" />
+        <Point X="7.75" Y="6.15" />
+        <Point X="2.75" Y="6.15" />
+        <Point X="2.75" Y="4.55" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAACAAABAAAAiAIAACAAAEAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>FormVoleibolista.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Aplicacion.FormLogin">
+    <Position X="11" Y="6.75" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAACQBEBgCRRCAAgACCEAQAQAAAIAQAADgAAA=</HashCode>
+      <FileName>FormLogin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Aplicacion.FormJugadores">
+    <Position X="0.5" Y="7" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAACIABgACAAIgAAAACAAAAiCAAAAAAAAgAAAACAAAA=</HashCode>
+      <FileName>FormJugadores.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Aplicacion.FormHistorialUsuarios">
+    <Position X="0.75" Y="13" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACBAAAAAAACAAAgCAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FormHistorialUsuarios.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

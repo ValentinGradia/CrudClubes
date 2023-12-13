@@ -13,7 +13,10 @@ namespace Aplicacion
         private FormCrearClubes formCrearClubes;
         private string nombreUsuario;
         private DateTime fechaRegistro;
+        private event DelegadoEliminarBBDD EliminarJugadores;
+        private delegate void DelegadoEliminarBBDD(int selected);
         private string perfilUsuario;
+        private AccesoDatos sql = new AccesoDatos();
         public delegate void DelegadoImagenes(int num);
 
 
@@ -23,6 +26,61 @@ namespace Aplicacion
             this.listaEquipos = new List<Club>();
             CargarImagenes();
             Task hiloSecundario = Task.Run(() => CargarClubes());
+
+            List<Dictionary<string, List<Jugador>>> lista = sql.ObtenerListaDatos<Futbolista>();
+            List<Dictionary<string, List<Jugador>>> lista1 = sql.ObtenerListaDatos<Basquetbolista>();
+            List<Dictionary<string, List<Jugador>>> lista2 = sql.ObtenerListaDatos<Voleibolista>();
+
+            List<Dictionary<string, List<Jugador>>> clubes = new List<Dictionary<string, List<Jugador>>>();
+            clubes.AddRange(lista1);
+            clubes.AddRange(lista2);
+            clubes.AddRange(lista);
+
+            //Creo un diccionario para agruprar jugadores por club, ya que en la BBDD estan agrupados por tipo de jugador  y no por clun
+            //Entonces hago dos foreach recorriendo los diccionarios y las clave-valores para ir separando por club
+
+            Dictionary<string, List<Jugador>> jugadoresPorClub = new Dictionary<string, List<Jugador>>();
+            
+            foreach (Dictionary<string, List<Jugador>> diccionario in clubes)
+            {
+                foreach (var claveValor in diccionario)
+                {
+
+                    if (jugadoresPorClub.ContainsKey(claveValor.Key))
+                    {
+                        jugadoresPorClub[claveValor.Key].AddRange(claveValor.Value);
+                    }
+                    else
+                    {
+                        jugadoresPorClub[claveValor.Key] = new List<Jugador>(claveValor.Value);
+                    }
+                }
+            }
+
+            foreach(var claveValor in jugadoresPorClub)
+            {
+                Club club = new Club(claveValor.Key);
+                foreach(var jugador in claveValor.Value)
+                {
+                    //Sumo los ids para que no se repitan estos
+                    if (jugador is Futbolista)
+                    {
+                        Futbolista f = (Futbolista)jugador;
+                    }
+                    else if (jugador is Basquetbolista)
+                    {
+                        Basquetbolista b = (Basquetbolista)jugador;
+                    }
+                    else if (jugador is Voleibolista)
+                    {
+                        Voleibolista v = (Voleibolista)jugador;
+                    }
+                    club += jugador;
+                }
+
+                this.listaEquipos.Add(club);
+            }
+            this.Actualizar();
         }
 
         private void CargarClubes()
@@ -166,6 +224,7 @@ namespace Aplicacion
                     Club equipo = this.listaEquipos[selected];
                     FormCrud form = new FormCrud(equipo, this.perfilUsuario);
                     form.ShowDialog();
+
                     this.Modificar(form, selected);
                 }
                 else
@@ -174,6 +233,8 @@ namespace Aplicacion
                 }
             }
         }
+
+       
 
         public void Modificar(FormCrud form, int selected)
         {
@@ -198,12 +259,37 @@ namespace Aplicacion
                 {
                     if (this.Eliminar() == DialogResult.Yes)
                     {
+                        this.EliminarJugadores.Invoke(selected);
                         this.listaEquipos.RemoveAt(selected); this.Actualizar();
                     }
                 }
                 else
                 {
                     this.Mostrar_Mensaje_Permiso();
+                }
+            }
+
+        }
+
+        private void EliminarJugadoresBBDD(int selected)
+        {
+            Club club = this.listaEquipos[selected];
+            foreach (Jugador jugador in club.MiEquipo)
+            {
+                if (jugador is Futbolista)
+                {
+                    Futbolista f = (Futbolista)jugador;
+                    sql.EliminarJugador<Futbolista>(f, club.NombreEquipo);
+                }
+                else if (jugador is Basquetbolista)
+                {
+                    Basquetbolista b = (Basquetbolista)jugador;
+                    sql.EliminarJugador<Basquetbolista>(b, club.NombreEquipo);
+                }
+                else
+                {
+                    Voleibolista v = (Voleibolista)jugador;
+                    sql.EliminarJugador<Voleibolista>(v, club.NombreEquipo);
                 }
             }
 
@@ -235,6 +321,9 @@ namespace Aplicacion
             this.lblUsuario.Text = this.nombreUsuario;
             string fechaFormateada = this.fechaRegistro.ToString("yyyy-MM-dd");
             this.lblFechaRegistro.Text = fechaFormateada;
+
+            DelegadoEliminarBBDD delegadoEliminar = new DelegadoEliminarBBDD(this.EliminarJugadoresBBDD);
+            this.EliminarJugadores = delegadoEliminar;
 
         }
 

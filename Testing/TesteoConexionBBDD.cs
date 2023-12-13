@@ -53,9 +53,9 @@ namespace Testing
             AccesoDatos a = new AccesoDatos();
 
             //Act
-            _ = a.AgregarJugador<Futbolista>(f);
+            _ = a.AgregarJugador<Futbolista>(f,"Boca");
 
-            _ = a.AgregarJugador<Futbolista>(f1);
+            _ = a.AgregarJugador<Futbolista>(f1,"Boca");
 
 
         }
@@ -70,7 +70,7 @@ namespace Testing
             AccesoDatos a = new AccesoDatos();
 
             //Act
-            _ = a.ModificarJugador<Futbolista>(f);
+            _ = a.ModificarJugador<Futbolista>(f,"Boca");
 
         }
 
@@ -84,7 +84,7 @@ namespace Testing
             AccesoDatos a = new AccesoDatos();
 
             //Act
-            _ = a.EliminarJugador<Futbolista>(f);
+            _ = a.EliminarJugador<Futbolista>(f,"Bok");
 
         }
     }

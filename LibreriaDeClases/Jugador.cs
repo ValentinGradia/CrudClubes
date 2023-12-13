@@ -18,6 +18,7 @@ namespace LibreriaDeClases
         protected ENacionalidad nacion;
         protected int edad;
         public string habilidad;
+        private string nombreClub;
 
         public string Nombre
         {
@@ -48,6 +49,11 @@ namespace LibreriaDeClases
 
         public abstract string Posicion { get; set; }
 
+        public abstract int Id { get; set; }
+
+        public abstract int Contador { get; set; }
+
+        public string NombreClub { get => this.nombreClub; set => this.nombreClub = value; }
 
         public Jugador()
         {
@@ -102,6 +108,11 @@ namespace LibreriaDeClases
             }
 
             return flag;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.nombre.GetHashCode();
         }
 
         public static bool operator ==(Jugador j1,Jugador j2)

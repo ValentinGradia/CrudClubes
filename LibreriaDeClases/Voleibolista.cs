@@ -5,6 +5,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json.Serialization;
+using System.Runtime.CompilerServices;
 
 namespace LibreriaDeClases
 {
@@ -15,12 +16,26 @@ namespace LibreriaDeClases
     public class Voleibolista : Jugador
     {
         private EMano manoDominante;
-        private string posicion; 
+        private string posicion;
+        private static int contador = 0;
+        private int id;
 
         public EMano ManoDominante
         {
             get { return this.manoDominante; }
             set { this.manoDominante = value; }
+        }
+
+        public override int Id
+        {
+            get { return id; }
+            set { this.id = value; }
+        }
+
+        public override int Contador
+        {
+            set { Voleibolista.contador = value; }
+            get { return Voleibolista.contador; }
         }
 
         public override string Posicion
@@ -33,6 +48,7 @@ namespace LibreriaDeClases
         {
 
         }
+
         public Voleibolista(string nombre, string apellido, int edad,
         ENacionalidad nacion) : base(nombre, apellido, edad, nacion)
         {
@@ -46,7 +62,9 @@ namespace LibreriaDeClases
         {
             this.manoDominante = mano;
             this.posicion = "";
-            
+            Voleibolista.contador++;
+            this.Id = Voleibolista.contador;
+
         }
 
         public Voleibolista(EMano manodominante, string nombre, string apellido, int edad,

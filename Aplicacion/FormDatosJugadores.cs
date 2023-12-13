@@ -25,6 +25,7 @@ namespace Aplicacion
         protected string nombre;
         protected string apellido;
         protected Jugador miDeportista;
+        private bool jugadorNuevo = true;
 
         public virtual Jugador MiDeportista
         {
@@ -33,6 +34,8 @@ namespace Aplicacion
                 return this.miDeportista;
             }
         }
+
+        protected bool JugadorNuevo { get => jugadorNuevo; set => jugadorNuevo = value; }
 
         public FormDatosJugadores()
         {

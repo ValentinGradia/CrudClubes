@@ -20,6 +20,7 @@ namespace Aplicacion
     public partial class FormBasquetbolista : FormDatosJugadores, IJugadores<Basquetbolista>
     {
 
+        private Basquetbolista basquetbolista;
 
         public FormBasquetbolista() : base()
         {
@@ -35,6 +36,7 @@ namespace Aplicacion
         {
             this.CargarDatos(b);
             this.btnAgregar.Text = "Modificar";
+            base.JugadorNuevo = false;
         }
 
         public void CargarDatos(Basquetbolista b)
@@ -46,6 +48,7 @@ namespace Aplicacion
             this.txtAltura.Text = b.Altura.ToString();
             this.txtPosicion.Text = b.Posicion;
             base.cmbNacionalidades.SelectedIndex = Convert.ToInt32(b.Nacion);
+            this.basquetbolista = b;
         }
 
         /// <summary>
@@ -73,20 +76,28 @@ namespace Aplicacion
 
                     int calzado = int.Parse(this.txtCalzado.Text);
 
-                    if (FormDatosJugadores.ValidarNull(this.txtPosicion.Text))
+                    string posicion = FormDatosJugadores.ValidarNull(this.txtPosicion.Text) ? this.txtPosicion.Text : "Sin posicion";
+
+                    Basquetbolista b = (Basquetbolista)base.miDeportista;
+
+                    if (!(base.JugadorNuevo))
                     {
-
-                        string posicion = this.txtPosicion.Text;
-
-                        base.miDeportista = new Basquetbolista(altura, calzado, posicion, base.nombre, base.apellido, base.edad, nacionalidad);
+                        this.basquetbolista.Nombre = base.nombre;
+                        this.basquetbolista.Apellido = base.apellido;
+                        this.basquetbolista.Edad = base.edad;
+                        this.basquetbolista.Nacion = nacionalidad;
+                        this.basquetbolista.Altura = altura;
+                        this.basquetbolista.Calzado = calzado;
+                        this.basquetbolista.Posicion = posicion;
                         this.DialogResult = DialogResult.OK;
+
+                        base.miDeportista = this.basquetbolista;
                     }
                     else
                     {
-                        base.miDeportista = new Basquetbolista(altura, calzado, "Sin posicion", base.nombre, base.apellido, base.edad, nacionalidad);
+                        base.miDeportista = new Basquetbolista(altura, calzado, posicion, base.nombre, base.apellido, base.edad, nacionalidad);
                         this.DialogResult = DialogResult.OK;
                     }
-
                 }
                 else
                 {

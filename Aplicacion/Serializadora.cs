@@ -60,15 +60,8 @@ namespace Aplicacion
                         Jugador j = (Jugador)serializer.Deserialize(sr);
 
 
-                            if (equipo.MiEquipo.Count == equipo.CantidadJugadores)
-                            {
-                                MessageBox.Show("No se podran agregar mas jugadores serializados debido " +
-                                    "a que se alcanzo el limite de jugadores", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
-
-                            this.ValidarJugadorRepetido(j, equipo);
-                            //this.Actualizar();
-                        
+                        this.ValidarJugadorRepetido(j, equipo);
+                            //this.Actualizar();     
 
                     }
                 }

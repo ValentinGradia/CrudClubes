@@ -20,6 +20,8 @@ namespace Aplicacion
     public partial class FormFutbolista : FormDatosJugadores, IJugadores<Futbolista>
     {
 
+        private Futbolista futbolista;
+
         public FormFutbolista() : base()
         {
             InitializeComponent();
@@ -42,6 +44,7 @@ namespace Aplicacion
         {
             this.CargarDatos(f);
             this.btnAgregar.Text = "Modificar";
+            base.JugadorNuevo = false;
 
         }
 
@@ -54,6 +57,7 @@ namespace Aplicacion
             base.cmbNacionalidades.SelectedIndex = Convert.ToInt32(f.Nacion);
             this.cmbPierna.SelectedIndex = Convert.ToInt32(f.Pierna);
             this.txtPosicion.Text = f.Posicion;
+            this.futbolista = f;
         }
 
         private void btnAgregar_Click_1(object sender, EventArgs e)
@@ -80,24 +84,27 @@ namespace Aplicacion
                     {
                         int goles = int.Parse(this.txtGoles.Text);
                         //La posicion es un parametro opcional
-                        if (FormDatosJugadores.ValidarNull(this.txtPosicion.Text))
+
+                        string posicion = FormDatosJugadores.ValidarNull(this.txtPosicion.Text) ? this.txtPosicion.Text : "Sin posicion";
+                        Futbolista f = (Futbolista)base.miDeportista;
+
+                        if (!(base.JugadorNuevo))
                         {
-                            string posicion = this.txtPosicion.Text;
-
-                            base.miDeportista = new Futbolista(base.nombre, base.apellido, base.edad, nacionalidad, posicion,
-                                            goles, pierna);
-
+                            this.futbolista.Nombre = base.nombre;
+                            this.futbolista.Apellido = base.apellido;
+                            this.futbolista.Edad = base.edad;
+                            this.futbolista.Nacion = nacionalidad;
+                            this.futbolista.Pierna = pierna;
+                            this.futbolista.Goles = goles;
+                            this.futbolista.Posicion = posicion;
                             this.DialogResult = DialogResult.OK;
-                            return;
 
+                            base.miDeportista = this.futbolista;
                         }
                         else
                         {
-                            base.miDeportista = new Futbolista(base.nombre, base.apellido, base.edad, nacionalidad, "Sin posicion",
-                                            goles, pierna);
-
+                            base.miDeportista = new Futbolista(base.nombre, base.apellido, base.edad, nacionalidad, posicion, goles, pierna);
                             this.DialogResult = DialogResult.OK;
-                            return;
                         }
                     }
                     else

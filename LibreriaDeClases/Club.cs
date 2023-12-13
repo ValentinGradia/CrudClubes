@@ -8,20 +8,13 @@ using System.Threading.Tasks;
 namespace LibreriaDeClases
 {
     /// <summary>
-    /// Equipo es una clase que modela un equipo deportivo y gestiona jugadores de varios deportes. Permite agregar y quitar jugadores, así como ordenarlos por apellido o edad.
+    /// Club es una clase que modela un equipo deportivo y gestiona jugadores de varios deportes. Permite agregar y quitar jugadores, así como ordenarlos por apellido o edad.
     /// </summary>
     public class Club
     {
         private List<Jugador> miEquipo;
-        private int cantidadJugadores;
         private string nombreEquipo;
 
-
-        public int CantidadJugadores
-        {
-            get { return this.cantidadJugadores; }
-            set { this.cantidadJugadores = value; }
-        }
 
         public int CantidadJugadoresActual
         {
@@ -45,9 +38,8 @@ namespace LibreriaDeClases
 
         }
 
-        public Club(int cantidadJugadores, string nombreEquipo) : this()
+        public Club(string nombreEquipo) : this()
         {
-            this.cantidadJugadores = cantidadJugadores;
             this.nombreEquipo = nombreEquipo;
             this.miEquipo = new List<Jugador>();
         }
@@ -67,6 +59,11 @@ namespace LibreriaDeClases
             }
 
             return flag;
+        }
+
+        public override int GetHashCode()
+        {
+            return nombreEquipo.GetHashCode();
         }
 
         public static Club operator +(Club e, Jugador j)

@@ -11,13 +11,10 @@ namespace Aplicacion
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             //ApplicationConfiguration.Initialize();
-            //Application.Run(new FormCrud(5,"hola"));
 
             FormLogin formLogin = new FormLogin();
 
-            Application.Run(new FormCrud(5, "Boca", "administrador"));
-
-            /*
+            
             try
             {
                 do
@@ -41,17 +38,16 @@ namespace Aplicacion
                         MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
                     }
 
-                    Application.Run(new FormEquipos(formLogin.NombreUsuario,DateTime.Now,formLogin.Perfil));
+                    Application.Run(new FormClubes(formLogin.NombreUsuario,DateTime.Now,formLogin.Perfil));
 
                 }
-
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
             }
-            */
+            
         }
     }
 }
