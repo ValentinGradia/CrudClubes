@@ -5,11 +5,12 @@ ___
 ## Sobre Mi
 **Me llamo Valentin, tengo 18 años y estudio programacion en la UTN. Siempre me gusto la programacion desde chico, en la 
 primaria una profesora mia tuvo un incoveniente por lo que pusieron un profesor de la universidad (UAI) a enseñarnos. Vimos access y como proyecto tuvimos 
-que hacer una calculadora lo cual me gusto mucho y encontre una relacion por asi decirlo con la programacion**
+que hacer una calculadora lo cual me gusto mucho y encontre una relacion por asi decirlo con la programacion. Luego en la secundaria en el ultimo año me anote en
+el taller de programacion que nos enseñaron un poco de php y lo basico de base de datos**
 ___
 ## Resumen
-**La aplicacion se encarga de crear equipos los cuales puedes agregar jugadores, modificar sus datos o eliminarlos del equipo. No solo eso sino que puedes tambien 
-puedes modificar los equipos en el cual  puedes acceder a estas caracteristicas. Dichos jugadores pueden ser guardados y/O almacenados en una base de datos**
+**La aplicacion se encarga de crear clubes los cuales puedes agregar jugadores, estos pueden ser futbolistas, basquetbolistas o voleibolistas.Tambien se encarga de  modificar sus datos o eliminarlos del equipo. 
+No solo eso sino que puedes tambien puedes modificar los equipos en el cual  puedes acceder a estas caracteristicas. Dichos jugadores pueden ser guardados y/O almacenados en una base de datos**
 
 ## Diagrama de clases
 ![Alt text](DiagramaDeClases.png.png)
@@ -36,8 +37,7 @@ reutilizable, adaptandose a los diferentes datos.**
 **Se utilizan task para poder agregar y modificar diferentes equipos y no estar agregando y/o modificando equipo por equipo.**
 
 ## Serializacion
-**Se emplea el termino serealizacion a la hora de obtener la lista de usuarios que pueden acceder a la aplicacion y tambien si el usuario quiere serelizar los diferentes
-tipos de jugadores**
+**Se emplea el termino serealizacion a la hora de obtener la lista de usuarios que pueden acceder a la aplicacion**
 
 ## Eventos
 **Se utilizan eventos a la hora de comprobar la contraseña del usuario que este ingresando, lanzar mensajes de dialogos si ocurre algun error.**
