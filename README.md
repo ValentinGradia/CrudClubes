@@ -11,8 +11,11 @@ ___
 **La aplicacion se encarga de crear equipos los cuales puedes agregar jugadores, modificar sus datos o eliminarlos del equipo. No solo eso sino que puedes tambien 
 puedes modificar los equipos en el cual  puedes acceder a estas caracteristicas. Dichos jugadores pueden ser guardados y/O almacenados en una base de datos**
 
+## Diagrama de clases
 ![Alt text](DiagramaDeClases.png.png)
 
+## Diagrama de Formularios
+![Alt text](DiagramaDeFormularios.png)
 ___
 
 ## SQL
