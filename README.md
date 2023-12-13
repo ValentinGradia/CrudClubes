@@ -1,6 +1,6 @@
 # Gradia.Valentin.PrimerParcial
 
-## CRUD- Equipo de jugadores
+## CRUD- Club de jugadores
 ___
 ## Sobre Mi
 **Me llamo Valentin, tengo 18 años y estudio programacion en la UTN. Siempre me gusto la programacion desde chico, en la 
