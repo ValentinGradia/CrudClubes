@@ -20,7 +20,7 @@ No solo eso sino que puedes tambien puedes modificar los equipos en el cual  pue
 ___
 
 ## SQL
-**Se utiliza la BBDD para almacenar los tipos de jugadores. De ese modo podras tenerlos guardados y poder obtenerlos en otro equipo**
+**Se utiliza la BBDD para almacenar los tipos de jugadores. De ese modo podras tenerlos guardados y poder obtenerlos en otro club**
 
 ## Excepciones
 **Se emplean excepciones en diversas secciones del código, en situaciones donde podría surgir un error durante la ejecución o en casos de errores del usuario. 
@@ -31,16 +31,17 @@ Por ejemplo, en el proceso de inicio de sesión, se desencadena una excepción c
 reutilizable, adaptandose a los diferentes datos.**
 
 ## Delegados
-**Se emplean delegados a la hora de la creacion de eventos tales como confirmar una serie de eliminacion de datos o para actualizar procesos y comprobarlos**
+**Se emplean delegados a la hora de la creacion de eventos tales como confirmar una serie de eliminacion de datos o para actualizar procesos y comprobarlos. Incluso para hacer un CRUD de la base de datos**
 
 ## Task
-**Se utilizan task para poder agregar y modificar diferentes equipos y no estar agregando y/o modificando equipo por equipo.**
+**Se utilizan task para poder agregar y modificar diferentes clubes y no estar agregando y/o modificando club por club. Tambien para poder mostrar una secuencia de imagenes y que la aplicacion no se bloquee**
 
 ## Serializacion
 **Se emplea el termino serealizacion a la hora de obtener la lista de usuarios que pueden acceder a la aplicacion**
 
 ## Eventos
-**Se utilizan eventos a la hora de comprobar la contraseña del usuario que este ingresando, lanzar mensajes de dialogos si ocurre algun error.**
+**Se utilizan eventos a la hora de comprobar la contraseña del usuario que este ingresando, lanzar mensajes de dialogos si ocurre algun error. Tambien para invocarlos en determinados momentos como por ejemplo al agregar
+jugador al club este automaticamente se guardara en la base de datos**
 
 
 
