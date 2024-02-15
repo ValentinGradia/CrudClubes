@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ProbandoConexiones")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ac37f4a0d312135147ea000d9df7910b2d5c43e4")]
 [assembly: System.Reflection.AssemblyProductAttribute("ProbandoConexiones")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ProbandoConexiones")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

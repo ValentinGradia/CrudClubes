@@ -1,0 +1,142 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "G:\\Gradia.Valentin.SegundoParcial\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A116A75A-4E91-4EE0-B396-7DF86562F78E}|LibreriaDeClases\\LibreriaDeClases.csproj|g:\\gradia.valentin.segundoparcial\\libreriadeclases\\ijugadores.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A116A75A-4E91-4EE0-B396-7DF86562F78E}|LibreriaDeClases\\LibreriaDeClases.csproj|solutionrelative:libreriadeclases\\ijugadores.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A116A75A-4E91-4EE0-B396-7DF86562F78E}|LibreriaDeClases\\LibreriaDeClases.csproj|g:\\gradia.valentin.segundoparcial\\libreriadeclases\\jugadonoexistenteexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A116A75A-4E91-4EE0-B396-7DF86562F78E}|LibreriaDeClases\\LibreriaDeClases.csproj|solutionrelative:libreriadeclases\\jugadonoexistenteexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A116A75A-4E91-4EE0-B396-7DF86562F78E}|LibreriaDeClases\\LibreriaDeClases.csproj|g:\\gradia.valentin.segundoparcial\\libreriadeclases\\nullcontrase\u00F1acorreoexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A116A75A-4E91-4EE0-B396-7DF86562F78E}|LibreriaDeClases\\LibreriaDeClases.csproj|solutionrelative:libreriadeclases\\nullcontrase\u00F1acorreoexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A116A75A-4E91-4EE0-B396-7DF86562F78E}|LibreriaDeClases\\LibreriaDeClases.csproj|g:\\gradia.valentin.segundoparcial\\libreriadeclases\\jugador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A116A75A-4E91-4EE0-B396-7DF86562F78E}|LibreriaDeClases\\LibreriaDeClases.csproj|solutionrelative:libreriadeclases\\jugador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A116A75A-4E91-4EE0-B396-7DF86562F78E}|LibreriaDeClases\\LibreriaDeClases.csproj|g:\\gradia.valentin.segundoparcial\\libreriadeclases\\basquetbolista.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A116A75A-4E91-4EE0-B396-7DF86562F78E}|LibreriaDeClases\\LibreriaDeClases.csproj|solutionrelative:libreriadeclases\\basquetbolista.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8B214455-A4DA-4F6E-89C5-B08D0B4ECEDE}|Testing\\Testing.csproj|g:\\gradia.valentin.segundoparcial\\testing\\testeoconexionbbdd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8B214455-A4DA-4F6E-89C5-B08D0B4ECEDE}|Testing\\Testing.csproj|solutionrelative:testing\\testeoconexionbbdd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 184,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "IJugadores.cs",
+              "DocumentMoniker": "G:\\Gradia.Valentin.SegundoParcial\\LibreriaDeClases\\IJugadores.cs",
+              "RelativeDocumentMoniker": "LibreriaDeClases\\IJugadores.cs",
+              "ToolTip": "G:\\Gradia.Valentin.SegundoParcial\\LibreriaDeClases\\IJugadores.cs",
+              "RelativeToolTip": "LibreriaDeClases\\IJugadores.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-15T21:14:10.231Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "JugadoNoExistenteException.cs",
+              "DocumentMoniker": "G:\\Gradia.Valentin.SegundoParcial\\LibreriaDeClases\\JugadoNoExistenteException.cs",
+              "RelativeDocumentMoniker": "LibreriaDeClases\\JugadoNoExistenteException.cs",
+              "ToolTip": "G:\\Gradia.Valentin.SegundoParcial\\LibreriaDeClases\\JugadoNoExistenteException.cs",
+              "RelativeToolTip": "LibreriaDeClases\\JugadoNoExistenteException.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-15T21:14:07.654Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "NullContrase\u00F1aCorreoException.cs",
+              "DocumentMoniker": "G:\\Gradia.Valentin.SegundoParcial\\LibreriaDeClases\\NullContrase\u00F1aCorreoException.cs",
+              "RelativeDocumentMoniker": "LibreriaDeClases\\NullContrase\u00F1aCorreoException.cs",
+              "ToolTip": "G:\\Gradia.Valentin.SegundoParcial\\LibreriaDeClases\\NullContrase\u00F1aCorreoException.cs",
+              "RelativeToolTip": "LibreriaDeClases\\NullContrase\u00F1aCorreoException.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-15T21:13:58.456Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Jugador.cs",
+              "DocumentMoniker": "G:\\Gradia.Valentin.SegundoParcial\\LibreriaDeClases\\Jugador.cs",
+              "RelativeDocumentMoniker": "LibreriaDeClases\\Jugador.cs",
+              "ToolTip": "G:\\Gradia.Valentin.SegundoParcial\\LibreriaDeClases\\Jugador.cs",
+              "RelativeToolTip": "LibreriaDeClases\\Jugador.cs",
+              "ViewState": "AQIAAEgAAAAAAAAAAAAAAGwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-15T21:05:06.283Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Basquetbolista.cs",
+              "DocumentMoniker": "G:\\Gradia.Valentin.SegundoParcial\\LibreriaDeClases\\Basquetbolista.cs",
+              "RelativeDocumentMoniker": "LibreriaDeClases\\Basquetbolista.cs",
+              "ToolTip": "G:\\Gradia.Valentin.SegundoParcial\\LibreriaDeClases\\Basquetbolista.cs",
+              "RelativeToolTip": "LibreriaDeClases\\Basquetbolista.cs",
+              "ViewState": "AQIAADYAAAAAAAAAAAAAAE0AAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-15T21:03:18.881Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "TesteoConexionBBDD.cs",
+              "DocumentMoniker": "G:\\Gradia.Valentin.SegundoParcial\\Testing\\TesteoConexionBBDD.cs",
+              "RelativeDocumentMoniker": "Testing\\TesteoConexionBBDD.cs",
+              "ToolTip": "G:\\Gradia.Valentin.SegundoParcial\\Testing\\TesteoConexionBBDD.cs",
+              "RelativeToolTip": "Testing\\TesteoConexionBBDD.cs",
+              "ViewState": "AQIAADAAAAAAAAAAAAAAADUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-15T20:52:44.858Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -70,7 +70,7 @@ namespace Testing
             AccesoDatos a = new AccesoDatos();
 
             //Act
-            _ = a.ModificarJugador<Futbolista>(f,"Boca");
+            _ = a.ModificarJugador(f,"Boca");
 
         }
 
